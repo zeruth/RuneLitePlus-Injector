@@ -22,7 +22,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package com.runeswag.client.misc;
+package com.runeswag.client.callback;
 
 import api.BufferProvider;
 import api.RenderOverview;
@@ -40,6 +40,11 @@ import api.events.GameTick;
 import callbacks.DrawCallbacks;
 import com.google.inject.Injector;
 
+import com.runeswag.client.misc.ChatMessageManager;
+import com.runeswag.client.misc.InfoBoxManager;
+import com.runeswag.client.misc.KeyManager;
+import com.runeswag.client.misc.MouseManager;
+import com.runeswag.client.misc.Scheduler;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;

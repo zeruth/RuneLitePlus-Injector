@@ -51,7 +51,7 @@ public class InjectHookMethod
 {
 	private static final Logger logger = LoggerFactory.getLogger(InjectHookMethod.class);
 
-	public static final String HOOKS = "net/runelite/client/callback/Hooks";
+	public static final String HOOKS = "com/runeswag/client/callback/Hooks";
 
 	private final Inject inject;
 

@@ -46,9 +46,9 @@ import net.runelite.asm.signature.Signature;
 import net.runelite.deob.DeobAnnotations;
 import net.runelite.deob.deobfuscators.arithmetic.DMath;
 import net.runelite.mapping.Import;
-import net.runelite.rs.api.RSClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import rs.api.RSClient;
 
 public class Inject
 {
