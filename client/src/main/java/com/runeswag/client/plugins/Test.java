@@ -32,7 +32,6 @@ import com.google.common.eventbus.Subscribe;
 import com.google.inject.Binder;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
 import com.runeswag.client.misc.Plugin;
 import com.runeswag.client.misc.PluginDescriptor;
 import lombok.extern.slf4j.Slf4j;

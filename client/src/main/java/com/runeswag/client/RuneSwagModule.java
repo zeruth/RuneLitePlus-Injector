@@ -41,7 +41,7 @@ import com.runeswag.client.config.RuneSwagConfig;
 import com.runeswag.client.misc.ChatMessageManager;
 import com.runeswag.client.callback.DeferredEventBus;
 import com.runeswag.client.callback.EventBus;
-import com.runeswag.client.misc.Hooks;
+import com.runeswag.client.callback.Hooks;
 import com.runeswag.client.misc.PluginManager;
 import com.runeswag.client.misc.Scheduler;
 import com.runeswag.client.rs.ClientLoader;
