@@ -29,8 +29,20 @@ import net.runelite.mapping.Import;
 
 public interface RSActor extends RSRenderable, Actor
 {
-	@Import("interacting")
+	@Import("targetIndex")
 	int getRSInteracting();
+
+	// Overhead text
+
+	@Import("overheadText")
+	@Override
+	String getOverheadText();
+
+	@Import("overheadText")
+	@Override
+	void setOverheadText(String overheadText);
+
+	// Coord stuff
 
 	@Import("x")
 	int getX();
@@ -44,30 +56,52 @@ public interface RSActor extends RSRenderable, Actor
 	@Import("pathY")
 	int[] getPathY();
 
-	@Import("logicalHeight")
-	@Override
-	int getLogicalHeight();
+	// Animation
 
-	@Import("actionFrame")
+	@Import("sequence")
+	@Override
+	int getAnimation();
+
+	@Import("sequence")
+	@Override
+	void setAnimation(int animation);
+
+	@Import("sequenceFrame")
 	int getActionFrame();
 
-	@Import("actionFrameCycle")
+	@Import("sequenceFrame")
+	@Override
+	void setActionFrame(int frame);
+
+	@Import("sequenceFrameCycle")
 	int getActionFrameCycle();
 
-	@Import("poseFrame")
+	// Spot animation (aka graphic)
+
+	@Import("spotAnimation")
+	int getSpotAnimation();
+
+	@Import("spotAnimation")
+	void setSpotAnimation(int id);
+
+	@Import("spotAnimationFrame")
+	int getSpotAnimationFrame();
+
+	@Import("spotAnimationFrameCycle")
+	int getSpotAnimationFrameCycle();
+
+	@Import("movementFrame")
 	int getPoseFrame();
 
-	@Import("poseFrame")
+	@Import("movementFrame")
 	void setPoseFrame(int frame);
 
-	@Import("poseFrameCycle")
+	@Import("movementFrameCycle")
 	int getPoseFrameCycle();
 
-	@Import("spotAnimFrame")
-	int getSpotAnimFrame();
-
-	@Import("spotAnimFrameCycle")
-	int getSpotAnimFrameCycle();
+	@Import("defaultHeight")
+	@Override
+	int getLogicalHeight();
 
 	@Import("hitsplatValues")
 	int[] getHitsplatValues();
@@ -78,11 +112,10 @@ public interface RSActor extends RSRenderable, Actor
 	@Import("hitsplatCycles")
 	int[] getHitsplatCycles();
 
-	@Import("actionFrame")
-	@Override
-	void setActionFrame(int frame);
-
 	@Import("orientation")
 	@Override
 	int getOrientation();
+
+	@Import("healthBars")
+	RSIterableNodeDeque getHealthBars();
 }

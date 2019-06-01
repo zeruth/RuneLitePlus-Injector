@@ -26,7 +26,7 @@ package rs.api;
 
 import net.runelite.mapping.Import;
 
-public interface RSFrames extends RSCacheableNode
+public interface RSFrames extends RSDualNode
 {
 	@Import("skeletons")
 	RSFrame[] getFrames();

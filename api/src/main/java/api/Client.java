@@ -123,7 +123,7 @@ public interface Client extends GameEngine
 
 	api.Scene getScene();
 
-	SpritePixels createSpritePixels(int[] pixels, int width, int height);
+	Sprite createSpritePixels(int[] pixels, int width, int height);
 
 	IndexedSprite createIndexedSprite();
 

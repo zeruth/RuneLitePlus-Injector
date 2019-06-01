@@ -26,7 +26,7 @@ package com.runeswag.client.utils;
 
 import api.Client;
 import api.IndexedSprite;
-import api.SpritePixels;
+import api.Sprite;
 import com.google.common.primitives.Ints;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -427,7 +427,7 @@ public class ImageUtil
 	 * @param client Current client instance
 	 * @return The buffered image as a sprite image
 	 */
-	public static SpritePixels getImageSpritePixels(BufferedImage image, Client client)
+	public static Sprite getImageSpritePixels(BufferedImage image, Client client)
 	{
 		int[] pixels = new int[image.getWidth() * image.getHeight()];
 
