@@ -29,6 +29,10 @@
 package rs.api;
 
 import api.Client;
+import api.NPC;
+import api.Player;
+import net.runelite.mapping.Import;
+import org.slf4j.Logger;
 
 public interface RSClient extends Client
 {
@@ -38,5 +42,14 @@ public interface RSClient extends Client
 	int getDrawingMode();
 
 	void setTickCount(int tickCount);
-	
+
+	@Import("npcs")
+	@Override
+	NPC[] getCachedNPCs();
+
+	@Import("players")
+	@Override
+	Player[] getCachedPlayers();
+
+	Logger getLogger();
 }

@@ -3,6 +3,7 @@ package net.runelite.mixins;
 import api.Actor;
 import api.NPC;
 import api.Player;
+import net.runelite.api.mixins.FieldHook;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
@@ -82,5 +83,14 @@ public abstract class RSActorMixin implements RSActor
 			}
 		}
 		return -1;
+	}
+
+	@FieldHook("targetIndex")
+	@Inject
+	public void interactingChanged(int idx)
+	{
+		client.getLogger().info("Interacting changed!");
+		//InteractingChanged interactingChanged = new InteractingChanged(this, getInteracting());
+		//client.getCallbacks().post(interactingChanged);
 	}
 }
