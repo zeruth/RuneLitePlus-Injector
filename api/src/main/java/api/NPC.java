@@ -59,7 +59,7 @@ public interface NPC extends Actor
 	 *
 	 * @return the composition
 	 */
-	//NPCComposition getComposition();
+	NPCDefinition getDefinition();
 
 	/**
 	 * Get the composition for this NPC and transform it if required

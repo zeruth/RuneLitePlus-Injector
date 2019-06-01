@@ -2,7 +2,17 @@ package net.runelite.mixins;
 
 import api.Actor;
 import api.NPC;
+import api.NPCDefinition;
+import api.Perspective;
 import api.Player;
+import api.Point;
+import api.Sprite;
+import api.coords.LocalPoint;
+import api.coords.WorldArea;
+import api.coords.WorldPoint;
+import java.awt.Graphics2D;
+import java.awt.Polygon;
+import java.awt.image.BufferedImage;
 import net.runelite.api.mixins.FieldHook;
 import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.Mixin;
@@ -85,6 +95,74 @@ public abstract class RSActorMixin implements RSActor
 		return -1;
 	}
 
+	@Override
+	@Inject
+	public WorldPoint getWorldLocation()
+	{
+		return WorldPoint.fromLocal(client,
+			this.getPathX()[0] * Perspective.LOCAL_TILE_SIZE + Perspective.LOCAL_TILE_SIZE / 2,
+			this.getPathY()[0] * Perspective.LOCAL_TILE_SIZE + Perspective.LOCAL_TILE_SIZE / 2,
+			client.getPlane());
+	}
+
+	@Inject
+	@Override
+	public LocalPoint getLocalLocation()
+	{
+		return new LocalPoint(getX(), getY());
+	}
+
+	@Inject
+	@Override
+	public Polygon getCanvasTilePoly()
+	{
+		return Perspective.getCanvasTilePoly(client, getLocalLocation());
+	}
+
+	@Inject
+	@Override
+	public Point getCanvasTextLocation(Graphics2D graphics, String text, int zOffset)
+	{
+		return Perspective.getCanvasTextLocation(client, graphics, getLocalLocation(), text, zOffset);
+	}
+
+	@Inject
+	@Override
+	public Point getCanvasImageLocation(BufferedImage image, int zOffset)
+	{
+		return Perspective.getCanvasImageLocation(client, getLocalLocation(), image, zOffset);
+	}
+
+	@Inject
+	public Point getCanvasSpriteLocation(Sprite sprite, int zOffset)
+	{
+		return Perspective.getCanvasSpriteLocation(client, getLocalLocation(), sprite, zOffset);
+	}
+
+	@Inject
+	public Point getMinimapLocation()
+	{
+		return Perspective.localToMinimap(client, getLocalLocation());
+	}
+
+	@FieldHook("sequence")
+	@Inject
+	public void animationChanged(int idx)
+	{
+		//AnimationChanged animationChange = new AnimationChanged();
+		//animationChange.setActor(this);
+		//client.getCallbacks().post(animationChange);
+	}
+
+	@FieldHook("spotAnimation")
+	@Inject
+	public void graphicChanged(int idx)
+	{
+		//GraphicChanged graphicChanged = new GraphicChanged();
+		//graphicChanged.setActor(this);
+		//client.getCallbacks().post(graphicChanged);
+	}
+
 	@FieldHook("targetIndex")
 	@Inject
 	public void interactingChanged(int idx)
@@ -92,5 +170,42 @@ public abstract class RSActorMixin implements RSActor
 		client.getLogger().info("Interacting changed!");
 		//InteractingChanged interactingChanged = new InteractingChanged(this, getInteracting());
 		//client.getCallbacks().post(interactingChanged);
+	}
+
+	@FieldHook("overheadText")
+	@Inject
+	public void overheadTextChanged(int idx)
+	{
+		String text = getOverheadText();
+		if (text != null)
+		{
+			client.getLogger().info(text);
+		}
+		//String overheadText = getOverheadText();
+		//if (overheadText != null)
+		//{
+			//OverheadTextChanged overheadTextChanged = new OverheadTextChanged(this, overheadText);
+			//client.getCallbacks().post(overheadTextChanged);
+		//}
+	}
+
+	@Inject
+	public WorldArea getWorldArea()
+	{
+		int size = 1;
+		if (this instanceof NPC)
+		{
+			NPCDefinition composition = ((NPC)this).getDefinition();
+			if (composition != null && composition.getConfigs() != null)
+			{
+				composition = composition.transform();
+			}
+			if (composition != null)
+			{
+				size = composition.getSize();
+			}
+		}
+
+		return new WorldArea(this.getWorldLocation(), size, size);
 	}
 }
