@@ -26,7 +26,7 @@ package rs.api;
 
 import net.runelite.mapping.Import;
 
-public interface RSCacheableNode extends RSNode
+public interface RSDualNode extends RSNode
 {
 	@Import("unlinkDual")
 	void unlinkDual();

@@ -473,7 +473,7 @@ public class Perspective
 	public static Point getCanvasSpriteLocation(
 		@Nonnull Client client,
 		@Nonnull LocalPoint localLocation,
-		@Nonnull SpritePixels sprite,
+		@Nonnull Sprite sprite,
 		int zOffset)
 	{
 		int plane = client.getPlane();

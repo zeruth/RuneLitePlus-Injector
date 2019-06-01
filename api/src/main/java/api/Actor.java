@@ -36,6 +36,16 @@ import java.awt.image.BufferedImage;
  */
 public interface Actor extends Renderable
 {
+	String getOverheadText();
+
+	void setOverheadText(String overheadText);
+
+	int getAnimation();
+
+	void setAnimation(int id);
+
+	Actor getInteracting();
+
 	/**
 	 * Gets the combat level of the actor.
 	 *
@@ -68,7 +78,7 @@ public interface Actor extends Renderable
 
 	void setActionFrame(int actionFrame);
 
-	void setSpotAnimFrame(int spotAnimFrame);
+	void setSpotAnimationFrame(int spotAnimFrame);
 
 	int getOrientation();
 }
