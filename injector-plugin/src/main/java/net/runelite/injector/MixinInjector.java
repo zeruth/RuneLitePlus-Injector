@@ -73,6 +73,8 @@ public class MixinInjector
 	private static final Type REPLACE = new Type("Lnet/runelite/api/mixins/Replace;");
 	private static final Type FIELDHOOK = new Type("Lnet/runelite/api/mixins/FieldHook;");
 	private static final Type METHODHOOK = new Type("Lnet/runelite/api/mixins/MethodHook;");
+	private static final Type JAVAX_INJECT = new Type("Ljavax/inject/Inject;");
+	private static final Type NAMED = new Type("Ljavax/inject/Named;");
 
 	private static final String MIXIN_BASE = "net.runelite.mixins";
 	private static final String ASSERTION_FIELD = "$assertionsEnabled";
@@ -210,6 +212,21 @@ public class MixinInjector
 					copy.setAccessFlags(field.getAccessFlags());
 					copy.setPublic();
 					copy.setValue(field.getValue());
+
+					Annotation jInject = field.getAnnotations().find(JAVAX_INJECT);
+					if (jInject != null)
+					{
+						copy.getAnnotations().addAnnotation(jInject);
+						logger.info("Added javax inject to {}.{}", cf.getClassName(), copy.getName());
+
+						Annotation named = field.getAnnotations().find(NAMED);
+						if (named != null)
+						{
+							copy.getAnnotations().addAnnotation(named);
+							logger.info("Added javax named to {}.{}", cf.getClassName(), copy.getName());
+						}
+					}
+
 					cf.addField(copy);
 
 					if (injectedFields.containsKey(field.getName()))
