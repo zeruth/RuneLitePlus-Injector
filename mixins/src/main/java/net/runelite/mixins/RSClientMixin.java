@@ -26,10 +26,17 @@ package net.runelite.mixins;
 
 import javax.inject.Named;
 
+import api.BufferProvider;
 import api.GameState;
+import api.MainBufferProvider;
 import api.Player;
+import api.events.ClientTick;
+import api.events.MenuOpened;
 import api.events.VarbitChanged;
 import callbacks.Callbacks;
+import net.runelite.api.mixins.FieldHook;
+import net.runelite.api.mixins.MethodHook;
+import net.runelite.mapping.Export;
 import net.runelite.mapping.Import;
 import rs.api.RSClient;
 import net.runelite.api.mixins.Inject;
@@ -80,29 +87,40 @@ public abstract class RSClientMixin implements RSClient
 		return GameState.LOGIN_SCREEN;
 	}
 
-	@Inject
-	@Override
-	public void setGameDrawingMode(int mode) {
-		System.out.println("Hello");
-	}
-
 	@Import("localPlayer")
 	@Inject
 	rs.api.RSPlayer localPlayer;
 
+	@Import("gameDrawingMode")
+	@Inject
+	static int gameDrawingMode;
+
+	@Inject
+	@Override
+	public void setGameDrawingMode(int mode) {
+		gameDrawingMode = mode;
+	}
+
 	@Inject
 	@Override
 	public Player getLocalPlayer() {
-		VarbitChanged vbc = new VarbitChanged();
-		vbc.setIndex(420);
-		if (client.getCallbacks()==null) {
-			System.out.println("Booooo");
-		} else {
-			client.getCallbacks().post(vbc);
-		}
-		System.out.println("Impl getLocalPlayer");
 		return localPlayer;
 	}
+
+	@Inject
+	@MethodHook("openMenu")
+	public void openMenu(int var0, int var1)
+	{
+		client.getCallbacks().post(new MenuOpened());
+	}
+
+	@Inject
+	@FieldHook("cycle")
+	public static void onCycleCntrChanged(int idx)
+	{
+		client.getCallbacks().post(new ClientTick());
+	}
+
 
 	@Inject
 	@Override

@@ -26,14 +26,20 @@ package com.runeswag.client.plugins;
 
 import api.Client;
 import api.events.ChatMessage;
+import api.events.ClientTick;
 import api.events.GameTick;
+import api.events.MenuOpened;
 import api.events.VarbitChanged;
 import com.google.common.eventbus.Subscribe;
 import com.google.inject.Binder;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+
+import com.google.inject.Provides;
+import com.runeswag.client.config.ConfigManager;
 import com.runeswag.client.misc.Plugin;
 import com.runeswag.client.misc.PluginDescriptor;
+import com.runeswag.client.ui.OverlayManager;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -41,25 +47,31 @@ import lombok.extern.slf4j.Slf4j;
  */
 @PluginDescriptor(
         name = "Test",
-        description = "Uses chat messages and tick timers instead of animations to read",
-        tags = {"blackjack", "thieving"}
+        description = "Testing plugin for building functionality",
+        tags = {}
 )
 @Singleton
 @Slf4j
 public class Test extends Plugin
 {
-    private static final String PICKPOCKET = "Pickpocket";
-    private static final String KNOCK_OUT = "Knock-out";
-    private static final String LURE = "Lure";
-    private static final String BANDIT = "Bandit";
-    private static final String MENAPHITE = "Menaphite Thug";
+
+    @Provides
+    TestConfig getConfig(ConfigManager configManager)
+    {
+        return configManager.getConfig(TestConfig.class);
+    }
+
+    @Inject
+    private TestOverlay testOverlay;
+
+    @Inject
+    private TestConfig config;
 
     @Inject
     private Client client;
 
-    private int lastKnockout;
-    private boolean pickpocketing;
-    private boolean ableToBlackJack;
+    @Inject
+    private OverlayManager overlayManager;
 
     @Override
     public void configure(Binder binder)
@@ -69,6 +81,7 @@ public class Test extends Plugin
     @Override
     protected void startUp() throws Exception
     {
+        overlayManager.add(testOverlay);
         System.out.println("Test Plugin started");
     }
 
@@ -79,9 +92,9 @@ public class Test extends Plugin
     }
 
     @Subscribe
-    public void onGameTick(GameTick gameTick)
+    public void onMenuOpened(MenuOpened event)
     {
-        System.out.println("Game Tick");
+        System.out.println("Menu Opened Event");
     }
 
     @Subscribe

@@ -26,6 +26,7 @@ import com.google.inject.Injector;
 import com.runeswag.client.config.ConfigManager;
 import com.runeswag.client.events.EventBus;
 import com.runeswag.client.misc.PluginManager;
+import com.runeswag.client.plugins.Test;
 import com.runeswag.client.ui.ClientUI;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
@@ -96,7 +97,6 @@ public class RuneSwag
 		
 		injector.getInstance(RuneSwag.class).startClient();
 		injector.getInstance(RuneSwag.class).pluginManager.loadCorePlugins();
-		System.out.println(injector.getInstance(RuneSwag.class).pluginManager.getPlugins().iterator().next().toString());
 	}
 	
 	private void startClient() throws Exception
@@ -113,6 +113,9 @@ public class RuneSwag
 		}
 		
 		configManager.load();
+
+		pluginManager.loadCorePlugins();
+		pluginManager.startCorePlugins();
 		
 		clientUI.open(this);
 	}
