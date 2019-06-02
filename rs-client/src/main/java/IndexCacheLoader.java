@@ -462,12 +462,12 @@ public class IndexCacheLoader {
                   ;
                }
 
-               var0.draw(AbstractFont.escapeBrackets(var25) + (Login.__cu_bb == 0 & Client.cycle % 40 < 20?BufferedFile.colorStartTag(16776960) + "|":""), Varps.__hv_h - 70, var48, 16777215, 0);
+               var0.draw(AbstractFont.escapeBrackets(var25) + (Login.currentLoginField == 0 & Client.cycle % 40 < 20?BufferedFile.colorStartTag(16776960) + "|":""), Varps.__hv_h - 70, var48, 16777215, 0);
                var48 += 15;
                var8 = "Password: ";
                var30 = Login.Login_password;
                var31 = class168.method3450('*', var30.length());
-               var0.draw(var8 + var31 + (Login.__cu_bb == 1 & Client.cycle % 40 < 20?BufferedFile.colorStartTag(16776960) + "|":""), Varps.__hv_h - 108, var48, 16777215, 0);
+               var0.draw(var8 + var31 + (Login.currentLoginField == 1 & Client.cycle % 40 < 20?BufferedFile.colorStartTag(16776960) + "|":""), Varps.__hv_h - 108, var48, 16777215, 0);
                var48 += 15;
                var47 = 277;
                var11 = Varps.__hv_h + -117;

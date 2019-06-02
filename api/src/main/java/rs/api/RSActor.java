@@ -67,6 +67,7 @@ public interface RSActor extends RSRenderable, Actor
 	void setAnimation(int animation);
 
 	@Import("sequenceFrame")
+	@Override
 	int getActionFrame();
 
 	@Import("sequenceFrame")
@@ -74,21 +75,40 @@ public interface RSActor extends RSRenderable, Actor
 	void setActionFrame(int frame);
 
 	@Import("sequenceFrameCycle")
+	@Override
 	int getActionFrameCycle();
 
 	// Spot animation (aka graphic)
 
 	@Import("spotAnimation")
+	@Override
 	int getSpotAnimation();
 
 	@Import("spotAnimation")
+	@Override
 	void setSpotAnimation(int id);
 
 	@Import("spotAnimationFrame")
 	int getSpotAnimationFrame();
 
+	@Import("spotAnimation")
+	@Override
+	void setSpotAnimationFrame(int id);
+
 	@Import("spotAnimationFrameCycle")
 	int getSpotAnimationFrameCycle();
+
+	// Idle animation
+
+	@Import("idleSequence")
+	@Override
+	void setIdlePoseAnimation(int animation);
+
+	// Movement animation (aka poseAnimation)
+
+	@Import("movementSequence")
+	@Override
+	void setPoseAnimation(int animation);
 
 	@Import("movementFrame")
 	int getPoseFrame();
@@ -103,6 +123,15 @@ public interface RSActor extends RSRenderable, Actor
 	@Override
 	int getLogicalHeight();
 
+	@Import("orientation")
+	@Override
+	int getOrientation();
+
+	// Health stuff
+
+	@Import("healthBars")
+	RSIterableNodeDeque getHealthBars();
+
 	@Import("hitsplatValues")
 	int[] getHitsplatValues();
 
@@ -111,11 +140,4 @@ public interface RSActor extends RSRenderable, Actor
 
 	@Import("hitsplatCycles")
 	int[] getHitsplatCycles();
-
-	@Import("orientation")
-	@Override
-	int getOrientation();
-
-	@Import("healthBars")
-	RSIterableNodeDeque getHealthBars();
 }

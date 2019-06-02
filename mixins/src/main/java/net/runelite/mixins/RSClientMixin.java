@@ -26,17 +26,13 @@ package net.runelite.mixins;
 
 import javax.inject.Named;
 
-import api.BufferProvider;
 import api.GameState;
-import api.MainBufferProvider;
 import api.Player;
 import api.events.ClientTick;
 import api.events.MenuOpened;
-import api.events.VarbitChanged;
 import callbacks.Callbacks;
 import net.runelite.api.mixins.FieldHook;
 import net.runelite.api.mixins.MethodHook;
-import net.runelite.mapping.Export;
 import net.runelite.mapping.Import;
 import rs.api.RSClient;
 import net.runelite.api.mixins.Inject;
@@ -60,6 +56,13 @@ public abstract class RSClientMixin implements RSClient
 	@javax.inject.Inject
 	@Named("Core Logger")
 	private Logger logger;
+
+	@Inject
+	@Override
+	public Logger getLogger()
+	{
+		return logger;
+	}
 
 	@Inject
 	@Override

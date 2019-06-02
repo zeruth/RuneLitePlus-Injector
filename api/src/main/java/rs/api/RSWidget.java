@@ -28,6 +28,8 @@
 
 package rs.api;
 
-public interface RSWidget
+import api.widgets.Widget;
+
+public interface RSWidget extends Widget
 {
 }

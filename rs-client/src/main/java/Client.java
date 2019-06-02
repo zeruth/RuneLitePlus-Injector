@@ -60,8 +60,8 @@ public final class Client extends GameShell implements Usernamed {
    @ObfuscatedGetter(
       intValue = -1379876433
    )
-   @Export("__client_ng")
-   static int __client_ng;
+   @Export("cycleCntr")
+   static int cycleCntr;
    @ObfuscatedName("or")
    @Export("isResizable")
    static boolean isResizable;
@@ -287,8 +287,8 @@ public final class Client extends GameShell implements Usernamed {
    @ObfuscatedSignature(
       signature = "Lho;"
    )
-   @Export("__client_md")
-   static Widget __client_md;
+   @Export("draggedOnWidget")
+   static Widget draggedOnWidget;
    @ObfuscatedName("sq")
    @ObfuscatedGetter(
       intValue = -1546210597
@@ -548,14 +548,14 @@ public final class Client extends GameShell implements Usernamed {
    @Export("__client_nc")
    static int __client_nc;
    @ObfuscatedName("nf")
-   @Export("__client_nf")
-   static int[] __client_nf;
+   @Export("changedSkills")
+   static int[] changedSkills;
    @ObfuscatedName("nx")
    @ObfuscatedGetter(
       intValue = 1132932607
    )
-   @Export("__client_nx")
-   static int __client_nx;
+   @Export("changedSkillsCount")
+   static int changedSkillsCount;
    @ObfuscatedName("mn")
    @Export("__client_mn")
    static boolean __client_mn;
@@ -569,8 +569,8 @@ public final class Client extends GameShell implements Usernamed {
    @ObfuscatedGetter(
       intValue = 1467519791
    )
-   @Export("__client_nq")
-   static int __client_nq;
+   @Export("chatCycle")
+   static int chatCycle;
    @ObfuscatedName("mh")
    @ObfuscatedGetter(
       intValue = 535219347
@@ -1234,8 +1234,8 @@ public final class Client extends GameShell implements Usernamed {
    @Export("playerMenuActions")
    static String[] playerMenuActions;
    @ObfuscatedName("kv")
-   @Export("__client_kv")
-   static boolean[] __client_kv;
+   @Export("playerOptionsPriorities")
+   static boolean[] playerOptionsPriorities;
    @ObfuscatedName("kn")
    @Export("__client_kn")
    static int[] __client_kn;
@@ -1491,7 +1491,7 @@ public final class Client extends GameShell implements Usernamed {
       __client_kd = new int[1000];
       playerMenuOpcodes = new int[]{44, 45, 46, 47, 48, 49, 50, 51};
       playerMenuActions = new String[8];
-      __client_kv = new boolean[8];
+      playerOptionsPriorities = new boolean[8];
       __client_kn = new int[]{768, 1024, 1280, 512, 1536, 256, 0, 1792};
       combatTargetPlayerIndex = -1;
       groundItems = new NodeDeque[4][104][104];
@@ -1543,7 +1543,7 @@ public final class Client extends GameShell implements Usernamed {
       clickedWidgetParent = null;
       widgetClickX = 0;
       widgetClickY = 0;
-      __client_md = null;
+      draggedOnWidget = null;
       __client_nn = false;
       __client_nw = -1;
       __client_nl = -1;
@@ -1551,14 +1551,14 @@ public final class Client extends GameShell implements Usernamed {
       __client_nk = -1;
       __client_np = -1;
       isDraggingWidget = false;
-      __client_ng = 1;
+      cycleCntr = 1;
       __client_nr = new int[32];
       __client_nd = 0;
       __client_nz = new int[32];
       __client_ns = 0;
-      __client_nf = new int[32];
-      __client_nx = 0;
-      __client_nq = 0;
+      changedSkills = new int[32];
+      changedSkillsCount = 0;
+      chatCycle = 0;
       __client_na = 0;
       __client_nh = 0;
       __client_nv = 0;
@@ -4264,7 +4264,7 @@ public final class Client extends GameShell implements Usernamed {
                   Widget var32 = AccessFile.__dk_lm;
                   Clock.mousedOverWidgetIf1 = null;
                   AccessFile.__dk_lm = null;
-                  __client_md = null;
+                  draggedOnWidget = null;
                   __client_nt = false;
                   __client_nn = false;
                   __client_pm = 0;
@@ -4306,7 +4306,7 @@ public final class Client extends GameShell implements Usernamed {
                      class231.method4517(rootWidgetGroup, 0, 0, SoundCache.canvasWidth, Huffman.canvasHeight, 0, 0);
                   }
 
-                  ++__client_ng;
+                  ++cycleCntr;
 
                   while(true) {
                      Widget var25;
@@ -5144,7 +5144,7 @@ public final class Client extends GameShell implements Usernamed {
                   grandExchangeOffers[var16] = new GrandExchangeOffer(var3, false);
                }
 
-               __client_nv = __client_ng;
+               __client_nv = cycleCntr;
                var1.serverPacket0 = null;
                return true;
             }
@@ -5167,7 +5167,7 @@ public final class Client extends GameShell implements Usernamed {
             if(ServerPacket.__ge_bo == var1.serverPacket0) {
                class12.method159();
                runEnergy = var3.readUnsignedByte();
-               __client_ni = __client_ng;
+               __client_ni = cycleCntr;
                var1.serverPacket0 = null;
                return true;
             }
@@ -5585,7 +5585,7 @@ public final class Client extends GameShell implements Usernamed {
             if(ServerPacket.__ge_ay == var1.serverPacket0) {
                WorldMapArea.friendSystem.ignoreList.read(var3, var1.serverPacket0Length);
                class229.method4512();
-               __client_na = __client_ng;
+               __client_na = cycleCntr;
                var1.serverPacket0 = null;
                return true;
             }
@@ -5670,7 +5670,7 @@ public final class Client extends GameShell implements Usernamed {
 
             if(ServerPacket.__ge_bp == var1.serverPacket0) {
                rebootTimer = var3.__ag_302() * 30;
-               __client_ni = __client_ng;
+               __client_ni = cycleCntr;
                var1.serverPacket0 = null;
                return true;
             }
@@ -5879,7 +5879,7 @@ public final class Client extends GameShell implements Usernamed {
                   }
                }
 
-               __client_nf[++__client_nx - 1 & 31] = var5;
+               changedSkills[++changedSkillsCount - 1 & 31] = var5;
                var1.serverPacket0 = null;
                return true;
             }
@@ -5901,7 +5901,7 @@ public final class Client extends GameShell implements Usernamed {
             if(ServerPacket.__ge_bt == var1.serverPacket0) {
                class12.method159();
                weight = var3.__aq_303();
-               __client_ni = __client_ng;
+               __client_ni = cycleCntr;
                var1.serverPacket0 = null;
                return true;
             }
@@ -5915,14 +5915,14 @@ public final class Client extends GameShell implements Usernamed {
                   FloorDecoration.grandExchangeEvents = null;
                }
 
-               __client_nc = __client_ng;
+               __client_nc = cycleCntr;
                var1.serverPacket0 = null;
                return true;
             }
 
             if(ServerPacket.__ge_av == var1.serverPacket0) {
                WorldMapArea.friendSystem.__f_152();
-               __client_na = __client_ng;
+               __client_na = cycleCntr;
                var1.serverPacket0 = null;
                return true;
             }
@@ -6010,7 +6010,7 @@ public final class Client extends GameShell implements Usernamed {
                   }
 
                   playerMenuActions[var5 - 1] = var6;
-                  __client_kv[var5 - 1] = var16 == 0;
+                  playerOptionsPriorities[var5 - 1] = var16 == 0;
                }
 
                var1.serverPacket0 = null;
@@ -6090,7 +6090,7 @@ public final class Client extends GameShell implements Usernamed {
 
             if(ServerPacket.__ge_bd == var1.serverPacket0) {
                WorldMapArea.friendSystem.__q_153(var3, var1.serverPacket0Length);
-               __client_na = __client_ng;
+               __client_na = cycleCntr;
                var1.serverPacket0 = null;
                return true;
             }
@@ -6527,12 +6527,12 @@ public final class Client extends GameShell implements Usernamed {
                   var8.widget = clickedWidget;
                   var8.mouseX = var6;
                   var8.mouseY = var7;
-                  var8.dragTarget = __client_md;
+                  var8.dragTarget = draggedOnWidget;
                   var8.args0 = clickedWidget.onDragComplete;
                   AbstractIndexCache.runScript(var8);
                }
 
-               if(__client_md != null) {
+               if(draggedOnWidget != null) {
                   Widget var9 = clickedWidget;
                   int var10 = WorldMapRegion.method568(class1.getWidgetClickMask(var9));
                   Widget var15;
@@ -6560,10 +6560,10 @@ public final class Client extends GameShell implements Usernamed {
                   if(var15 != null) {
                      PacketBufferNode var12 = Interpreter.method1915(ClientPacket.__gs_bk, packetWriter.isaacCipher);
                      var12.packetBuffer.__bo_322(clickedWidget.childIndex);
-                     var12.packetBuffer.__bo_322(__client_md.itemId);
-                     var12.packetBuffer.writeShort(__client_md.childIndex);
+                     var12.packetBuffer.__bo_322(draggedOnWidget.itemId);
+                     var12.packetBuffer.writeShort(draggedOnWidget.childIndex);
                      var12.packetBuffer.writeIntLE(clickedWidget.id);
-                     var12.packetBuffer.writeIntME(__client_md.id);
+                     var12.packetBuffer.writeIntME(draggedOnWidget.id);
                      var12.packetBuffer.writeShort(clickedWidget.itemId);
                      packetWriter.__q_167(var12);
                   }

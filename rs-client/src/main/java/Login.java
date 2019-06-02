@@ -108,8 +108,8 @@ public class Login {
    @ObfuscatedGetter(
       intValue = 1769484271
    )
-   @Export("__cu_bb")
-   static int __cu_bb;
+   @Export("currentLoginField")
+   static int currentLoginField;
    @ObfuscatedName("bk")
    @Export("__cu_bk")
    static boolean __cu_bk;
@@ -167,7 +167,7 @@ public class Login {
       __cu_aa = false;
       __cu_ax = false;
       __cu_ba = true;
-      __cu_bb = 0;
+      currentLoginField = 0;
       __cu_bk = false;
       __cu_bl = -1;
       __cu_br = 0;

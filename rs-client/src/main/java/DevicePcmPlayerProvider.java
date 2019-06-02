@@ -67,55 +67,56 @@ public class DevicePcmPlayerProvider implements PcmPlayerProvider {
       signature = "([BB)V",
       garbageValue = "-9"
    )
-   static void method848(byte[] var0) {
+   @Export("decodeSprite")
+   static void decodeSprite(byte[] var0) {
       Buffer var1 = new Buffer(var0);
       var1.index = var0.length - 2;
-      class328.__lr_m = var1.__ag_302();
-      class328.__lr_w = new int[class328.__lr_m];
-      class328.__lr_o = new int[class328.__lr_m];
-      VarbitDefinition.__ia_u = new int[class328.__lr_m];
-      SecureRandomCallable.__bk_g = new int[class328.__lr_m];
-      class328.__lr_e = new byte[class328.__lr_m][];
-      var1.index = var0.length - 7 - class328.__lr_m * 8;
-      class328.__lr_f = var1.__ag_302();
-      class328.__lr_q = var1.__ag_302();
+      class328.indexedSpriteCount = var1.__ag_302();
+      class328.indexedSpriteOffsetXs = new int[class328.indexedSpriteCount];
+      class328.indexedSpriteOffsetYs = new int[class328.indexedSpriteCount];
+      VarbitDefinition.__ia_u = new int[class328.indexedSpriteCount];
+      SecureRandomCallable.__bk_g = new int[class328.indexedSpriteCount];
+      class328.spritePixels = new byte[class328.indexedSpriteCount][];
+      var1.index = var0.length - 7 - class328.indexedSpriteCount * 8;
+      class328.indexedSpriteWidth = var1.__ag_302();
+      class328.indexedSpriteHeight = var1.__ag_302();
       int var2 = (var1.readUnsignedByte() & 255) + 1;
 
       int var3;
-      for(var3 = 0; var3 < class328.__lr_m; ++var3) {
-         class328.__lr_w[var3] = var1.__ag_302();
+      for(var3 = 0; var3 < class328.indexedSpriteCount; ++var3) {
+         class328.indexedSpriteOffsetXs[var3] = var1.__ag_302();
       }
 
-      for(var3 = 0; var3 < class328.__lr_m; ++var3) {
-         class328.__lr_o[var3] = var1.__ag_302();
+      for(var3 = 0; var3 < class328.indexedSpriteCount; ++var3) {
+         class328.indexedSpriteOffsetYs[var3] = var1.__ag_302();
       }
 
-      for(var3 = 0; var3 < class328.__lr_m; ++var3) {
+      for(var3 = 0; var3 < class328.indexedSpriteCount; ++var3) {
          VarbitDefinition.__ia_u[var3] = var1.__ag_302();
       }
 
-      for(var3 = 0; var3 < class328.__lr_m; ++var3) {
+      for(var3 = 0; var3 < class328.indexedSpriteCount; ++var3) {
          SecureRandomCallable.__bk_g[var3] = var1.__ag_302();
       }
 
-      var1.index = var0.length - 7 - class328.__lr_m * 8 - (var2 - 1) * 3;
-      class328.__lr_l = new int[var2];
+      var1.index = var0.length - 7 - class328.indexedSpriteCount * 8 - (var2 - 1) * 3;
+      class328.indexedSpritePalette = new int[var2];
 
       for(var3 = 1; var3 < var2; ++var3) {
-         class328.__lr_l[var3] = var1.readMedium();
-         if(class328.__lr_l[var3] == 0) {
-            class328.__lr_l[var3] = 1;
+         class328.indexedSpritePalette[var3] = var1.readMedium();
+         if(class328.indexedSpritePalette[var3] == 0) {
+            class328.indexedSpritePalette[var3] = 1;
          }
       }
 
       var1.index = 0;
 
-      for(var3 = 0; var3 < class328.__lr_m; ++var3) {
+      for(var3 = 0; var3 < class328.indexedSpriteCount; ++var3) {
          int var4 = VarbitDefinition.__ia_u[var3];
          int var5 = SecureRandomCallable.__bk_g[var3];
          int var6 = var4 * var5;
          byte[] var7 = new byte[var6];
-         class328.__lr_e[var3] = var7;
+         class328.spritePixels[var3] = var7;
          int var8 = var1.readUnsignedByte();
          int var9;
          if(var8 == 0) {

@@ -189,7 +189,7 @@ final class TotalQuantityComparator implements Comparator {
                               var11 = 0;
                            }
                         }
-                     } else if(Client.__client_kv[var10]) {
+                     } else if(Client.playerOptionsPriorities[var10]) {
                         var11 = 2000;
                      }
 

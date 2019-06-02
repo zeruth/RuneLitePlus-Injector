@@ -10,26 +10,26 @@ public class class258 {
    )
    static Sprite method4900() {
       Sprite var0 = new Sprite();
-      var0.width = class328.__lr_f;
-      var0.height = class328.__lr_q;
-      var0.yOffset = class328.__lr_w[0];
-      var0.xOffset = class328.__lr_o[0];
+      var0.width = class328.indexedSpriteWidth;
+      var0.height = class328.indexedSpriteHeight;
+      var0.yOffset = class328.indexedSpriteOffsetXs[0];
+      var0.xOffset = class328.indexedSpriteOffsetYs[0];
       var0.subWidth = VarbitDefinition.__ia_u[0];
       var0.subHeight = SecureRandomCallable.__bk_g[0];
       int var1 = var0.subHeight * var0.subWidth;
-      byte[] var2 = class328.__lr_e[0];
+      byte[] var2 = class328.spritePixels[0];
       var0.pixels = new int[var1];
 
       for(int var3 = 0; var3 < var1; ++var3) {
-         var0.pixels[var3] = class328.__lr_l[var2[var3] & 255];
+         var0.pixels[var3] = class328.indexedSpritePalette[var2[var3] & 255];
       }
 
-      class328.__lr_w = null;
-      class328.__lr_o = null;
+      class328.indexedSpriteOffsetXs = null;
+      class328.indexedSpriteOffsetYs = null;
       VarbitDefinition.__ia_u = null;
       SecureRandomCallable.__bk_g = null;
-      class328.__lr_l = null;
-      class328.__lr_e = null;
+      class328.indexedSpritePalette = null;
+      class328.spritePixels = null;
       return var0;
    }
 

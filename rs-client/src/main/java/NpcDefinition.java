@@ -10,7 +10,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("jz")
-@Implements("NpcDefinition")
+@Implements("NPCDefinition")
 public class NpcDefinition extends DualNode {
    @ObfuscatedName("m")
    @ObfuscatedSignature(

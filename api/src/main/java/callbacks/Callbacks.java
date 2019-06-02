@@ -38,7 +38,7 @@ import java.awt.event.MouseWheelEvent;
 public interface Callbacks
 {
 	/**
-	 * Post an event. See the events in net.runelite.api.events.
+	 * Post an event. See the events in api.events.
 	 *
 	 * @param event the event
 	 */

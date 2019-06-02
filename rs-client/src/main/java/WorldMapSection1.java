@@ -308,7 +308,7 @@ public class WorldMapSection1 implements WorldMapSection {
 
       for(var0 = 0; var0 < 8; ++var0) {
          Client.playerMenuActions[var0] = null;
-         Client.__client_kv[var0] = false;
+         Client.playerOptionsPriorities[var0] = false;
       }
 
       SpriteMask.method4389();

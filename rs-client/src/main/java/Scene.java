@@ -64,8 +64,8 @@ public class Scene {
    @Export("gameObjects")
    static GameObject[] gameObjects;
    @ObfuscatedName("ac")
-   @Export("__em_ac")
-   static boolean __em_ac;
+   @Export("checkClick")
+   static boolean checkClick;
    @ObfuscatedName("ay")
    @Export("Scene_selectedPlane")
    static int Scene_selectedPlane;
@@ -201,7 +201,7 @@ public class Scene {
       __em_a = 0;
       Scene_plane = 0;
       gameObjects = new GameObject[100];
-      __em_ac = false;
+      checkClick = false;
       Scene_selectedPlane = 0;
       Scene_selectedScreenX = 0;
       Scene_selectedScreenY = 0;
@@ -1065,7 +1065,7 @@ public class Scene {
    @Export("menuOpen")
    public void menuOpen(int var1, int var2, int var3, boolean var4) {
       if(!method3187() || var4) {
-         __em_ac = true;
+         checkClick = true;
          __em_ab = var4;
          Scene_selectedPlane = var1;
          Scene_selectedScreenX = var2;
@@ -1216,7 +1216,7 @@ public class Scene {
                   }
 
                   if(__em_a == 0) {
-                     __em_ac = false;
+                     checkClick = false;
                      return;
                   }
                }
@@ -1267,7 +1267,7 @@ public class Scene {
                   }
 
                   if(__em_a == 0) {
-                     __em_ac = false;
+                     checkClick = false;
                      return;
                   }
                }
@@ -1275,7 +1275,7 @@ public class Scene {
          }
       }
 
-      __em_ac = false;
+      checkClick = false;
    }
 
    @ObfuscatedName("au")
@@ -1398,7 +1398,7 @@ public class Scene {
                                  if(var3.paint != null) {
                                     if(!this.__ba_253(var7, var4, var5)) {
                                        var20 = true;
-                                       if(var3.paint.neColor != 12345678 || __em_ac && var6 <= Scene_selectedPlane) {
+                                       if(var3.paint.neColor != 12345678 || checkClick && var6 <= Scene_selectedPlane) {
                                           this.__ao_251(var3.paint, var7, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var4, var5);
                                        }
                                     }
@@ -1869,7 +1869,7 @@ public class Scene {
                         Rasterizer3D.__et_m = true;
                      }
 
-                     if(__em_ac && method3109(Scene_selectedScreenX, Scene_selectedScreenY, var27, var29, var25, var26, var28, var24)) {
+                     if(checkClick && containsBounds(Scene_selectedScreenX, Scene_selectedScreenY, var27, var29, var25, var26, var28, var24)) {
                         Scene_selectedX = var7;
                         Scene_selectedY = var8;
                      }
@@ -1896,7 +1896,7 @@ public class Scene {
                         Rasterizer3D.__et_m = true;
                      }
 
-                     if(__em_ac && method3109(Scene_selectedScreenX, Scene_selectedScreenY, var23, var25, var29, var22, var24, var28)) {
+                     if(checkClick && containsBounds(Scene_selectedScreenX, Scene_selectedScreenY, var23, var25, var29, var22, var24, var28)) {
                         Scene_selectedX = var7;
                         Scene_selectedY = var8;
                      }
@@ -1974,7 +1974,7 @@ public class Scene {
                Rasterizer3D.__et_m = true;
             }
 
-            if(__em_ac && method3109(Scene_selectedScreenX, Scene_selectedScreenY, var16, var17, var18, var13, var14, var15)) {
+            if(checkClick && containsBounds(Scene_selectedScreenX, Scene_selectedScreenY, var16, var17, var18, var13, var14, var15)) {
                Scene_selectedX = var6;
                Scene_selectedY = var7;
             }
@@ -2582,8 +2582,9 @@ public class Scene {
       return (var0 & 65408) + var1;
    }
 
+   @Export("containsBounds")
    @ObfuscatedName("af")
-   static boolean method3109(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
+   static boolean containsBounds(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
       if(var1 < var2 && var1 < var3 && var1 < var4) {
          return false;
       } else if(var1 > var2 && var1 > var3 && var1 > var4) {

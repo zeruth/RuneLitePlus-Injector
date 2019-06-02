@@ -8,30 +8,30 @@ public class class328 {
    @ObfuscatedGetter(
       intValue = -1119867679
    )
-   @Export("__lr_m")
-   static int __lr_m;
+   @Export("indexedSpriteCount")
+   static int indexedSpriteCount;
    @ObfuscatedName("f")
    @ObfuscatedGetter(
       intValue = 161627197
    )
-   @Export("__lr_f")
-   static int __lr_f;
+   @Export("indexedSpriteWidth")
+   static int indexedSpriteWidth;
    @ObfuscatedName("q")
    @ObfuscatedGetter(
       intValue = -76329055
    )
-   @Export("__lr_q")
-   static int __lr_q;
+   @Export("indexedSpriteHeight")
+   static int indexedSpriteHeight;
    @ObfuscatedName("w")
-   @Export("__lr_w")
-   static int[] __lr_w;
+   @Export("indexedSpriteOffsetXs")
+   static int[] indexedSpriteOffsetXs;
    @ObfuscatedName("o")
-   @Export("__lr_o")
-   static int[] __lr_o;
+   @Export("indexedSpriteOffsetYs")
+   static int[] indexedSpriteOffsetYs;
    @ObfuscatedName("l")
-   @Export("__lr_l")
-   static int[] __lr_l;
+   @Export("indexedSpritePalette")
+   static int[] indexedSpritePalette;
    @ObfuscatedName("e")
-   @Export("__lr_e")
-   static byte[][] __lr_e;
+   @Export("spritePixels")
+   static byte[][] spritePixels;
 }

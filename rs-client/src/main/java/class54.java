@@ -250,12 +250,12 @@ public final class class54 {
                         var19 = 201;
                         var18 = var19 + 52;
                         if(var3 == 1 && var16 >= var18 - 12 && var16 < var18 + 2) {
-                           Login.__cu_bb = 0;
+                           Login.currentLoginField = 0;
                         }
 
                         var18 += 15;
                         if(var3 == 1 && var16 >= var18 - 12 && var16 < var18 + 2) {
-                           Login.__cu_bb = 1;
+                           Login.currentLoginField = 1;
                         }
 
                         var18 += 15;
@@ -347,25 +347,25 @@ public final class class54 {
                                  class13.__i_af = 0;
                                  Login.__cu_ai = "";
                                  Login.__cu_ba = true;
-                              } else if(Login.__cu_bb == 0) {
+                              } else if(Login.currentLoginField == 0) {
                                  if(IndexStoreAction.__ik_cn == 85 && Login.Login_username.length() > 0) {
                                     Login.Login_username = Login.Login_username.substring(0, Login.Login_username.length() - 1);
                                  }
 
                                  if(IndexStoreAction.__ik_cn == 84 || IndexStoreAction.__ik_cn == 80) {
-                                    Login.__cu_bb = 1;
+                                    Login.currentLoginField = 1;
                                  }
 
                                  if(var9 && Login.Login_username.length() < 320) {
                                     Login.Login_username = Login.Login_username + GzipDecompressor.__go_ck;
                                  }
-                              } else if(Login.__cu_bb == 1) {
+                              } else if(Login.currentLoginField == 1) {
                                  if(IndexStoreAction.__ik_cn == 85 && Login.Login_password.length() > 0) {
                                     Login.Login_password = Login.Login_password.substring(0, Login.Login_password.length() - 1);
                                  }
 
                                  if(IndexStoreAction.__ik_cn == 84 || IndexStoreAction.__ik_cn == 80) {
-                                    Login.__cu_bb = 0;
+                                    Login.currentLoginField = 0;
                                  }
 
                                  if(IndexStoreAction.__ik_cn == 84) {

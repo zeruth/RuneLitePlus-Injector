@@ -4,7 +4,7 @@ import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
 
 @ObfuscatedName("cv")
-@Implements("Npc")
+@Implements("NPC")
 public final class Npc extends Actor {
    @ObfuscatedName("m")
    @ObfuscatedSignature(

@@ -524,6 +524,6 @@ public final class WorldMapManager {
       garbageValue = "1341489301"
    )
    static final void method668() {
-      Client.__client_na = Client.__client_ng;
+      Client.__client_na = Client.cycleCntr;
    }
 }
