@@ -452,7 +452,7 @@ public class ImageUtil
 			log.debug("PixelGrabber was interrupted: ", ex);
 		}
 
-		return client.createSpritePixels(pixels, image.getWidth(), image.getHeight());
+		return null;//TODO client.createSpritePixels(pixels, image.getWidth(), image.getHeight());
 	}
 
 	/**

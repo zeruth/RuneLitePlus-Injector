@@ -1621,8 +1621,4 @@ public interface Client extends GameShell
 
 	void setPrintMenuActions(boolean b);
 
-	boolean isInterpolatePlayerAnimations();
-
-	@Override
-	Canvas getCanvas();
 }

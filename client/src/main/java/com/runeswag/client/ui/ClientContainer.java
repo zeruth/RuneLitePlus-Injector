@@ -71,7 +71,7 @@ public class ClientContainer extends JPanel
 		if(applet instanceof RSClient)
 		{
 			// make the applet fully redraw every frame
-			((RSClient) applet).setDrawingMode(2);
+			((RSClient) applet).setGameDrawingMode(2);
 		}
 	}
 	
