@@ -100,7 +100,7 @@ public class SpriteMask extends DualNode {
       if(var3 == null) {
          return false;
       } else {
-         DevicePcmPlayerProvider.method848(var3);
+         DevicePcmPlayerProvider.decodeSprite(var3);
          return true;
       }
    }

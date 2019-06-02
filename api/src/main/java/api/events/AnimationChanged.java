@@ -14,7 +14,7 @@ import lombok.Data;
  *     <li>A player starts or stops dancing</li>
  * </ul>
  *
- * @see net.runelite.api.AnimationID
+ * @see api.AnimationID
  */
 @Data
 public class AnimationChanged

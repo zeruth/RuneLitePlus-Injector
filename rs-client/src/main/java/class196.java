@@ -32,9 +32,9 @@ public class class196 {
    )
    static void method3740() {
       if(Client.Login_isUsernameRemembered && Login.Login_username != null && Login.Login_username.length() > 0) {
-         Login.__cu_bb = 1;
+         Login.currentLoginField = 1;
       } else {
-         Login.__cu_bb = 0;
+         Login.currentLoginField = 0;
       }
 
    }

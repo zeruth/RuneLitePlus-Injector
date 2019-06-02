@@ -286,7 +286,7 @@ public final class class238 {
                      }
 
                      if(Client.clickedWidget != null && var9 != Client.clickedWidget && var33 && class54.method1090(class1.getWidgetClickMask(var9))) {
-                        Client.__client_md = var9;
+                        Client.draggedOnWidget = var9;
                      }
 
                      if(var9 == Client.clickedWidgetParent) {
@@ -456,11 +456,11 @@ public final class class238 {
                            var9.__fl = Client.__client_ns;
                         }
 
-                        if(var9.onStatTransmit != null && Client.__client_nx > var9.__fj) {
-                           if(var9.statTransmitTriggers != null && Client.__client_nx - var9.__fj <= 32) {
+                        if(var9.onStatTransmit != null && Client.changedSkillsCount > var9.__fj) {
+                           if(var9.statTransmitTriggers != null && Client.changedSkillsCount - var9.__fj <= 32) {
                               label839:
-                              for(var35 = var9.__fj; var35 < Client.__client_nx; ++var35) {
-                                 var23 = Client.__client_nf[var35 & 31];
+                              for(var35 = var9.__fj; var35 < Client.changedSkillsCount; ++var35) {
+                                 var23 = Client.changedSkills[var35 & 31];
 
                                  for(var36 = 0; var36 < var9.statTransmitTriggers.length; ++var36) {
                                     if(var23 == var9.statTransmitTriggers[var36]) {
@@ -479,10 +479,10 @@ public final class class238 {
                               Client.scriptEvents.addFirst(var27);
                            }
 
-                           var9.__fj = Client.__client_nx;
+                           var9.__fj = Client.changedSkillsCount;
                         }
 
-                        if(Client.__client_nq > var9.__fg && var9.__em != null) {
+                        if(Client.chatCycle > var9.__fg && var9.__em != null) {
                            var27 = new ScriptEvent();
                            var27.widget = var9;
                            var27.args0 = var9.__em;
@@ -524,7 +524,7 @@ public final class class238 {
                            Client.scriptEvents.addFirst(var27);
                         }
 
-                        var9.__fg = Client.__client_ng;
+                        var9.__fg = Client.cycleCntr;
                         if(var9.__ed != null) {
                            for(var35 = 0; var35 < Client.__client_pm; ++var35) {
                               ScriptEvent var31 = new ScriptEvent();

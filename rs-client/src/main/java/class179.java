@@ -74,7 +74,7 @@ public abstract class class179 {
       if(var2 == null) {
          return false;
       } else {
-         DevicePcmPlayerProvider.method848(var2);
+         DevicePcmPlayerProvider.decodeSprite(var2);
          return true;
       }
    }

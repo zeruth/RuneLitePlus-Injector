@@ -27,7 +27,7 @@ package api;
 /**
  * Represents a group-child {@link Widget} relationship.
  * <p>
- * For getting a specific widget from the client, see {@link net.runelite.api.Client#getWidget(WidgetInfo)}.
+ * For getting a specific widget from the client, see {@link api.Client#getWidget(WidgetInfo)}.
  */
 public enum WidgetInfo
 {

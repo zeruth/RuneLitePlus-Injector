@@ -170,26 +170,26 @@ public class WorldMapLabel {
       garbageValue = "-1374541046"
    )
    public static IndexedSprite[] method444() {
-      IndexedSprite[] var0 = new IndexedSprite[class328.__lr_m];
+      IndexedSprite[] var0 = new IndexedSprite[class328.indexedSpriteCount];
 
-      for(int var1 = 0; var1 < class328.__lr_m; ++var1) {
+      for(int var1 = 0; var1 < class328.indexedSpriteCount; ++var1) {
          IndexedSprite var2 = var0[var1] = new IndexedSprite();
-         var2.width = class328.__lr_f;
-         var2.height = class328.__lr_q;
-         var2.xOffset = class328.__lr_w[var1];
-         var2.yOffset = class328.__lr_o[var1];
+         var2.width = class328.indexedSpriteWidth;
+         var2.height = class328.indexedSpriteHeight;
+         var2.xOffset = class328.indexedSpriteOffsetXs[var1];
+         var2.yOffset = class328.indexedSpriteOffsetYs[var1];
          var2.subWidth = VarbitDefinition.__ia_u[var1];
          var2.subHeight = SecureRandomCallable.__bk_g[var1];
-         var2.palette = class328.__lr_l;
-         var2.pixels = class328.__lr_e[var1];
+         var2.palette = class328.indexedSpritePalette;
+         var2.pixels = class328.spritePixels[var1];
       }
 
-      class328.__lr_w = null;
-      class328.__lr_o = null;
+      class328.indexedSpriteOffsetXs = null;
+      class328.indexedSpriteOffsetYs = null;
       VarbitDefinition.__ia_u = null;
       SecureRandomCallable.__bk_g = null;
-      class328.__lr_l = null;
-      class328.__lr_e = null;
+      class328.indexedSpritePalette = null;
+      class328.spritePixels = null;
       return var0;
    }
 

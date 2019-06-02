@@ -80,7 +80,7 @@ public abstract class RSNPCMixin implements RSNPC
 
 	@FieldHook(value = "definition", before = true)
 	@Inject
-	public void onCompositionChanged(RSNPCDefinition composition)
+	public void onDefinitionChanged(RSNPCDefinition composition)
 	{
 		if (composition == null)
 		{

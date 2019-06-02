@@ -16,7 +16,7 @@ import lombok.Data;
  *     <li>Breaking a teleport tab</li>
  * </ul>
  *
- * @see net.runelite.api.GraphicID
+ * @see api.GraphicID
  */
 @Data
 public class SpotAnimationChanged

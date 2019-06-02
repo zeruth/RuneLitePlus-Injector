@@ -101,7 +101,7 @@ public class GrandExchangeEvents {
       Message var5 = var4.addMessage(var0, var1, var2, var3);
       Messages.Messages_hashTable.put(var5, (long)var5.count);
       Messages.Messages_queue.add(var5);
-      Client.__client_nq = Client.__client_ng;
+      Client.chatCycle = Client.cycleCntr;
    }
 
    @ObfuscatedName("a")

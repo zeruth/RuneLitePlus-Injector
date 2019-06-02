@@ -44,7 +44,7 @@ public class UserComparator8 extends AbstractUserComparator {
       garbageValue = "1"
    )
    static final void method3349() {
-      Client.__client_nh = Client.__client_ng;
+      Client.__client_nh = Client.cycleCntr;
       VertexNormal.__dq_pe = true;
    }
 }

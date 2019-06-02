@@ -636,20 +636,20 @@ public class ServerPacket {
    )
    static IndexedSprite method3663() {
       IndexedSprite var0 = new IndexedSprite();
-      var0.width = class328.__lr_f;
-      var0.height = class328.__lr_q;
-      var0.xOffset = class328.__lr_w[0];
-      var0.yOffset = class328.__lr_o[0];
+      var0.width = class328.indexedSpriteWidth;
+      var0.height = class328.indexedSpriteHeight;
+      var0.xOffset = class328.indexedSpriteOffsetXs[0];
+      var0.yOffset = class328.indexedSpriteOffsetYs[0];
       var0.subWidth = VarbitDefinition.__ia_u[0];
       var0.subHeight = SecureRandomCallable.__bk_g[0];
-      var0.palette = class328.__lr_l;
-      var0.pixels = class328.__lr_e[0];
-      class328.__lr_w = null;
-      class328.__lr_o = null;
+      var0.palette = class328.indexedSpritePalette;
+      var0.pixels = class328.spritePixels[0];
+      class328.indexedSpriteOffsetXs = null;
+      class328.indexedSpriteOffsetYs = null;
       VarbitDefinition.__ia_u = null;
       SecureRandomCallable.__bk_g = null;
-      class328.__lr_l = null;
-      class328.__lr_e = null;
+      class328.indexedSpritePalette = null;
+      class328.spritePixels = null;
       return var0;
    }
 
