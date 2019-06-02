@@ -50,10 +50,10 @@ public class Ignored extends User {
    static void queueSoundEffect(int var0, int var1, int var2) {
       if(Client.__client_qp != 0 && var1 != 0 && Client.soundEffectCount < 50) {
          Client.soundEffectIds[Client.soundEffectCount] = var0;
-         Client.__client_qn[Client.soundEffectCount] = var1;
-         Client.__client_qd[Client.soundEffectCount] = var2;
+         Client.unknownSoundValues1[Client.soundEffectCount] = var1;
+         Client.queuedSoundEffectDelays[Client.soundEffectCount] = var2;
          Client.soundEffects[Client.soundEffectCount] = null;
-         Client.__client_qk[Client.soundEffectCount] = 0;
+         Client.soundLocations[Client.soundEffectCount] = 0;
          ++Client.soundEffectCount;
       }
 

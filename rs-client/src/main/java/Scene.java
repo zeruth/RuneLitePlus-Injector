@@ -10,8 +10,8 @@ public class Scene {
    @Export("Scene_isLowDetail")
    public static boolean Scene_isLowDetail;
    @ObfuscatedName("a")
-   @Export("__em_a")
-   static int __em_a;
+   @Export("tileUpdateCount")
+   static int tileUpdateCount;
    @ObfuscatedName("z")
    @Export("Scene_plane")
    static int Scene_plane;
@@ -198,7 +198,7 @@ public class Scene {
 
    static {
       Scene_isLowDetail = true;
-      __em_a = 0;
+      tileUpdateCount = 0;
       Scene_plane = 0;
       gameObjects = new GameObject[100];
       checkClick = false;
@@ -1135,7 +1135,7 @@ public class Scene {
       }
 
       this.occlude();
-      __em_a = 0;
+      tileUpdateCount = 0;
 
       int var7;
       Tile[][] var8;
@@ -1161,7 +1161,7 @@ public class Scene {
                         var11.drawGameObjects = false;
                      }
 
-                     ++__em_a;
+                     ++tileUpdateCount;
                   }
                }
             }
@@ -1215,7 +1215,7 @@ public class Scene {
                      }
                   }
 
-                  if(__em_a == 0) {
+                  if(tileUpdateCount == 0) {
                      checkClick = false;
                      return;
                   }
@@ -1266,7 +1266,7 @@ public class Scene {
                      }
                   }
 
-                  if(__em_a == 0) {
+                  if(tileUpdateCount == 0) {
                      checkClick = false;
                      return;
                   }
@@ -1712,7 +1712,7 @@ public class Scene {
          } while(var9 != null && var9.drawSecondary);
 
          var3.drawSecondary = false;
-         --__em_a;
+         --tileUpdateCount;
          GroundItemPile var32 = var3.groundItemPile;
          if(var32 != null && var32.height != 0) {
             if(var32.second != null) {

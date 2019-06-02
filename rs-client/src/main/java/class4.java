@@ -226,7 +226,7 @@ final class class4 implements class0 {
                   return 1;
                } else if(var0 == 3129) {
                   class179.Interpreter_intStackSize -= 2;
-                  Client.__client_ie = Interpreter.Interpreter_intStack[class179.Interpreter_intStackSize];
+                  Client.oculusOrbNormalSpeed = Interpreter.Interpreter_intStack[class179.Interpreter_intStackSize];
                   Client.__client_in = Interpreter.Interpreter_intStack[class179.Interpreter_intStackSize + 1];
                   return 1;
                } else if(var0 == 3130) {

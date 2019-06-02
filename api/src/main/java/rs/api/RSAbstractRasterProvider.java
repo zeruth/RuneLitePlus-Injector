@@ -28,15 +28,9 @@
 
 package rs.api;
 
-public interface RSAbstractRasterProvider
+import api.BufferProvider;
+
+public interface RSAbstractRasterProvider extends BufferProvider
 {
-	
-	int[] getPixels();
-	
-	int getWidth();
-	
-	int getHeight();
-	
-	void setRaster();
 	
 }

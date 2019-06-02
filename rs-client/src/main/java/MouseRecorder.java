@@ -72,7 +72,7 @@ public class MouseRecorder implements Runnable {
       signature = "(IIIIIB)V",
       garbageValue = "-51"
    )
-   static final void method1188(int var0, int var1, int var2, int var3, int var4) {
+   static final void drawObject(int var0, int var1, int var2, int var3, int var4) {
       long var5 = class65.scene.__ar_244(var0, var1, var2);
       int var7;
       int var8;

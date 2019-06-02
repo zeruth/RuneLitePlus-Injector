@@ -436,7 +436,7 @@ public class WorldMapArea {
       garbageValue = "-26"
    )
    static void method428() {
-      if(Client.__client_hj == 1) {
+      if(Client.oculusOrbState == 1) {
          Client.__client_ij = true;
       }
 

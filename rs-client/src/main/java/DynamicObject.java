@@ -619,8 +619,8 @@ public class DynamicObject extends Entity {
          Client.isCameraLocked = false;
          WorldMapSection1.cameraX -= var5 << 7;
          class11.cameraZ -= var6 << 7;
-         MouseHandler.__bb_hz -= var5 << 7;
-         ScriptEvent.__by_hb -= var6 << 7;
+         MouseHandler.oculusOrbFocalPointX -= var5 << 7;
+         ScriptEvent.oculusOrbFocalPointY -= var6 << 7;
          Client.__client_ph = -1;
          Client.graphicsObjects.clear();
          Client.projectiles.clear();

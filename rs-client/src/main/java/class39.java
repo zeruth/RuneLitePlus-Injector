@@ -803,19 +803,20 @@ public class class39 extends class21 {
       signature = "([Lho;Lho;ZI)V",
       garbageValue = "1840850218"
    )
-   static void method736(Widget[] var0, Widget var1, boolean var2) {
+   @Export("revalidateWidgetScroll")
+   static void revalidateWidgetScroll(Widget[] var0, Widget var1, boolean var2) {
       int var3 = var1.scrollWidth != 0?var1.scrollWidth:var1.width;
       int var4 = var1.scrollHeight != 0?var1.scrollHeight:var1.height;
-      WorldMapRegion.method565(var0, var1.id, var3, var4, var2);
+      WorldMapRegion.notRevalidateWidgetScroll(var0, var1.id, var3, var4, var2);
       if(var1.children != null) {
-         WorldMapRegion.method565(var1.children, var1.id, var3, var4, var2);
+         WorldMapRegion.notRevalidateWidgetScroll(var1.children, var1.id, var3, var4, var2);
       }
 
       WidgetGroupParent var5 = (WidgetGroupParent)Client.widgetGroupParents.get((long)var1.id);
       if(var5 != null) {
          int var6 = var5.group;
          if(GroundItemPile.loadWidgetGroup(var6)) {
-            WorldMapRegion.method565(Widget.widgets[var6], -1, var3, var4, var2);
+            WorldMapRegion.notRevalidateWidgetScroll(Widget.widgets[var6], -1, var3, var4, var2);
          }
       }
 

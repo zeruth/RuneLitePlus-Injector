@@ -43,7 +43,7 @@ import net.runelite.api.mixins.Replace;
 import net.runelite.api.mixins.Shadow;
 import rs.api.RSClient;
 import rs.api.RSModel;
-import rs.api.RSName;
+import rs.api.RSUsername;
 import rs.api.RSPlayer;
 
 import static api.HeadIcon.MAGIC;
@@ -70,7 +70,7 @@ public abstract class RSPlayerMixin implements RSPlayer
 	@Override
 	public String getName()
 	{
-		final RSName rsName = getRsName();
+		final RSUsername rsName = getRsName();
 
 		if (rsName == null)
 		{

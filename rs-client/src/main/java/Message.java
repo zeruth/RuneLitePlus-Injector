@@ -409,11 +409,11 @@ public class Message extends DualNode {
          for(var5 = 1; var5 < 103; ++var5) {
             for(var6 = 1; var6 < 103; ++var6) {
                if((Tiles.Tiles_renderFlags[var0][var6][var5] & 24) == 0) {
-                  MouseRecorder.method1188(var0, var6, var5, var3, var4);
+                  MouseRecorder.drawObject(var0, var6, var5, var3, var4);
                }
 
                if(var0 < 3 && (Tiles.Tiles_renderFlags[var0 + 1][var6][var5] & 8) != 0) {
-                  MouseRecorder.method1188(var0 + 1, var6, var5, var3, var4);
+                  MouseRecorder.drawObject(var0 + 1, var6, var5, var3, var4);
                }
             }
          }

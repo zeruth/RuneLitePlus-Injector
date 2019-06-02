@@ -119,7 +119,8 @@ public class Interpreter {
       signature = "(II)Ljw;",
       garbageValue = "-1888252818"
    )
-   public static EnumDefinition method1979(int var0) {
+   @Export("getEnum")
+   public static EnumDefinition getEnum(int var0) {
       EnumDefinition var1 = (EnumDefinition)EnumDefinition.EnumDefinition_cached.get((long)var0);
       if(var1 != null) {
          return var1;

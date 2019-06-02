@@ -97,7 +97,7 @@ public final class class54 {
 
                if(Login.__cu_bl != -1) {
                   World var13 = ItemContainer.worlds[Login.__cu_bl];
-                  class31.method572(var13);
+                  class31.changeWorld(var13);
                   FontName.method5636();
                } else {
                   if(Login.__cu_br > 0 && SecureRandomFuture.__cn_bu != null && MouseHandler.MouseHandler_lastPressedX >= 0 && MouseHandler.MouseHandler_lastPressedX <= SecureRandomFuture.__cn_bu.subWidth && MouseHandler.MouseHandler_lastPressedY >= Huffman.canvasHeight / 2 - 50 && MouseHandler.MouseHandler_lastPressedY <= Huffman.canvasHeight / 2 + 50) {
@@ -1013,25 +1013,25 @@ public final class class54 {
       int var3;
       int var4;
       int var5;
-      if(Client.__client_hj == 0) {
+      if(Client.oculusOrbState == 0) {
          var0 = Canvas.localPlayer.x;
          var1 = Canvas.localPlayer.y;
-         if(MouseHandler.__bb_hz - var0 < -500 || MouseHandler.__bb_hz - var0 > 500 || ScriptEvent.__by_hb - var1 < -500 || ScriptEvent.__by_hb - var1 > 500) {
-            MouseHandler.__bb_hz = var0;
-            ScriptEvent.__by_hb = var1;
+         if(MouseHandler.oculusOrbFocalPointX - var0 < -500 || MouseHandler.oculusOrbFocalPointX - var0 > 500 || ScriptEvent.oculusOrbFocalPointY - var1 < -500 || ScriptEvent.oculusOrbFocalPointY - var1 > 500) {
+            MouseHandler.oculusOrbFocalPointX = var0;
+            ScriptEvent.oculusOrbFocalPointY = var1;
          }
 
-         if(var0 != MouseHandler.__bb_hz) {
-            MouseHandler.__bb_hz += (var0 - MouseHandler.__bb_hz) / 16;
+         if(var0 != MouseHandler.oculusOrbFocalPointX) {
+            MouseHandler.oculusOrbFocalPointX += (var0 - MouseHandler.oculusOrbFocalPointX) / 16;
          }
 
-         if(var1 != ScriptEvent.__by_hb) {
-            ScriptEvent.__by_hb += (var1 - ScriptEvent.__by_hb) / 16;
+         if(var1 != ScriptEvent.oculusOrbFocalPointY) {
+            ScriptEvent.oculusOrbFocalPointY += (var1 - ScriptEvent.oculusOrbFocalPointY) / 16;
          }
 
-         var2 = MouseHandler.__bb_hz >> 7;
-         var3 = ScriptEvent.__by_hb >> 7;
-         var4 = class32.getTileHeight(MouseHandler.__bb_hz, ScriptEvent.__by_hb, SoundSystem.plane);
+         var2 = MouseHandler.oculusOrbFocalPointX >> 7;
+         var3 = ScriptEvent.oculusOrbFocalPointY >> 7;
+         var4 = class32.getTileHeight(MouseHandler.oculusOrbFocalPointX, ScriptEvent.oculusOrbFocalPointY, SoundSystem.plane);
          var5 = 0;
          int var6;
          if(var2 > 3 && var3 > 3 && var2 < 100 && var3 < 100) {
@@ -1066,18 +1066,18 @@ public final class class54 {
          }
 
          MouseRecorder.__bu_hy = class32.getTileHeight(Canvas.localPlayer.x, Canvas.localPlayer.y, SoundSystem.plane) - Client.__client_ho;
-      } else if(Client.__client_hj == 1) {
+      } else if(Client.oculusOrbState == 1) {
          if(Client.__client_ij && Canvas.localPlayer != null) {
             var0 = Canvas.localPlayer.pathX[0];
             var1 = Canvas.localPlayer.pathY[0];
             if(var0 >= 0 && var1 >= 0 && var0 < 104 && var1 < 104) {
-               MouseHandler.__bb_hz = Canvas.localPlayer.x;
+               MouseHandler.oculusOrbFocalPointX = Canvas.localPlayer.x;
                var2 = class32.getTileHeight(Canvas.localPlayer.x, Canvas.localPlayer.y, SoundSystem.plane) - Client.__client_ho;
                if(var2 < MouseRecorder.__bu_hy) {
                   MouseRecorder.__bu_hy = var2;
                }
 
-               ScriptEvent.__by_hb = Canvas.localPlayer.y;
+               ScriptEvent.oculusOrbFocalPointY = Canvas.localPlayer.y;
                Client.__client_ij = false;
             }
          }
@@ -1116,7 +1116,7 @@ public final class class54 {
 
          var2 = 0;
          if(var10 >= 0 || var11 != 0) {
-            var2 = KeyHandler.KeyHandler_pressedKeys[81]?Client.__client_in:Client.__client_ie;
+            var2 = KeyHandler.KeyHandler_pressedKeys[81]?Client.__client_in:Client.oculusOrbNormalSpeed;
             var2 *= 16;
             Client.__client_hk = var10;
             Client.__client_if = var11;
@@ -1137,8 +1137,8 @@ public final class class54 {
                var0 = Client.__client_hk - MusicPatchNode.cameraYaw & 2047;
                var4 = Rasterizer3D.Rasterizer3D_sine[var0];
                var5 = Rasterizer3D.Rasterizer3D_cosine[var0];
-               MouseHandler.__bb_hz += var3 * var4 / 65536;
-               ScriptEvent.__by_hb += var3 * var5 / 65536;
+               MouseHandler.oculusOrbFocalPointX += var3 * var4 / 65536;
+               ScriptEvent.oculusOrbFocalPointY += var3 * var5 / 65536;
             }
 
             if(Client.__client_if != 0) {
@@ -1154,7 +1154,7 @@ public final class class54 {
 
          if(KeyHandler.KeyHandler_pressedKeys[13]) {
             Client.packetWriter.__q_167(Interpreter.method1915(ClientPacket.__gs_ab, Client.packetWriter.isaacCipher));
-            Client.__client_hj = 0;
+            Client.oculusOrbState = 0;
          }
       }
 
@@ -1187,13 +1187,13 @@ public final class class54 {
       }
 
       Client.minimapOrientation = Client.__client_hv / 2 + Client.minimapOrientation & 2047;
-      Client.__client_hw += Client.__client_hu / 2;
-      if(Client.__client_hw < 128) {
-         Client.__client_hw = 128;
+      Client.cameraPitchTarget += Client.__client_hu / 2;
+      if(Client.cameraPitchTarget < 128) {
+         Client.cameraPitchTarget = 128;
       }
 
-      if(Client.__client_hw > 383) {
-         Client.__client_hw = 383;
+      if(Client.cameraPitchTarget > 383) {
+         Client.cameraPitchTarget = 383;
       }
 
    }

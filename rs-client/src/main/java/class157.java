@@ -37,7 +37,7 @@ public class class157 extends AbstractUserComparator {
       garbageValue = "307754910"
    )
    public static void method3382() {
-      Widget.__ho_n.clear();
+      Widget.widgetSpriteCache.clear();
       Widget.Widget_cachedModels.clear();
       Widget.Widget_cachedFonts.clear();
       Widget.__ho_z.clear();

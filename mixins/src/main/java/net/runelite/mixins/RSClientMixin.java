@@ -24,6 +24,7 @@
  */
 package net.runelite.mixins;
 
+import callbacks.DrawCallbacks;
 import javax.inject.Named;
 
 import api.GameState;
@@ -41,8 +42,6 @@ import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
 import org.slf4j.Logger;
 
-import java.awt.*;
-
 @Mixin(RSClient.class)
 public abstract class RSClientMixin implements RSClient
 {
@@ -52,6 +51,9 @@ public abstract class RSClientMixin implements RSClient
 	@Inject
 	@javax.inject.Inject
 	private Callbacks callbacks;
+
+	@Inject
+	private DrawCallbacks drawCallbacks;
 
 	@Inject
 	@javax.inject.Inject

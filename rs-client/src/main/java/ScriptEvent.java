@@ -17,8 +17,8 @@ public class ScriptEvent extends Node {
    @ObfuscatedGetter(
       intValue = -1218466245
    )
-   @Export("__by_hb")
-   static int __by_hb;
+   @Export("oculusOrbFocalPointY")
+   static int oculusOrbFocalPointY;
    @ObfuscatedName("m")
    @Export("args0")
    Object[] args0;

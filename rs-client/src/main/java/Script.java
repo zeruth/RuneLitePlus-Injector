@@ -124,12 +124,12 @@ public class Script extends DualNode {
                int var6 = var4 >> 4 & 7;
                int var7 = var4 & 15;
                Client.soundEffectIds[Client.soundEffectCount] = var5;
-               Client.__client_qn[Client.soundEffectCount] = var6;
-               Client.__client_qd[Client.soundEffectCount] = 0;
+               Client.unknownSoundValues1[Client.soundEffectCount] = var6;
+               Client.queuedSoundEffectDelays[Client.soundEffectCount] = 0;
                Client.soundEffects[Client.soundEffectCount] = null;
                int var8 = (var2 - 64) / 128;
                int var9 = (var3 - 64) / 128;
-               Client.__client_qk[Client.soundEffectCount] = var7 + (var9 << 8) + (var8 << 16);
+               Client.soundLocations[Client.soundEffectCount] = var7 + (var9 << 8) + (var8 << 16);
                ++Client.soundEffectCount;
             }
          }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,10 +24,23 @@
  */
 package rs.api;
 
+import api.Renderable;
 import net.runelite.mapping.Import;
 
-public interface RSName extends Comparable
+public interface RSEntity extends RSNode, Renderable
 {
-	@Import("name")
-	String getName();
+	@Import("modelHeight")
+	int getModelHeight();
+
+	@Import("modelHeight")
+	@Override
+	void setModelHeight(int modelHeight);
+
+	@Import("getModel")
+	@Override
+	RSModel getModel();
+
+	@Import("draw")
+	@Override
+	void draw(int orientation, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y, int z, long hash);
 }

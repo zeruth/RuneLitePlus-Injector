@@ -713,7 +713,7 @@ public class class40 {
       int var14;
       int var21;
       if(!Client.isCameraLocked) {
-         var4 = Client.__client_hw;
+         var4 = Client.cameraPitchTarget;
          if(Client.__client_ik / 256 > var4) {
             var4 = Client.__client_ik / 256;
          }
@@ -723,9 +723,9 @@ public class class40 {
          }
 
          var21 = Client.minimapOrientation & 2047;
-         var6 = MouseHandler.__bb_hz;
+         var6 = MouseHandler.oculusOrbFocalPointX;
          var7 = MouseRecorder.__bu_hy;
-         var8 = ScriptEvent.__by_hb;
+         var8 = ScriptEvent.oculusOrbFocalPointY;
          var9 = var4 * 3 + 600;
          var10 = ScriptEvent.method1176(var9, var3);
          var11 = 2048 - var4 & 2047;
@@ -757,10 +757,10 @@ public class class40 {
          class11.cameraZ = var8 - var15;
          WorldMapIcon1.cameraPitch = var4;
          MusicPatchNode.cameraYaw = var21;
-         if(Client.__client_hj == 1 && Client.rights >= 2 && Client.cycle % 50 == 0 && (MouseHandler.__bb_hz >> 7 != Canvas.localPlayer.x >> 7 || ScriptEvent.__by_hb >> 7 != Canvas.localPlayer.y >> 7)) {
+         if(Client.oculusOrbState == 1 && Client.rights >= 2 && Client.cycle % 50 == 0 && (MouseHandler.oculusOrbFocalPointX >> 7 != Canvas.localPlayer.x >> 7 || ScriptEvent.oculusOrbFocalPointY >> 7 != Canvas.localPlayer.y >> 7)) {
             var16 = Canvas.localPlayer.plane;
-            var17 = (MouseHandler.__bb_hz >> 7) + class50.baseX;
-            var18 = (ScriptEvent.__by_hb >> 7) + GraphicsObject.baseY;
+            var17 = (MouseHandler.oculusOrbFocalPointX >> 7) + class50.baseX;
+            var18 = (ScriptEvent.oculusOrbFocalPointY >> 7) + GraphicsObject.baseY;
             PacketBufferNode var19 = Interpreter.method1915(ClientPacket.__gs_bx, Client.packetWriter.isaacCipher);
             var19.packetBuffer.writeIntME(Client.__client_il);
             var19.packetBuffer.writeShortLE(var18);

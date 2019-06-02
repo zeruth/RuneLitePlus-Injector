@@ -151,8 +151,8 @@ public class IndexCacheLoader {
          }
 
          Rasterizer2D.Rasterizer2D_fillRectangle(Login.__cu_q, 23, 765, 480, 0);
-         Rasterizer2D.method5937(Login.__cu_q, 0, 125, 23, 12425273, 9135624);
-         Rasterizer2D.method5937(Login.__cu_q + 125, 0, 640, 23, 5197647, 2697513);
+         Rasterizer2D.drawGradient(Login.__cu_q, 0, 125, 23, 12425273, 9135624);
+         Rasterizer2D.drawGradient(Login.__cu_q + 125, 0, 640, 23, 5197647, 2697513);
          var0.drawCentered("Select a world", Login.__cu_q + 62, 15, 0, -1);
          if(UrlRequest.__ey_bx != null) {
             UrlRequest.__ey_bx[1].__q_496(Login.__cu_q + 140, 1);

@@ -30,6 +30,7 @@ package rs.api;
 
 import api.Client;
 import api.Sprite;
+import api.World;
 import api.widgets.Widget;
 import java.util.Map;
 import net.runelite.mapping.Construct;
@@ -506,12 +507,12 @@ public interface RSClient extends RSGameShell, Client
 	 */
 	@Import("rootWidgetGroup")
 	int getWidgetRoot();
-// ----------------------------------------------------------------------------
-/*	@Import("mapElementConfigs")
-	@Override
-	RSMapElementConfig[] getMapElementConfigs();
 
-	@Import("mapscene")
+	@Import("WorldMapElement_cached")
+	@Override
+	RSWorldMapElement[] getMapElementConfigs();
+
+	@Import("mapSceneSprites")
 	@Override
 	RSIndexedSprite[] getMapScene();
 
@@ -519,14 +520,14 @@ public interface RSClient extends RSGameShell, Client
 	@Override
 	RSSprite[] getMapIcons();
 
-	@Import("mapDots")
+	@Import("mapDotSprites")
 	RSSprite[] getMapDots();
 
-	@Import("modIcons")
+	@Import("modIconSprites")
 	@Override
 	RSIndexedSprite[] getModIcons();
 
-	@Import("modIcons")
+	@Import("modIconSprites")
 	void setRSModIcons(RSIndexedSprite[] modIcons);
 
 	@Construct
@@ -543,10 +544,10 @@ public interface RSClient extends RSGameShell, Client
 	@Import("destinationY")
 	int getDestinationY();
 
-	@Import("audioEffects")
+	@Import("soundEffects")
 	RSSoundEffect[] getAudioEffects();
 
-	@Import("queuedSoundEffectIDs")
+	@Import("soundEffectIds")
 	int[] getQueuedSoundEffectIDs();
 
 	@Import("soundLocations")
@@ -558,88 +559,88 @@ public interface RSClient extends RSGameShell, Client
 	@Import("queuedSoundEffectDelays")
 	int[] getQueuedSoundEffectDelays();
 
-	@Import("queuedSoundEffectCount")
+	@Import("soundEffectCount")
 	int getQueuedSoundEffectCount();
 
-	@Import("queuedSoundEffectCount")
+	@Import("soundEffectCount")
 	void setQueuedSoundEffectCount(int queuedSoundEffectCount);
 
 	@Import("rasterProvider")
 	@Override
-	RSBufferProvider getBufferProvider();
+	RSAbstractRasterProvider getBufferProvider();
 
-	@Import("mouseIdleTicks")
+	@Import("MouseHandler_idleCycles")
 	@Override
 	int getMouseIdleTicks();
 
-	@Import("mouseLastPressedTimeMillis")
+	@Import("MouseHandler_lastPressedTimeMillis")
 	@Override
 	long getMouseLastPressedMillis();
 
-	@Import("keyboardIdleTicks")
+	@Import("KeyHandler_idleCycles")
 	@Override
 	int getKeyboardIdleTicks();
 
-	@Import("lowMemory")
+	@Import("isLowDetail")
 	void setLowMemory(boolean lowMemory);
 
-	@Import("sceneLowMemory")
+	@Import("Scene_isLowDetail")
 	void setSceneLowMemory(boolean lowMemory);
 
-	@Import("audioHighMemory")
+	@Import("isStereo")
 	void setAudioHighMemory(boolean highMemory);
 
-	@Import("objectDefinitionLowDetail")
+	@Import("ObjectDefinition_isLowDetail")
 	void setObjectDefinitionLowDetail(boolean lowDetail);
 
 	@Construct
-	RSItem createItem();
+	RSGroundItem createItem();
 
-	@Import("intStackSize")
+	@Import("Interpreter_stringStackSize")
 	@Override
 	int getIntStackSize();
 
-	@Import("intStackSize")
+	@Import("Interpreter_intStackSize")
 	@Override
 	void setIntStackSize(int stackSize);
 
-	@Import("intStack")
+	@Import("Interpreter_intStack")
 	@Override
 	int[] getIntStack();
 
-	@Import("scriptStringStackSize")
+	@Import("Interpreter_stringStackSize")
 	@Override
 	int getStringStackSize();
 
-	@Import("scriptStringStackSize")
+	@Import("Interpreter_stringStackSize")
 	@Override
 	void setStringStackSize(int stackSize);
 
-	@Import("scriptStringStack")
+	@Import("Interpreter_stringStack")
 	@Override
 	String[] getStringStack();
 
-	@Import("friendManager")
-	RSFriendManager getFriendManager();
+	@Import("friendSystem")
+	RSFriendSystem getFriendManager();
 
-	@Import("clanMemberManager")
-	RSClanMemberManager getClanMemberManager();
+	@Import("clanChat")
+	RSClanChat getClanMemberManager();
 
 	@Import("loginType")
-	RSJagexLoginType getLoginType();
+	RSLoginType getLoginType();
 
 	@Construct
-	RSName createName(String name, RSJagexLoginType type);
+	RSUsername createName(String name, RSLoginType type);
 
 	@Import("getVarbit")
 	int getVarbit(int varbitId);
 
-	@Import("varbits")
-	RSNodeCache getVarbitCache();
+	@Import("VarbitDefinition_cached")
+	RSEvictingDualNodeHashTable getVarbitCache();
 
-	@Import("preferences")
+	@Import("clientPreferences")
 	@Override
-	RSPreferences getPreferences();
+	RSClientPreferences getPreferences();
 
 	/**
 	 * This is the pitch the user has set the camera to.
@@ -648,23 +649,23 @@ public interface RSClient extends RSGameShell, Client
 	 * terrain.
 	 *
 	 * (1) JAU - Jagex Angle Unit; 1/1024 of a revolution
-	 *
+	 */
 	@Import("cameraPitchTarget")
 	int getCameraPitchTarget();
 
 	@Import("cameraPitchTarget")
 	void setCameraPitchTarget(int pitch);
 
-	@Import("pitchSin")
+	@Import("Scene_cameraPitchSine")
 	void setPitchSin(int v);
 
-	@Import("pitchCos")
+	@Import("Scene_cameraPitchCosine")
 	void setPitchCos(int v);
 
-	@Import("yawSin")
+	@Import("Scene_cameraYawSine")
 	void setYawSin(int v);
 
-	@Import("yawCos")
+	@Import("Scene_cameraYawCosine")
 	void setYawCos(int v);
 
 	@Import("Rasterizer3D_zoom")
@@ -690,16 +691,16 @@ public interface RSClient extends RSGameShell, Client
 	@Override
 	int getRasterizer3D_clipMidY2();
 
-	@Import("centerX")
+	@Import("Rasterizer3D_clipMidX")
 	@Override
 	int getCenterX();
 
-	@Import("centerY")
+	@Import("Rasterizer3D_clipMidY")
 	@Override
 	int getCenterY();
 
-	@Import("renderOverview")
-	RSRenderOverview getRenderOverview();
+	@Import("worldMap0")
+	RSWorldMap getRenderOverview();
 
 	@Import("changeWorld")
 	@Override
@@ -709,13 +710,13 @@ public interface RSClient extends RSGameShell, Client
 	@Override
 	RSWorld createWorld();
 
-	@Import("animOffsetX")
+	@Import("Model_transformTempX")
 	void setAnimOffsetX(int animOffsetX);
 
-	@Import("animOffsetY")
+	@Import("Model_transformTempY")
 	void setAnimOffsetY(int animOffsetY);
 
-	@Import("animOffsetZ")
+	@Import("Model_transformTempZ")
 	void setAnimOffsetZ(int animOffsetZ);
 
 	@Import("getFrames")
@@ -736,10 +737,10 @@ public interface RSClient extends RSGameShell, Client
 	@Import("runScript")
 	void runScript(RSScriptEvent ev, int ex);
 
-	@Import("hintArrowTargetType")
+	@Import("hintArrowType")
 	void setHintArrowTargetType(int value);
 
-	@Import("hintArrowTargetType")
+	@Import("hintArrowType")
 	int getHintArrowTargetType();
 
 	@Import("hintArrowX")
@@ -754,47 +755,47 @@ public interface RSClient extends RSGameShell, Client
 	@Import("hintArrowY")
 	int getHintArrowY();
 
-	@Import("hintArrowOffsetX")
+	@Import("hintArrowSubX")
 	void setHintArrowOffsetX(int value);
 
-	@Import("hintArrowOffsetY")
+	@Import("hintArrowSubY")
 	void setHintArrowOffsetY(int value);
 
-	@Import("hintArrowNpcTargetIdx")
+	@Import("hintArrowNpcIndex")
 	void setHintArrowNpcTargetIdx(int value);
 
-	@Import("hintArrowNpcTargetIdx")
+	@Import("hintArrowNpcIndex")
 	int getHintArrowNpcTargetIdx();
 
-	@Import("hintArrowPlayerTargetIdx")
+	@Import("hintArrowPlayerIndex")
 	void setHintArrowPlayerTargetIdx(int value);
 
-	@Import("hintArrowPlayerTargetIdx")
+	@Import("hintArrowPlayerIndex")
 	int getHintArrowPlayerTargetIdx();
 
-	@Import("isDynamicRegion")
+	@Import("isInInstance")
 	@Override
 	boolean isInInstancedRegion();
 
-	@Import("itemPressedDuration")
+	@Import("widgetDragDuration")
 	int getItemPressedDuration();
 
-	@Import("itemPressedDuration")
+	@Import("widgetDragDuration")
 	void setItemPressedDuration(int duration);
 
-	@Import("flags")
+	@Import("worldProperties")
 	int getFlags();
 
 	@Import("compass")
 	void setCompass(Sprite spritePixels);
 
-	//@Import("widgetSpriteCache")
-	//@Override
-	//RSNodeCache getWidgetSpriteCache();
+	@Import("widgetSpriteCache")
+	@Override
+	RSEvictingDualNodeHashTable getWidgetSpriteCache();
 
-	//@Import("items")
-	//@Override
-	//RSNodeCache getItemDefinitionCache();
+	@Import("ItemDefinition_cached")
+	@Override
+	RSEvictingDualNodeHashTable getItemDefinitionCache();
 
 	@Import("oculusOrbState")
 	@Override
@@ -808,54 +809,51 @@ public interface RSClient extends RSGameShell, Client
 	@Override
 	void setOculusOrbNormalSpeed(int state);
 
-	@Import("lookingAtX")
+	@Import("oculusOrbFocalPointX")
 	@Override
 	int getOculusOrbFocalPointX();
 
-	@Import("lookingAtY")
+	@Import("oculusOrbFocalPointY")
 	@Override
 	int getOculusOrbFocalPointY();
 
-	//RSItem getLastItemDespawn();
+	RSGroundItem getLastItemDespawn();
 
-	//void setLastItemDespawn(RSItem lastItemDespawn);
+	void setLastItemDespawn(RSGroundItem lastItemDespawn);
 
-	//@Construct
-	//RSWidget createWidget();
+	@Construct
+	RSWidget createWidget();
 
-	@Import("revalidateWidget")
+	@Import("alignWidget")
 	void revalidateWidget(Widget w);
 
 	@Import("revalidateWidgetScroll")
 	void revalidateWidgetScroll(Widget[] group, Widget w, boolean postEvent);
 
-	@Import("menuAction")
-	void menuAction(int var0, int var1, int var2, int var3, String var4, String var5, int var6, int var7);
-
-	@Import("Viewport_entityCountAtMouse")
+	@Import("ViewportMouse_entityCount")
 	int getEntitiesAtMouseCount();
 
-	@Import("Viewport_entityCountAtMouse")
+	@Import("ViewportMouse_entityCount")
 	void setEntitiesAtMouseCount(int i);
 
-	@Import("Viewport_entitiesAtMouse")
+	@Import("ViewportMouse_entityTags")
 	long[] getEntitiesAtMouse();
 
-	@Import("Viewport_mouseX")
+	@Import("ViewportMouse_x")
 	int getViewportMouseX();
 
-	@Import("Viewport_mouseY")
+	@Import("ViewportMouse_y")
 	int getViewportMouseY();
 
-	//@Import("textureProvider")
-	//@Override
-	//RSTextureProvider getTextureProvider();
+	@Import("textureProvider")
+	@Override
+	RSTextureProvider getTextureProvider();
 
-	@Import("occupiedTilesTick")
+	@Import("tileLastDrawnActor")
 	int[][] getOccupiedTilesTick();
 
-	//@Import("cachedModels2")
-	//RSNodeCache getCachedModels2();
+	@Import("ObjectDefinition_cachedModels")
+	RSEvictingDualNodeHashTable getCachedModels2();
 
 	@Import("cycle")
 	int getCycle();
@@ -863,26 +861,26 @@ public interface RSClient extends RSGameShell, Client
 	@Import("cycle")
 	void setCycle(int cycle);
 
-	@Import("visibilityMaps")
+	@Import("visibilityMap")
 	boolean[][][][] getVisibilityMaps();
 
-	@Import("renderArea")
+	@Import("visibleTiles")
 	void setRenderArea(boolean[][] renderArea);
 
-	@Import("cameraX2")
+	@Import("Scene_cameraX")
 	void setCameraX2(int cameraX2);
 
-	@Import("cameraY2")
+	@Import("Scene_cameraY")
 	void setCameraY2(int cameraY2);
 
-	@Import("cameraZ2")
+	@Import("Scene_cameraZ")
 	void setCameraZ2(int cameraZ2);
 
-	@Import("screenCenterX")
-	void setScreenCenterX(int screenCenterX);
+	@Import("Scene_cameraXTile")
+	void setScreenCenterX(int screenCenterX); // <-- This is correct!
 
-	@Import("screenCenterZ")
-	void setScreenCenterZ(int screenCenterZ);
+	@Import("Scene_cameraYTile")
+	void setScreenCenterZ(int screenCenterZ); // <-- This is correct!
 
 	@Import("Scene_plane")
 	void setScenePlane(int scenePlane);
@@ -890,13 +888,13 @@ public interface RSClient extends RSGameShell, Client
 	@Import("minTileX")
 	void setMinTileX(int i);
 
-	@Import("minTileZ")
+	@Import("minTileY")
 	void setMinTileZ(int i);
 
 	@Import("maxTileX")
 	void setMaxTileX(int i);
 
-	@Import("maxTileZ")
+	@Import("maxTileY")
 	void setMaxTileZ(int i);
 
 	@Import("tileUpdateCount")
@@ -905,39 +903,39 @@ public interface RSClient extends RSGameShell, Client
 	@Import("tileUpdateCount")
 	void setTileUpdateCount(int tileUpdateCount);
 
-	@Import("Viewport_containsMouse")
+	@Import("ViewportMouse_isInViewport")
 	boolean getViewportContainsMouse();
 
-	@Import("graphicsPixels")
+	@Import("Rasterizer2D_pixels")
 	int[] getGraphicsPixels();
 
-	@Import("graphicsPixelsWidth")
+	@Import("Rasterizer2D_width")
 	int getGraphicsPixelsWidth();
 
-	@Import("graphicsPixelsHeight")
+	@Import("Rasterizer2D_height")
 	int getGraphicsPixelsHeight();
 
 	@Import("fillRectangle")
 	void RasterizerFillRectangle(int x, int y, int w, int h, int rgb);
 
-	@Import("startX")
+	@Import("Rasterizer2D_xClipStart")
 	int getStartX();
 
-	@Import("startY")
+	@Import("Rasterizer2D_yClipStart")
 	int getStartY();
 
-	@Import("endX")
+	@Import("Rasterizer2D_xClipEnd")
 	int getEndX();
 
-	@Import("endY")
+	@Import("Rasterizer2D_yClipEnd")
 	int getEndY();
 
-	@Import("spellSelected")
+	@Import("isSpellSelected")
 	@Override
 	void setSpellSelected(boolean selected);
 
-	//@Import("getEnum")
-	//RSEnum getRsEnum(int id);
+	@Import("getEnum")
+	RSEnumDefinition getRsEnum(int id);
 
 	@Import("menuX")
 	int getMenuX();
@@ -972,16 +970,13 @@ public interface RSClient extends RSGameShell, Client
 	@Import("drawCircle")
 	void RasterizerDrawCircle(int x, int y, int r, int rgb);
 
-	//@Import("healthbarCache")
-	//@Override
-	//RSNodeCache getHealthBarCache();
+	@Import("HealthBarDefinition_cached")
+	@Override
+	RSEvictingDualNodeHashTable getHealthBarCache();
 
 	@Import("renderSelf")
-	void toggleRenderSelf();
+	void setRenderSelf(boolean enabled);
 
-	//@Import("mouseRecorder")
-	//RSMouseRecorder getMouseRecorder();
-
-	@Import("printMenuActions")
-	void setPrintMenuActions(boolean b); */
+	@Import("mouseRecorder")
+	RSMouseRecorder getMouseRecorder();
 }

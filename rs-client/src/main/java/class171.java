@@ -314,8 +314,8 @@ public class class171 {
                }
             } else if(Client.titleLoadingStage == 80) {
                var0 = 0;
-               if(UnitPriceComparator.__d_gz == null) {
-                  UnitPriceComparator.__d_gz = class322.readSprite(WorldMapSection3.indexCache8, class211.spriteIds.__m, 0);
+               if(UnitPriceComparator.compass == null) {
+                  UnitPriceComparator.compass = class322.readSprite(WorldMapSection3.indexCache8, class211.spriteIds.__m, 0);
                } else {
                   ++var0;
                }

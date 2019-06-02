@@ -29,7 +29,7 @@ import net.runelite.mapping.Import;
 
 import java.awt.*;
 
-public interface RSModel extends RSRenderable, Model
+public interface RSModel extends RSEntity, Model
 {
 	@Import("verticesCount")
 	@Override

@@ -160,14 +160,14 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
    @ObfuscatedGetter(
       intValue = -2071955075
    )
-   @Export("__aq")
-   int __aq;
+   @Export("maxCanvasWidth")
+   int maxCanvasWidth;
    @ObfuscatedName("aj")
    @ObfuscatedGetter(
       intValue = 1911308233
    )
-   @Export("__aj")
-   int __aj;
+   @Export("maxCanvasHeight")
+   int maxCanvasHeight;
    @ObfuscatedName("ac")
    @Export("frame")
    Frame frame;
@@ -246,12 +246,12 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
    )
    @Export("__u_90")
    protected final void __u_90(int var1, int var2) {
-      if(this.__aq != var1 || var2 != this.__aj) {
+      if(this.maxCanvasWidth != var1 || var2 != this.maxCanvasHeight) {
          this.__ay_96();
       }
 
-      this.__aq = var1;
-      this.__aj = var2;
+      this.maxCanvasWidth = var1;
+      this.maxCanvasHeight = var2;
    }
 
    @ObfuscatedName("g")
@@ -382,8 +382,8 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
             this.contentHeight = 1;
          }
 
-         SoundCache.canvasWidth = Math.min(this.contentWidth, this.__aq);
-         Huffman.canvasHeight = Math.min(this.contentHeight, this.__aj);
+         SoundCache.canvasWidth = Math.min(this.contentWidth, this.maxCanvasWidth);
+         Huffman.canvasHeight = Math.min(this.contentHeight, this.maxCanvasHeight);
          this.canvasX = (this.contentWidth - SoundCache.canvasWidth) / 2;
          this.canvasY = 0;
          this.canvas.setSize(SoundCache.canvasWidth, Huffman.canvasHeight);

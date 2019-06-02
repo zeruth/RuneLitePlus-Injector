@@ -29,22 +29,22 @@ import net.runelite.mapping.Import;
 
 public interface RSPlayer extends RSActor, Player
 {
-	@Import("name")
-	RSName getRsName();
+	@Import("username")
+	RSUsername getRsName();
 
-	@Import("playerId")
+	@Import("index")
 	int getPlayerId();
 
 	@Import("combatLevel")
 	@Override
 	int getCombatLevel();
 
-	@Import("totalLevel")
+	@Import("skillLevel")
 	int getTotalLevel();
 
-	@Import("overheadIcon")
+	@Import("headIconPrayer")
 	int getRsOverheadIcon();
 
-	@Import("skullIcon")
+	@Import("headIconPk")
 	int getRsSkullIcon();
 }

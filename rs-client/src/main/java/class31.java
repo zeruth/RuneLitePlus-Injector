@@ -1,3 +1,4 @@
+import net.runelite.mapping.Export;
 import net.runelite.mapping.ObfuscatedGetter;
 import net.runelite.mapping.ObfuscatedName;
 import net.runelite.mapping.ObfuscatedSignature;
@@ -34,7 +35,8 @@ public class class31 {
       signature = "(Lbt;I)V",
       garbageValue = "-1277717693"
    )
-   static void method572(World var0) {
+   @Export("changeWorld")
+   static void changeWorld(World var0) {
       if(var0.__e_144() != Client.isMembersWorld) {
          Client.isMembersWorld = var0.__e_144();
          boolean var1 = var0.__e_144();

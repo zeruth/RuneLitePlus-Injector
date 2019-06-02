@@ -38,8 +38,8 @@ public class Widget extends Node {
    @ObfuscatedSignature(
       signature = "Ler;"
    )
-   @Export("__ho_n")
-   static EvictingDualNodeHashTable __ho_n;
+   @Export("widgetSpriteCache")
+   static EvictingDualNodeHashTable widgetSpriteCache;
    @ObfuscatedName("i")
    @ObfuscatedSignature(
       signature = "Ler;"
@@ -717,7 +717,7 @@ public class Widget extends Node {
    public boolean __fz;
 
    static {
-      __ho_n = new EvictingDualNodeHashTable(200);
+      widgetSpriteCache = new EvictingDualNodeHashTable(200);
       Widget_cachedModels = new EvictingDualNodeHashTable(50);
       Widget_cachedFonts = new EvictingDualNodeHashTable(20);
       __ho_z = new EvictingDualNodeHashTable(8);
@@ -1302,7 +1302,7 @@ public class Widget extends Node {
          return null;
       } else {
          long var3 = ((this.spriteFlipV?1L:0L) << 38) + (long)var2 + ((long)this.outline << 36) + ((this.spriteFlipH?1L:0L) << 39) + ((long)this.spriteShadow << 40);
-         Sprite var5 = (Sprite)__ho_n.get(var3);
+         Sprite var5 = (Sprite) widgetSpriteCache.get(var3);
          if(var5 != null) {
             return var5;
          } else {
@@ -1335,7 +1335,7 @@ public class Widget extends Node {
                   var5.__e_503(this.spriteShadow);
                }
 
-               __ho_n.put(var5, var3);
+               widgetSpriteCache.put(var5, var3);
                return var5;
             }
          }
@@ -1382,13 +1382,13 @@ public class Widget extends Node {
          if(var2 == -1) {
             return null;
          } else {
-            Sprite var3 = (Sprite)__ho_n.get((long)var2);
+            Sprite var3 = (Sprite) widgetSpriteCache.get((long)var2);
             if(var3 != null) {
                return var3;
             } else {
                var3 = class322.readSprite(__ho_d, var2, 0);
                if(var3 != null) {
-                  __ho_n.put(var3, (long)var2);
+                  widgetSpriteCache.put(var3, (long)var2);
                } else {
                   __ho_j = true;
                }
