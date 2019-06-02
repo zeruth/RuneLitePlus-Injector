@@ -58,11 +58,8 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import com.runeswag.client.Notifier;
-import com.runeswag.client.RuneSwag;
-import com.runeswag.client.callback.ClientThread;
+import com.runeswag.client.RuneLitePlus;
 import api.config.Constants;
-import com.runeswag.client.callback.DeferredEventBus;
-import com.runeswag.client.callback.EventBus;
 import com.runeswag.client.ui.ClientUI;
 import com.runeswag.client.ui.DrawManager;
 import com.runeswag.client.ui.OverlayLayer;
@@ -83,7 +80,7 @@ public class Hooks implements Callbacks
 {
 	private static final long CHECK = Constants.GAME_TICK_LENGTH; // ms - how often to run checks
 
-	private static final Injector injector = RuneSwag.getInjector();
+	private static final Injector injector = RuneLitePlus.getInjector();
 	private static final Client client = injector.getInstance(Client.class);
 	private static final OverlayRenderer renderer = injector.getInstance(OverlayRenderer.class);
 	private static final OverlayManager overlayManager = injector.getInstance(OverlayManager.class);

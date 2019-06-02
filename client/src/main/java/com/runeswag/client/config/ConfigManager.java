@@ -29,7 +29,7 @@ import api.events.ConfigChanged;
 import com.google.common.base.Strings;
 import com.google.common.collect.ComparisonChain;
 import com.google.common.collect.ImmutableMap;
-import com.runeswag.client.RuneSwag;
+import com.runeswag.client.RuneLitePlus;
 import com.runeswag.client.callback.EventBus;
 import com.runeswag.client.utils.ColorUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -63,7 +63,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
-import static com.runeswag.client.RuneSwag.PROFILES_DIR;
+import static com.runeswag.client.RuneLitePlus.PROFILES_DIR;
 
 
 @Singleton
@@ -72,8 +72,8 @@ public class ConfigManager
 {
 	private static final String SETTINGS_FILE_NAME = "runeliteplus.properties";
 	private static final String STANDARD_SETTINGS_FILE_NAME = "settings.properties";
-	private static final File SETTINGS_FILE = new File(RuneSwag.RUNESWAG_DIR, SETTINGS_FILE_NAME);
-	private static final File STANDARD_SETTINGS_FILE = new File(RuneSwag.RUNESWAG_DIR, STANDARD_SETTINGS_FILE_NAME);
+	private static final File SETTINGS_FILE = new File(RuneLitePlus.RUNESWAG_DIR, SETTINGS_FILE_NAME);
+	private static final File STANDARD_SETTINGS_FILE = new File(RuneLitePlus.RUNESWAG_DIR, STANDARD_SETTINGS_FILE_NAME);
 
 	@Inject
 	EventBus eventBus;
@@ -86,6 +86,7 @@ public class ConfigManager
 	@Inject
 	public ConfigManager(ScheduledExecutorService scheduledExecutorService)
 	{
+		System.out.println("Started ConfigManager");
 		this.executor = scheduledExecutorService;
 
 		executor.scheduleWithFixedDelay(this::sendConfig, 30, 30, TimeUnit.SECONDS);

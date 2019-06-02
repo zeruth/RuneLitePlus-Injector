@@ -541,7 +541,7 @@ public interface Client extends GameShell
 	 * @return world list
 	 */
 	World[] getWorldList();
-
+  
 	/**
 	 * Gets an array of currently open right-click menu entries that can be
 	 * clicked and activated.
@@ -1620,4 +1620,9 @@ public interface Client extends GameShell
 	MouseRecorder getMouseRecorder();
 
 	void setPrintMenuActions(boolean b);
+
+	boolean isInterpolatePlayerAnimations();
+
+	@Override
+	Canvas getCanvas();
 }

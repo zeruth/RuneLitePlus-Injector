@@ -26,7 +26,7 @@ package com.runeswag.client.misc;
 
 import com.google.inject.Injector;
 import com.google.inject.Key;
-import com.runeswag.client.RuneSwag;
+import com.runeswag.client.RuneLitePlus;
 import com.runeswag.client.config.Config;
 import com.runeswag.client.config.ConfigManager;
 import com.runeswag.client.config.RuneSwagConfig;
@@ -53,7 +53,7 @@ import static java.nio.file.StandardWatchEventKinds.ENTRY_MODIFY;
 @Slf4j
 public class PluginWatcher extends Thread
 {
-	private static final File BASE = RuneSwag.PLUGIN_DIR;
+	private static final File BASE = RuneLitePlus.PLUGIN_DIR;
 
 	private final RuneSwagConfig runeliteConfig;
 	private final PluginManager pluginManager;

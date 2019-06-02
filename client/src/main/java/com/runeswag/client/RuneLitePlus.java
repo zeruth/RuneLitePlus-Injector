@@ -1,5 +1,5 @@
 /*
- * RuneSwag
+ * RuneLitePlus
  * Copyright (C) 2019 runelite-extended
  *
  * This program is free software: you can redistribute it and/or modify
@@ -26,7 +26,6 @@ import com.google.inject.Injector;
 import com.runeswag.client.config.ConfigManager;
 import com.runeswag.client.events.EventBus;
 import com.runeswag.client.misc.PluginManager;
-import com.runeswag.client.plugins.Test;
 import com.runeswag.client.ui.ClientUI;
 import joptsimple.OptionParser;
 import joptsimple.OptionSet;
@@ -38,13 +37,13 @@ import java.io.File;
 import java.util.Locale;
 
 @Slf4j
-public class RuneSwag
+public class RuneLitePlus
 {
 
-	public static final File RUNESWAG_DIR = new File(System.getProperty("user.home"), ".runeswag");
+	public static final File RUNESWAG_DIR = new File(System.getProperty("user.home"), ".runeliteplus");
 	public static final File PROFILES_DIR = new File(RUNESWAG_DIR, "profiles");
 	public static final File PLUGIN_DIR = new File(RUNESWAG_DIR, "plugins");
-	static final RuneSwagProperties runeSwagProperties = new RuneSwagProperties();
+	static final RuneLitePlusProperties RUNE_LITE_PLUS_PROPERTIES = new RuneLitePlusProperties();
 	
 	@Getter
 	private static Injector injector;
@@ -93,10 +92,10 @@ public class RuneSwag
 			}
 		});
 
-		injector = Guice.createInjector(new RuneSwagModule(true));
+		injector = Guice.createInjector(new RuneLitePlusModule(true));
 		
-		injector.getInstance(RuneSwag.class).startClient();
-		injector.getInstance(RuneSwag.class).pluginManager.loadCorePlugins();
+		injector.getInstance(RuneLitePlus.class).startClient();
+		injector.getInstance(RuneLitePlus.class).pluginManager.loadCorePlugins();
 	}
 	
 	private void startClient() throws Exception

@@ -28,7 +28,7 @@
 
 package com.runeswag.client.ui;
 
-import com.runeswag.client.RuneSwag;
+import com.runeswag.client.RuneLitePlus;
 import com.runeswag.client.utils.SwingUtils;
 import rs.api.RSClient;
 import lombok.RequiredArgsConstructor;
@@ -58,11 +58,11 @@ public class RuneSwagContainer
 	private static final int CLIENT_WELL_HIDDEN_MARGIN = 160;
 	private static final int CLIENT_WELL_HIDDEN_MARGIN_TOP = 10;
 	
-	public void openClient(RuneSwag main) throws Exception
+	public void openClient(RuneLitePlus main) throws Exception
 	{
 			frame = new ContainableFrame();
 
-			frame.setTitle("RuneSwag");
+			frame.setTitle("RuneLitePlus");
 			frame.getLayeredPane().setCursor(Cursor.getDefaultCursor());
 			frame.setLocationRelativeTo(frame.getOwner());
 			frame.setResizable(true);
@@ -104,9 +104,9 @@ public class RuneSwagContainer
 		else if (!(client instanceof RSClient))
 		{
 			SwingUtilities.invokeLater(() -> JOptionPane.showMessageDialog(frame,
-					"RuneSwag has not yet been updated to work with the latest\n"
+					"RuneLitePlus has not yet been updated to work with the latest\n"
 							+ "game update, it work with a reduced feature set.",
-					"RuneSwag", INFORMATION_MESSAGE));
+					"RuneLitePlus", INFORMATION_MESSAGE));
 			//System.exit(-1);
 		}
 	}

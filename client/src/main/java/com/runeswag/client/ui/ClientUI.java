@@ -79,14 +79,15 @@ import javax.swing.JRootPane;
 import javax.swing.SwingUtilities;
 
 import com.google.common.eventbus.Subscribe;
-import com.runeswag.client.RuneSwag;
+import com.runeswag.client.Notifier;
+import com.runeswag.client.RuneLitePlus;
 import com.runeswag.client.callback.ClientThread;
 import com.runeswag.client.config.ConfigManager;
 import api.config.Constants;
 import com.runeswag.client.config.ExpandResizeType;
 import com.runeswag.client.config.Keybind;
 import com.runeswag.client.config.RuneSwagConfig;
-import com.runeswag.client.RuneSwagProperties;
+import com.runeswag.client.RuneLitePlusProperties;
 import com.runeswag.client.config.WarningOnExit;
 import com.runeswag.client.events.NavigationButtonAdded;
 import com.runeswag.client.events.NavigationButtonRemoved;
@@ -117,12 +118,12 @@ public class ClientUI
 	private static final int CLIENT_WELL_HIDDEN_MARGIN = 160;
 	private static final int CLIENT_WELL_HIDDEN_MARGIN_TOP = 10;
 	public static boolean allowInput = false;
-	public static String currentPresenceName = "RuneSwag";
+	public static String currentPresenceName = "RuneLitePlus";
 	public static BufferedImage ICON = null;
 
 	static {
 		try {
-			ICON = ImageIO.read(ClientUI.class.getResourceAsStream("runeswag.png"));
+			ICON = ImageIO.read(ClientUI.class.getResourceAsStream("runeliteplus.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -131,7 +132,7 @@ public class ClientUI
 	@Getter
 	private TrayIcon trayIcon;
 
-	private final RuneSwagProperties properties;
+	private final RuneLitePlusProperties properties;
 	private final RuneSwagConfig config;
 	private final KeyManager keyManager;
 	private final MouseManager mouseManager;
@@ -161,7 +162,7 @@ public class ClientUI
 
 	@Inject
 	private ClientUI(
-		RuneSwagProperties properties,
+		RuneLitePlusProperties properties,
 		RuneSwagConfig config,
 		KeyManager keyManager,
 		MouseManager mouseManager,
@@ -321,7 +322,7 @@ public class ClientUI
 	 * @param runeswag runelite instance that will be shut down on exit
 	 * @throws Exception exception that can occur during creation of the UI
 	 */
-	public void open(final RuneSwag runeswag) throws Exception
+	public void open(final RuneLitePlus runeswag) throws Exception
 	{
 		SwingUtilities.invokeAndWait(() ->
 		{
@@ -454,7 +455,7 @@ public class ClientUI
 			// Create hide sidebar button
 
 			try {
-				sidebarOpenIcon = ImageIO.read(new FileInputStream(new File("./open.png")));
+				sidebarOpenIcon = ImageIO.read(ClientUI.class.getResourceAsStream("open.png"));
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -624,7 +625,7 @@ public class ClientUI
 	}
 
 	/**
-	 * Changes cursor for client window. Requires ${@link ClientUI#open(com.runeswag.client.RuneSwag)} to be called first.
+	 * Changes cursor for client window. Requires ${@link ClientUI#open(com.runeswag.client.RuneLitePlus)} to be called first.
 	 * FIXME: This is working properly only on Windows, Linux and Mac are displaying cursor incorrectly
 	 *
 	 * @param image cursor image
