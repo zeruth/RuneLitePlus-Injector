@@ -187,11 +187,11 @@ public abstract class RSPlayerMixin implements RSPlayer
 
 			int[] xx =
 					{
-							x.getX(), y.getX(), z.getX()
+						x.getX(), y.getX(), z.getX()
 					};
 			int[] yy =
 					{
-							x.getY(), y.getY(), z.getY()
+						x.getY(), y.getY(), z.getY()
 					};
 			polys.add(new Polygon(xx, yy, 3));
 		}
