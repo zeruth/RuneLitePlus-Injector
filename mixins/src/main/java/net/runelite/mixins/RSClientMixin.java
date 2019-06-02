@@ -93,9 +93,9 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@Override
-	public Canvas getCanvas() {
-		System.out.println("Impl Canvas");
-		return null;
+	public GameState getGameState()
+	{
+		return GameState.of(getRSGameState());
 	}
 
 

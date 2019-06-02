@@ -87,7 +87,7 @@ public abstract class RSGameShellMixin implements RSGameShell
 		}
 	}
 
-	@FieldHook("replaceCanvasNextFrame")
+	@FieldHook("isCanvasInvalid")
 	@Inject
 	public void onReplaceCanvasNextFrameChanged(int idx)
 	{

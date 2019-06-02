@@ -178,8 +178,8 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
    @Export("__ah")
    volatile boolean __ah;
    @ObfuscatedName("al")
-   @Export("__al")
-   boolean __al;
+   @Export("resizeCanvasNextFrame")
+   boolean resizeCanvasNextFrame;
    @ObfuscatedName("ab")
    @Export("isCanvasInvalid")
    volatile boolean isCanvasInvalid;
@@ -223,7 +223,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
       this.canvasX = 0;
       this.canvasY = 0;
       this.__ah = true;
-      this.__al = false;
+      this.resizeCanvasNextFrame = false;
       this.isCanvasInvalid = false;
       this.canvasSetTimeMs = 0L;
       EventQueue var1 = null;
@@ -259,8 +259,8 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
       signature = "(Ljava/lang/Object;I)V",
       garbageValue = "1799804313"
    )
-   @Export("__g_91")
-   final void __g_91(Object var1) {
+   @Export("post")
+   final void post(Object var1) {
       if(this.eventQueue != null) {
          for(int var2 = 0; var2 < 50 && this.eventQueue.peekEvent() != null; ++var2) {
             class203.method4010(1L);
@@ -681,9 +681,9 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
    @Export("__ac_95")
    final void __ac_95() {
       Bounds var1 = this.getFrameContentBounds();
-      if(var1.__q != this.contentWidth || this.contentHeight != var1.__w || this.__al) {
+      if(var1.__q != this.contentWidth || this.contentHeight != var1.__w || this.resizeCanvasNextFrame) {
          this.__z_92();
-         this.__al = false;
+         this.resizeCanvasNextFrame = false;
       }
 
    }
@@ -695,7 +695,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
    )
    @Export("__ay_96")
    final void __ay_96() {
-      this.__al = true;
+      this.resizeCanvasNextFrame = true;
    }
 
    @ObfuscatedName("ah")
@@ -983,7 +983,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
             }
 
             this.__ar_94();
-            this.__g_91(this.canvas);
+            this.post(this.canvas);
          }
       } catch (Exception var7) {
          NpcDefinition.sendStackTrace((String)null, var7);

@@ -1,5 +1,12 @@
 package rs.api;
 
-public class RSNodeDeque
+import net.runelite.mapping.Import;
+
+public interface RSNodeDeque
 {
+	@Import("current")
+	RSNode getCurrent();
+
+	@Import("sentinel")
+	RSNode getHead();
 }
