@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2017, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,31 +22,47 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package api.events;
+package api;
 
-import lombok.Data;
-import api.Actor;
+import api.kit.KitType;
 
 /**
- * An event where the graphic of an {@link Actor} has changed.
- * <p>
- * The graphic the player has changed to can be obtained using
- * {@link Actor#getGraphic()}.
- * <p>
- * Examples of when this event may trigger include:
- * <ul>
- *     <li>Casting a magic spell</li>
- *     <li>Using a fairy ring</li>
- *     <li>Breaking a teleport tab</li>
- * </ul>
- *
- * @see api.GraphicID
+ * Represents the template of a player.
  */
-@Data
-public class GraphicChanged
+public interface PlayerAppearance
 {
 	/**
-	 * The actor that has had their graphic changed.
+	 * Gets an array of IDs related to equipment slots.
+	 * <p>
+	 * If the ID for a specific slot is between 256 and 512, subtracting
+	 * 256 will result in the kit ID. Values above 512 indicate an item
+	 * and can be converted to the item ID by subtracting 512.
+	 *
+	 * @return the equipment IDs
 	 */
-	private Actor actor;
+	int[] getEquipmentIds();
+
+	/**
+	 * Gets the equipment ID of a particular slot.
+	 *
+	 * @param type equipment slot
+	 * @return the equipment ID
+	 */
+	int getEquipmentId(KitType type);
+
+	/**
+	 * Gets the kit ID of a particular slot.
+	 *
+	 * @param type equipment slot
+	 * @return the kit ID
+	 */
+	int getKitId(KitType type);
+
+	/**
+	 * Update the cached hash value for player equipment
+	 * Used to cache the player models based on equipment.
+	 */
+	void setHash();
+
+	void setTransformedNpcId(int id);
 }

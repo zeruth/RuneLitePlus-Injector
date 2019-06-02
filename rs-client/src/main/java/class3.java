@@ -171,7 +171,8 @@ public class class3 implements Enumerated {
       signature = "(ZLhx;B)V",
       garbageValue = "1"
    )
-   static final void method43(boolean var0, PacketBuffer var1) {
+   @Export("updateNpcs")
+   static final void updateNpcs(boolean var0, PacketBuffer var1) {
       Client.__client_ky = 0;
       Client.__client_fw = 0;
       PacketBuffer var2 = Client.packetWriter.packetBuffer;

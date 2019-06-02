@@ -665,7 +665,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
       }
 
       this.__ac_95();
-      this.__ab_112(this.__ah);
+      this.methodDraw(this.__ah);
       if(this.__ah) {
          this.clearBackground();
       }
@@ -761,8 +761,8 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
       signature = "(ZI)V",
       garbageValue = "106302203"
    )
-   @Export("__ab_112")
-   protected abstract void __ab_112(boolean var1);
+   @Export("methodDraw")
+   protected abstract void methodDraw(boolean var1);
 
    @ObfuscatedName("ae")
    @ObfuscatedSignature(

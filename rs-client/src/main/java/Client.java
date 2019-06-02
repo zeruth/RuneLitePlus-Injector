@@ -2600,7 +2600,8 @@ public final class Client extends GameShell implements Usernamed {
       signature = "(ZI)V",
       garbageValue = "106302203"
    )
-   protected final void __ab_112(boolean var1) {
+   @Export("methodDraw")
+   protected final void methodDraw(boolean var1) {
       boolean var2;
       label166: {
          try {
@@ -4377,7 +4378,7 @@ public final class Client extends GameShell implements Usernamed {
                                                          var40.packetBuffer.__ai_315(var33);
                                                          packetWriter.__q_167(var40);
                                                       }
-                                                   } else if(this.__ht_140()) {
+                                                   } else if(this.shouldLeftClickOpenMenu()) {
                                                       this.openMenu(__client_ja, __client_je);
                                                    } else if(menuOptionsCount > 0) {
                                                       var3 = __client_ja;
@@ -5400,7 +5401,7 @@ public final class Client extends GameShell implements Usernamed {
             }
 
             if(ServerPacket.__ge_cy == var1.serverPacket0) {
-               class3.method43(true, var3);
+               class3.updateNpcs(true, var3);
                var1.serverPacket0 = null;
                return true;
             }
@@ -5591,7 +5592,7 @@ public final class Client extends GameShell implements Usernamed {
             }
 
             if(ServerPacket.__ge_ah == var1.serverPacket0) {
-               class3.method43(false, var3);
+               class3.updateNpcs(false, var3);
                var1.serverPacket0 = null;
                return true;
             }
@@ -6320,7 +6321,7 @@ public final class Client extends GameShell implements Usernamed {
                      }
                   }
 
-                  if((var15 == 1 || !AbstractRasterProvider.__lp_ca && var15 == 4) && this.__ht_140()) {
+                  if((var15 == 1 || !AbstractRasterProvider.__lp_ca && var15 == 4) && this.shouldLeftClickOpenMenu()) {
                      var15 = 2;
                   }
 
@@ -6336,7 +6337,7 @@ public final class Client extends GameShell implements Usernamed {
                return;
             }
 
-            if(DevicePcmPlayerProvider.dragInventoryWidget != null && !__client_jl && menuOptionsCount > 0 && !this.__ht_140()) {
+            if(DevicePcmPlayerProvider.dragInventoryWidget != null && !__client_jl && menuOptionsCount > 0 && !this.shouldLeftClickOpenMenu()) {
                int var10 = __client_ja;
                int var11 = __client_je;
                class231.method4520(UnitPriceComparator.tempMenuAction, var10, var11);
@@ -6372,8 +6373,8 @@ public final class Client extends GameShell implements Usernamed {
       signature = "(B)Z",
       garbageValue = "109"
    )
-   @Export("__ht_140")
-   final boolean __ht_140() {
+   @Export("shouldLeftClickOpenMenu")
+   final boolean shouldLeftClickOpenMenu() {
       int var1 = menuOptionsCount - 1;
       return (__client_ku == 1 && menuOptionsCount > 2 || UserComparator7.method3364(var1)) && !menuShiftClick[var1];
    }
@@ -6568,7 +6569,7 @@ public final class Client extends GameShell implements Usernamed {
                      packetWriter.__q_167(var12);
                   }
                }
-            } else if(this.__ht_140()) {
+            } else if(this.shouldLeftClickOpenMenu()) {
                this.openMenu(__client_nk + widgetClickX, __client_np + widgetClickY);
             } else if(menuOptionsCount > 0) {
                int var13 = widgetClickX + __client_nk;

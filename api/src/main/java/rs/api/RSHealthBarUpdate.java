@@ -7,6 +7,6 @@ public interface RSHealthBarUpdate
 	@Import("health")
 	int getHealthRatio();
 
-	//@Import("health")
-	//int getHealth();
+	@Import("health2") // not sure about that one but it isn't used and I am sure about the other one
+	int getHealth();
 }

@@ -77,7 +77,7 @@ public class PlayerAppearance {
       this.bodyColors = var2;
       this.isFemale = var3;
       this.npcTransformId = var4;
-      this.__u_390();
+      this.setHash();
    }
 
    @ObfuscatedName("f")
@@ -110,7 +110,7 @@ public class PlayerAppearance {
             } while(var4 == null || var4.__k || var1 + (this.isFemale?7:0) != var4.__o);
 
             this.equipment[__hi_d[var1]] = var3 + 256;
-            this.__u_390();
+            this.setHash();
          }
       }
    }
@@ -140,7 +140,7 @@ public class PlayerAppearance {
       }
 
       this.bodyColors[var1] = var3;
-      this.__u_390();
+      this.setHash();
    }
 
    @ObfuscatedName("w")
@@ -185,8 +185,8 @@ public class PlayerAppearance {
       signature = "(B)V",
       garbageValue = "68"
    )
-   @Export("__u_390")
-   void __u_390() {
+   @Export("setHash")
+   void setHash() {
       long var1 = this.__o;
       int var3 = this.equipment[5];
       int var4 = this.equipment[9];

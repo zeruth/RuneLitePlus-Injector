@@ -35,12 +35,56 @@ public interface Player extends Actor
 	@Override
 	int getCombatLevel();
 
-	Polygon[] getPolygons();
-	
 	int getPlayerId();
 
+	/**
+	 * Gets the composition of this player.
+	 *
+	 * @return the composition
+	 */
+	PlayerAppearance getPlayerDefinition();
+
+	/**
+	 * Gets the polygons that make up the players model.
+	 *
+	 * @return the model polygons
+	 */
+	Polygon[] getPolygons();
+
+	/**
+	 * Gets the current team cape team number the player is on.
+	 *
+	 * @return team number, or 0 if not on any team
+	 */
+	int getTeam();
+
+	/**
+	 * Checks whether this player is a member of the same clan as
+	 * the local player.
+	 *
+	 * @return true if the player is a clan member, false otherwise
+	 */
+	boolean isClanMember();
+
+	/**
+	 * Checks whether this player is a friend of the local player.
+	 *
+	 * @return true if the player is a friend, false otherwise
+	 */
+	boolean isFriend();
+
+	/**
+	 * Gets the displayed overhead icon of the player.
+	 *
+	 * @return the overhead icon
+	 */
+	HeadIcon getOverheadIcon();
+
+	/**
+	 * Gets the displayed skull icon of the player.
+	 *
+	 * @return the skull icon
+	 */
 	@Nullable
 	SkullIcon getSkullIcon();
-
-	HeadIcon getOverheadIcon();
 }

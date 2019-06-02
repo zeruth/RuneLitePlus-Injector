@@ -1,6 +1,7 @@
 package net.runelite.mixins;
 
 import api.Actor;
+import api.Hitsplat;
 import api.NPC;
 import api.NPCDefinition;
 import api.Perspective;
@@ -11,6 +12,8 @@ import api.coords.LocalPoint;
 import api.coords.WorldArea;
 import api.coords.WorldPoint;
 import api.events.AnimationChanged;
+import api.events.HitsplatApplied;
+import api.events.LocalPlayerDeath;
 import api.events.SpotAnimationChanged;
 import api.events.InteractingChanged;
 import api.events.OverheadTextChanged;
@@ -19,6 +22,7 @@ import java.awt.Polygon;
 import java.awt.image.BufferedImage;
 import net.runelite.api.mixins.FieldHook;
 import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.MethodHook;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
 import rs.api.RSActor;
@@ -27,6 +31,7 @@ import rs.api.RSHealthBar;
 import rs.api.RSHealthBarDefinition;
 import rs.api.RSHealthBarUpdate;
 import rs.api.RSIterableNodeDeque;
+import rs.api.RSNPC;
 import rs.api.RSNode;
 
 @Mixin(RSActor.class)
@@ -210,5 +215,47 @@ public abstract class RSActorMixin implements RSActor
 		}
 
 		return new WorldArea(this.getWorldLocation(), size, size);
+	}
+	@Inject
+	@MethodHook("setCombatInfo")
+	public void setCombatInfo(int combatInfoId, int gameCycle, int var3, int var4, int healthRatio, int health)
+	{
+		if (healthRatio == 0)
+		{
+			if (this == client.getLocalPlayer())
+			{
+				client.getLogger().debug("You died!");
+
+				LocalPlayerDeath event = new LocalPlayerDeath();
+				client.getCallbacks().post(event);
+			}
+			else if (this instanceof RSNPC)
+			{
+				((RSNPC) this).setDead(true);
+			}
+		}
+	}
+
+	/**
+	 * Called after a hitsplat has been processed on an actor.
+	 * Note that this event runs even if the hitsplat didn't show up,
+	 * i.e. the actor already had 4 visible hitsplats.
+	 *
+	 * @param type The hitsplat type (i.e. color)
+	 * @param value The value of the hitsplat (i.e. how high the hit was)
+	 * @param var3 unknown
+	 * @param var4 unknown
+	 * @param gameCycle The gamecycle the hitsplat was applied on
+	 * @param duration The amount of gamecycles the hitsplat will last for
+	 */
+	@Inject
+	@MethodHook(value = "applyActorHitsplat", end = true)
+	public void applyActorHitsplat(int type, int value, int var3, int var4, int gameCycle, int duration)
+	{
+		final Hitsplat hitsplat = new Hitsplat(Hitsplat.HitsplatType.fromInteger(type), value, gameCycle + duration);
+		final HitsplatApplied event = new HitsplatApplied();
+		event.setActor(this);
+		event.setHitsplat(hitsplat);
+		client.getCallbacks().post(event);
 	}
 }

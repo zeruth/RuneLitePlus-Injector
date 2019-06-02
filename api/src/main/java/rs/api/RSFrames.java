@@ -28,6 +28,6 @@ import net.runelite.mapping.Import;
 
 public interface RSFrames extends RSDualNode
 {
-	@Import("skeletons")
-	RSFrame[] getFrames();
+	@Import("frames")
+	RSAnimation[] getFrames();
 }

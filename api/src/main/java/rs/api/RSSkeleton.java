@@ -26,14 +26,14 @@ package rs.api;
 
 import net.runelite.mapping.Import;
 
-public interface RSFrameMap extends RSNode
+public interface RSSkeleton extends RSNode
 {
 	@Import("count")
 	int getCount();
 
-	@Import("types")
+	@Import("transformTypes")
 	int[] getTypes();
 
-	@Import("list")
+	@Import("labels")
 	int[][] getList();
 }

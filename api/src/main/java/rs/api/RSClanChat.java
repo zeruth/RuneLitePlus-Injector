@@ -1,5 +1,12 @@
 package rs.api;
 
-public interface RSClanChat extends RSUserContainer<RSClanMate>
+import net.runelite.mapping.Import;
+
+public interface RSClanChat extends RSUserList<RSClanMate>
 {
+	@Import("clanOwner")
+	String getClanOwner();
+
+	@Import("clanChatName")
+	String getClanChatName();
 }

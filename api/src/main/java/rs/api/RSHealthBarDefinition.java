@@ -1,8 +1,9 @@
 package rs.api;
 
+import api.HealthBar;
 import net.runelite.mapping.Import;
 
-public interface RSHealthBarDefinition extends RSDualNode
+public interface RSHealthBarDefinition extends RSDualNode, HealthBar
 {
 	@Import("healthScale")
 	int getHealthScale();
@@ -14,5 +15,6 @@ public interface RSHealthBarDefinition extends RSDualNode
 	RSSprite getHealthBarBackSprite();
 
 	@Import("widthPadding")
-	int setWidthPadding(int padding);
+	@Override
+	void setPadding(int padding);
 }

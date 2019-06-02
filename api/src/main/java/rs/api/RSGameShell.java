@@ -32,7 +32,6 @@ import net.runelite.mapping.Import;
 public interface RSGameShell extends GameShell
 {
 	@Import("canvas")
-	@Override
 	Canvas getCanvas();
 
 	@Import("post")

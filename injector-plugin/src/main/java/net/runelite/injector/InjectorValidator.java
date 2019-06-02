@@ -43,7 +43,7 @@ public class InjectorValidator
 {
 	private static final Logger logger = LoggerFactory.getLogger(InjectorValidator.class);
 
-	private static final String API_PACKAGE_BASE = "net/runelite/rs/api/";
+	private static final String API_PACKAGE_BASE = "rs/api/";
 
 	private final ClassGroup group;
 

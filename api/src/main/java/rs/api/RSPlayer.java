@@ -35,12 +35,28 @@ public interface RSPlayer extends RSActor, Player
 	@Import("index")
 	int getPlayerId();
 
+	@Import("definition")
+	@Override
+	RSPlayerAppearance getPlayerDefinition();
+
 	@Import("combatLevel")
 	@Override
 	int getCombatLevel();
 
 	@Import("skillLevel")
 	int getTotalLevel();
+
+	@Import("team")
+	@Override
+	int getTeam();
+
+	@Import("isInClanChat")
+	@Override
+	boolean isClanMember();
+
+	@Import("isFriend")
+	@Override
+	boolean isFriend();
 
 	@Import("headIconPrayer")
 	int getRsOverheadIcon();

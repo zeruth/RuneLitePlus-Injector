@@ -28,6 +28,6 @@ import net.runelite.mapping.Import;
 
 public interface RSDualNode extends RSNode
 {
-	@Import("unlinkDual")
+	@Import("removeDual")
 	void unlinkDual();
 }
