@@ -24,6 +24,8 @@
  */
 package api;
 
+import rs.api.RSNPCDefinition;
+
 import javax.annotation.Nullable;
 
 /**
@@ -75,4 +77,6 @@ public interface NPC extends Actor
 	 * @return
 	 */
 	boolean isDead();
+
+	void onDefinitionChanged(RSNPCDefinition composition);
 }

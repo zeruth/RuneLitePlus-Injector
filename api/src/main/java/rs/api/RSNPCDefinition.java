@@ -8,4 +8,8 @@ public interface RSNPCDefinition extends NPCDefinition
 	@Import("transform")
 	@Override
 	RSNPCDefinition transform();
+
+	@Import("configs")
+	@Override
+	int[] getConfigs();
 }

@@ -87,6 +87,10 @@ public abstract class RSNPCMixin implements RSNPC
 			client.getCallbacks().post(new NpcDespawned(this));
 		}
 	}
+	@Inject
+	public void onDefinitionChanged(int i)
+	{
+	}
 
 	/*@Copy("getModel")
 	public abstract RSModel rs$getModel();

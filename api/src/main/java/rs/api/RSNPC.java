@@ -15,4 +15,7 @@ public interface RSNPC extends RSActor, NPC
 	void setIndex(int id);
 
 	void setDead(boolean dead);
+
+	@Override
+	void onDefinitionChanged(RSNPCDefinition composition);
 }
