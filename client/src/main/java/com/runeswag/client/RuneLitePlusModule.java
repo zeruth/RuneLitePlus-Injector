@@ -51,11 +51,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Slf4j
-public class RuneSwagModule extends AbstractModule
+public class RuneLitePlusModule extends AbstractModule
 {
 	private final boolean developerMode;
 
-	public RuneSwagModule(final boolean developerMode)
+	public RuneLitePlusModule(final boolean developerMode)
 	{
 		this.developerMode = developerMode;
 	}
@@ -71,7 +71,7 @@ public class RuneSwagModule extends AbstractModule
 		//bind(ItemManager.class);
 		bind(Scheduler.class);
 		bind(PluginManager.class);
-		bind(RuneSwagProperties.class);
+		bind(RuneLitePlusProperties.class);
 		//bind(SessionManager.class);
 
 		bind(Callbacks.class).to(Hooks.class);
@@ -85,7 +85,7 @@ public class RuneSwagModule extends AbstractModule
 
 		bind(Logger.class)
 			.annotatedWith(Names.named("Core Logger"))
-			.toInstance(LoggerFactory.getLogger(RuneSwag.class));
+			.toInstance(LoggerFactory.getLogger(RuneLitePlus.class));
 	}
 
 	@Provides

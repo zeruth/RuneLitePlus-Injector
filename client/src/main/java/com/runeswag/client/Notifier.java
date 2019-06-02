@@ -81,7 +81,7 @@ public class Notifier
 		final ClientUI clientUI,
 		final Client client,
 		final RuneSwagConfig runeliteConfig,
-		final RuneSwagProperties runeLiteProperties,
+		final RuneLitePlusProperties runeLiteProperties,
 		final ScheduledExecutorService executorService)
 		//final ChatMessageManager chatMessageManager)
 	{
@@ -91,11 +91,11 @@ public class Notifier
 		this.runeswagConfig = runeliteConfig;
 		this.executorService = executorService;
 		//this.chatMessageManager = chatMessageManager;
-		this.notifyIconPath = RuneSwag.RUNESWAG_DIR.toPath().resolve("icon.png");
+		this.notifyIconPath = RuneLitePlus.RUNESWAG_DIR.toPath().resolve("icon.png");
 
 		// First check if we are running in launcher
 		this.terminalNotifierAvailable =
-			!Strings.isNullOrEmpty(RuneSwagProperties.getLauncherVersion())
+			!Strings.isNullOrEmpty(RuneLitePlusProperties.getLauncherVersion())
 				&& isTerminalNotifierAvailable();
 
 		storeIcon();
@@ -296,7 +296,7 @@ public class Notifier
 	{
 		if (OSType.getOSType() == OSType.Linux && !Files.exists(notifyIconPath))
 		{
-			try (InputStream stream = Notifier.class.getResourceAsStream("/runelite.png"))
+			try (InputStream stream = Notifier.class.getResourceAsStream("/runeliteplus.png"))
 			{
 				Files.copy(stream, notifyIconPath);
 			}

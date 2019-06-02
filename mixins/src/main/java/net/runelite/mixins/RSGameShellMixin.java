@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018 Abex
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -24,100 +24,78 @@
  */
 package net.runelite.mixins;
 
-import javax.inject.Named;
+import java.awt.event.FocusEvent;
 
-import api.BufferProvider;
-import api.GameState;
-import api.MainBufferProvider;
-import api.Player;
-import api.events.ClientTick;
-import api.events.MenuOpened;
-import api.events.VarbitChanged;
-import callbacks.Callbacks;
+import api.events.FocusChanged;
+import callbacks.DrawCallbacks;
 import net.runelite.api.mixins.FieldHook;
-import net.runelite.api.mixins.MethodHook;
-import net.runelite.mapping.Export;
-import net.runelite.mapping.Import;
-import rs.api.RSClient;
 import net.runelite.api.mixins.Inject;
+import net.runelite.api.mixins.MethodHook;
 import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Shadow;
-import org.slf4j.Logger;
+import rs.api.RSClient;
+import rs.api.RSGameShell;
 
-import java.awt.*;
-
-@Mixin(RSClient.class)
-public abstract class RSClientMixin implements RSClient
+@Mixin(RSGameShell.class)
+public abstract class RSGameShellMixin implements RSGameShell
 {
 	@Shadow("client")
 	private static RSClient client;
 
 	@Inject
-	@javax.inject.Inject
-	private Callbacks callbacks;
-
-	@Inject
-	@javax.inject.Inject
-	@Named("Core Logger")
-	private Logger logger;
+	private Thread thread;
 
 	@Inject
 	@Override
-	public boolean isInterpolatePlayerAnimations() {
-		return false;
-	}
-
-	@Inject
-	@Override
-	public Callbacks getCallbacks()
+	public Thread getClientThread()
 	{
-		return callbacks;
-	}
-
-
-	@Inject
-	@Override
-	public void setDrawingMode(int mode) {
-		System.out.println("Hello");
+		return thread;
 	}
 
 	@Inject
 	@Override
-	public GameState getGameState() {
-		return GameState.LOGIN_SCREEN;
-	}
-
-	@Import("localPlayer")
-	@Inject
-	rs.api.RSPlayer localPlayer;
-
-	@Import("gameDrawingMode")
-	@Inject
-	static int gameDrawingMode;
-
-	@Inject
-	@Override
-	public void setGameDrawingMode(int mode) {
-		gameDrawingMode = mode;
-	}
-
-	@Inject
-	@Override
-	public Player getLocalPlayer() {
-		return localPlayer;
-	}
-
-	@Inject
-	@MethodHook("openMenu")
-	public void openMenu(int var0, int var1)
+	public boolean isClientThread()
 	{
-		client.getCallbacks().post(new MenuOpened());
+		return thread == Thread.currentThread();
 	}
 
 	@Inject
-	@FieldHook("cycle")
-	public static void onCycleCntrChanged(int idx)
+	@MethodHook("run")
+	public void onRun()
 	{
-		client.getCallbacks().post(new ClientTick());
+		thread = Thread.currentThread();
+		thread.setName("Client");
+	}
+
+	@Inject
+	@MethodHook("focusGained")
+	public void onFocusGained(FocusEvent focusEvent)
+	{
+		final FocusChanged focusChanged = new FocusChanged();
+		focusChanged.setFocused(true);
+		client.getCallbacks().post(focusChanged);
+	}
+
+	@Inject
+	@MethodHook("post")
+	public void onPost(Object canvas)
+	{
+		DrawCallbacks drawCallbacks = client.getDrawCallbacks();
+		if (drawCallbacks != null)
+		{
+			drawCallbacks.draw();
+		}
+	}
+
+	@FieldHook("replaceCanvasNextFrame")
+	@Inject
+	public void onReplaceCanvasNextFrameChanged(int idx)
+	{
+		// when this is initially called the client instance doesn't exist yet
+		if (client != null /*&& client.isGpu() */&& isReplaceCanvasNextFrame())
+		{
+			setReplaceCanvasNextFrame(false);
+			setResizeCanvasNextFrame(true);
+		}
 	}
 }

@@ -34,25 +34,25 @@ import lombok.extern.slf4j.Slf4j;
 
 @Singleton
 @Slf4j
-public class RuneSwagProperties
+public class RuneLitePlusProperties
 {
 	public static String discordAppID = "409416265891971072";
-	private static final String RUNESWAG_TITLE = "runeswag.title";
-	private static final String RUNESWAG_VERSION = "runeswag.version";
-	private static final String RUNESCAPE_VERSION = "runeswag.version";
-	private static final String DISCORD_APP_ID = "runeswag.discord.appid";
-	private static final String DISCORD_INVITE = "runeswag.discord.invite";
-	private static final String GITHUB_LINK = "runeswag.github.link";
-	private static final String WIKI_LINK = "runeswag.wiki.link";
-	private static final String PATREON_LINK = "runeswag.patreon.link";
-	private static final String LAUNCHER_VERSION_PROPERTY = "runeswag.launcher.version";
+	private static final String RUNESWAG_TITLE = "runeliteplus.title";
+	private static final String RUNESWAG_VERSION = "runeliteplus.version";
+	private static final String RUNESCAPE_VERSION = "runeliteplus.version";
+	private static final String DISCORD_APP_ID = "runeliteplus.discord.appid";
+	private static final String DISCORD_INVITE = "runeliteplus.discord.invite";
+	private static final String GITHUB_LINK = "runeliteplus.github.link";
+	private static final String WIKI_LINK = "runeliteplus.wiki.link";
+	private static final String PATREON_LINK = "runeliteplus.patreon.link";
+	private static final String LAUNCHER_VERSION_PROPERTY = "runeliteplus.launcher.version";
 
 	private final Properties properties = new Properties();
 
 	@Inject
-	public RuneSwagProperties()
+	public RuneLitePlusProperties()
 	{
-		try (InputStream in = getClass().getResourceAsStream("rsproperties"))
+		try (InputStream in = getClass().getResourceAsStream("rlp.properties"))
 		{
 			properties.load(in);
 		}

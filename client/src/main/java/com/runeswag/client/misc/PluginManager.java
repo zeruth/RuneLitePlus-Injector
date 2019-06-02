@@ -39,7 +39,7 @@ import com.google.inject.CreationException;
 import com.google.inject.Injector;
 import com.google.inject.Key;
 import com.google.inject.Module;
-import com.runeswag.client.RuneSwag;
+import com.runeswag.client.RuneLitePlus;
 import com.runeswag.client.callback.EventBus;
 import com.runeswag.client.config.Config;
 import com.runeswag.client.config.ConfigGroup;
@@ -169,7 +169,7 @@ public class PluginManager
 	public List<Config> getPluginConfigProxies()
 	{
 		List<Injector> injectors = new ArrayList<>();
-		injectors.add(RuneSwag.getInjector());
+		injectors.add(RuneLitePlus.getInjector());
 		getPlugins().forEach(pl -> injectors.add(pl.getInjector()));
 
 		List<Config> list = new ArrayList<>();
@@ -449,7 +449,7 @@ public class PluginManager
 					binder.install(p2);
 				}
 			};
-			Injector pluginInjector = RuneSwag.getInjector().createChildInjector(pluginModule);
+			Injector pluginInjector = RuneLitePlus.getInjector().createChildInjector(pluginModule);
 			pluginInjector.injectMembers(plugin);
 			plugin.injector = pluginInjector;
 		}

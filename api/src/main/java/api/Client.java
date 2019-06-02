@@ -36,7 +36,7 @@ import java.util.Map;
 /**
  * Represents the RuneScape client.
  */
-public interface Client extends GameEngine
+public interface Client extends GameShell
 {
 	/**
 	 * The client invokes these callbacks to communicate to
@@ -152,4 +152,7 @@ public interface Client extends GameEngine
 	int getBuildID();
 
 	boolean isInterpolatePlayerAnimations();
+
+	@Override
+	Canvas getCanvas();
 }

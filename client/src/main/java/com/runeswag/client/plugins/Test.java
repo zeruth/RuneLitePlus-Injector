@@ -94,18 +94,18 @@ public class Test extends Plugin
     @Subscribe
     public void onMenuOpened(MenuOpened event)
     {
-        System.out.println("Menu Opened Event");
+        System.out.println("[Test Plugin] Menu Opened");
     }
 
     @Subscribe
     public void onChatMessage(ChatMessage chatMessage)
     {
-        System.out.println("Chat Message");
+        System.out.println("[Test Plugin] Chat Message");
     }
 
     @Subscribe
     public void onVarbitChanged(VarbitChanged event)
     {
-        System.out.println("VarbitChanged");
+        System.out.println("[Test Plugin] Varbit Changed");
     }
 }
