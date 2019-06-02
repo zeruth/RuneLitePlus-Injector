@@ -10,6 +10,10 @@ import api.Sprite;
 import api.coords.LocalPoint;
 import api.coords.WorldArea;
 import api.coords.WorldPoint;
+import api.events.AnimationChanged;
+import api.events.SpotAnimationChanged;
+import api.events.InteractingChanged;
+import api.events.OverheadTextChanged;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.image.BufferedImage;
@@ -53,6 +57,7 @@ public abstract class RSActorMixin implements RSActor
 	}
 
 	@Inject
+	@Override
 	public int getHealthRatio()
 	{
 		RSIterableNodeDeque healthBars = getHealthBars();
@@ -78,6 +83,7 @@ public abstract class RSActorMixin implements RSActor
 	}
 
 	@Inject
+	@Override
 	public int getHealth()
 	{
 		RSIterableNodeDeque healthBars = getHealthBars();
@@ -95,8 +101,8 @@ public abstract class RSActorMixin implements RSActor
 		return -1;
 	}
 
-	@Override
 	@Inject
+	@Override
 	public WorldPoint getWorldLocation()
 	{
 		return WorldPoint.fromLocal(client,
@@ -134,12 +140,14 @@ public abstract class RSActorMixin implements RSActor
 	}
 
 	@Inject
+	@Override
 	public Point getCanvasSpriteLocation(Sprite sprite, int zOffset)
 	{
 		return Perspective.getCanvasSpriteLocation(client, getLocalLocation(), sprite, zOffset);
 	}
 
 	@Inject
+	@Override
 	public Point getMinimapLocation()
 	{
 		return Perspective.localToMinimap(client, getLocalLocation());
@@ -149,47 +157,42 @@ public abstract class RSActorMixin implements RSActor
 	@Inject
 	public void animationChanged(int idx)
 	{
-		//AnimationChanged animationChange = new AnimationChanged();
-		//animationChange.setActor(this);
-		//client.getCallbacks().post(animationChange);
+		AnimationChanged animationChange = new AnimationChanged();
+		animationChange.setActor(this);
+		client.getCallbacks().post(animationChange);
 	}
 
 	@FieldHook("spotAnimation")
 	@Inject
-	public void graphicChanged(int idx)
+	public void spotAnimationChanged(int idx)
 	{
-		//GraphicChanged graphicChanged = new GraphicChanged();
-		//graphicChanged.setActor(this);
-		//client.getCallbacks().post(graphicChanged);
+		SpotAnimationChanged spotAnimationChanged = new SpotAnimationChanged();
+		spotAnimationChanged.setActor(this);
+		client.getCallbacks().post(spotAnimationChanged);
 	}
 
 	@FieldHook("targetIndex")
 	@Inject
 	public void interactingChanged(int idx)
 	{
-		client.getLogger().info("Interacting changed!");
-		//InteractingChanged interactingChanged = new InteractingChanged(this, getInteracting());
-		//client.getCallbacks().post(interactingChanged);
+		InteractingChanged interactingChanged = new InteractingChanged(this, getInteracting());
+		client.getCallbacks().post(interactingChanged);
 	}
 
 	@FieldHook("overheadText")
 	@Inject
 	public void overheadTextChanged(int idx)
 	{
-		String text = getOverheadText();
-		if (text != null)
+		String overheadText = getOverheadText();
+		if (overheadText != null)
 		{
-			client.getLogger().info(text);
+			OverheadTextChanged overheadTextChanged = new OverheadTextChanged(this, overheadText);
+			client.getCallbacks().post(overheadTextChanged);
 		}
-		//String overheadText = getOverheadText();
-		//if (overheadText != null)
-		//{
-			//OverheadTextChanged overheadTextChanged = new OverheadTextChanged(this, overheadText);
-			//client.getCallbacks().post(overheadTextChanged);
-		//}
 	}
 
 	@Inject
+	@Override
 	public WorldArea getWorldArea()
 	{
 		int size = 1;

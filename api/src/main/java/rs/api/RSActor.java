@@ -67,6 +67,7 @@ public interface RSActor extends RSRenderable, Actor
 	void setAnimation(int animation);
 
 	@Import("sequenceFrame")
+	@Override
 	int getActionFrame();
 
 	@Import("sequenceFrame")
@@ -74,18 +75,25 @@ public interface RSActor extends RSRenderable, Actor
 	void setActionFrame(int frame);
 
 	@Import("sequenceFrameCycle")
+	@Override
 	int getActionFrameCycle();
 
 	// Spot animation (aka graphic)
 
 	@Import("spotAnimation")
+	@Override
 	int getSpotAnimation();
 
 	@Import("spotAnimation")
+	@Override
 	void setSpotAnimation(int id);
 
 	@Import("spotAnimationFrame")
 	int getSpotAnimationFrame();
+
+	@Import("spotAnimation")
+	@Override
+	void setSpotAnimationFrame(int id);
 
 	@Import("spotAnimationFrameCycle")
 	int getSpotAnimationFrameCycle();
@@ -93,9 +101,14 @@ public interface RSActor extends RSRenderable, Actor
 	// Idle animation
 
 	@Import("idleSequence")
+	@Override
 	void setIdlePoseAnimation(int animation);
 
 	// Movement animation (aka poseAnimation)
+
+	@Import("movementSequence")
+	@Override
+	void setPoseAnimation(int animation);
 
 	@Import("movementFrame")
 	int getPoseFrame();
