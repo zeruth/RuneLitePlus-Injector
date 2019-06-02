@@ -22,81 +22,23 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.mixins;
+package api.events;
 
-import javax.inject.Named;
+import lombok.Data;
 
-import api.GameState;
-import api.Player;
-import api.events.ClientTick;
-import api.events.MenuOpened;
-import callbacks.Callbacks;
-import net.runelite.api.mixins.FieldHook;
-import net.runelite.api.mixins.MethodHook;
-import net.runelite.mapping.Import;
-import rs.api.RSClient;
-import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.Mixin;
-import net.runelite.api.mixins.Shadow;
-import org.slf4j.Logger;
-
-import java.awt.*;
-
-@Mixin(RSClient.class)
-public abstract class RSClientMixin implements RSClient
+/**
+ * An event where a player menu option that was added by RuneLite has
+ * been clicked (ie. HiScore Lookup).
+ */
+@Data
+public class PlayerMenuOptionClicked
 {
-	@Shadow("client")
-	private static RSClient client;
-
-	@Inject
-	@javax.inject.Inject
-	private Callbacks callbacks;
-
-	@Inject
-	@javax.inject.Inject
-	@Named("Core Logger")
-	private Logger logger;
-
-	@Inject
-	@Override
-	public Logger getLogger()
-	{
-		return logger;
-	}
-
-	@Inject
-	@Override
-	public boolean isInterpolatePlayerAnimations() {
-		return false;
-	}
-
-	@Inject
-	@Override
-	public Callbacks getCallbacks()
-	{
-		return callbacks;
-	}
-
-	@Inject
-	@MethodHook("openMenu")
-	public void openMenu(int var0, int var1)
-	{
-		client.getCallbacks().post(new MenuOpened());
-	}
-
-	@Inject
-	@FieldHook("cycle")
-	public static void onCycleCntrChanged(int idx)
-	{
-		client.getCallbacks().post(new ClientTick());
-	}
-
-	@Inject
-	@Override
-	public Canvas getCanvas() {
-		System.out.println("Impl Canvas");
-		return null;
-	}
-
-
+	/**
+	 * The menu option clicked.
+	 */
+	private String menuOption;
+	/**
+	 * The target player.
+	 */
+	private String menuTarget;
 }

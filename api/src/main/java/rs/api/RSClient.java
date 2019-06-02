@@ -507,7 +507,7 @@ public interface RSClient extends RSGameShell, Client
 	@Import("rootWidgetGroup")
 	int getWidgetRoot();
 // ----------------------------------------------------------------------------
-	@Import("mapElementConfigs")
+/*	@Import("mapElementConfigs")
 	@Override
 	RSMapElementConfig[] getMapElementConfigs();
 
@@ -648,7 +648,7 @@ public interface RSClient extends RSGameShell, Client
 	 * terrain.
 	 *
 	 * (1) JAU - Jagex Angle Unit; 1/1024 of a revolution
-	 */
+	 *
 	@Import("cameraPitchTarget")
 	int getCameraPitchTarget();
 
@@ -983,5 +983,5 @@ public interface RSClient extends RSGameShell, Client
 	//RSMouseRecorder getMouseRecorder();
 
 	@Import("printMenuActions")
-	void setPrintMenuActions(boolean b);
+	void setPrintMenuActions(boolean b); */
 }
