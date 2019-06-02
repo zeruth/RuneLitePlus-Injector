@@ -535,7 +535,7 @@ public interface RSClient extends RSGameShell, Client
 
 	@Construct
 	@Override
-	RSSprite createSpritePixels(int[] pixels, int width, int height);
+	RSSprite createSprite(int[] pixels, int width, int height);
 
 	@Import("destinationX")
 	int getDestinationX();
