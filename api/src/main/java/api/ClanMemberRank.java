@@ -22,81 +22,85 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.mixins;
+package api;
 
-import javax.inject.Named;
+import java.util.HashMap;
+import java.util.Map;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-import api.GameState;
-import api.Player;
-import api.events.ClientTick;
-import api.events.MenuOpened;
-import callbacks.Callbacks;
-import net.runelite.api.mixins.FieldHook;
-import net.runelite.api.mixins.MethodHook;
-import net.runelite.mapping.Import;
-import rs.api.RSClient;
-import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.Mixin;
-import net.runelite.api.mixins.Shadow;
-import org.slf4j.Logger;
-
-import java.awt.*;
-
-@Mixin(RSClient.class)
-public abstract class RSClientMixin implements RSClient
+/**
+ * An enumeration of ranks of clan members.
+ */
+@AllArgsConstructor
+@Getter
+public enum ClanMemberRank
 {
-	@Shadow("client")
-	private static RSClient client;
+	/**
+	 * Not in a clan.
+	 */
+	UNRANKED(-1),
+	/**
+	 * Friend rank.
+	 */
+	FRIEND(0),
+	/**
+	 * Recruit rank.
+	 */
+	RECRUIT(1),
+	/**
+	 * Corporal rank.
+	 */
+	CORPORAL(2),
+	/**
+	 * Sergeant rank.
+	 */
+	SERGEANT(3),
+	/**
+	 * Lieutenant rank.
+	 */
+	LIEUTENANT(4),
+	/**
+	 * Captain rank.
+	 */
+	CAPTAIN(5),
+	/**
+	 * General rank.
+	 */
+	GENERAL(6),
+	/**
+	 * Channel owner rank.
+	 */
+	OWNER(7),
+	/**
+	 * JMod rank.
+	 */
+	JMOD(127);
 
-	@Inject
-	@javax.inject.Inject
-	private Callbacks callbacks;
+	private static final Map<Integer, ClanMemberRank> RANKS = new HashMap<>();
 
-	@Inject
-	@javax.inject.Inject
-	@Named("Core Logger")
-	private Logger logger;
-
-	@Inject
-	@Override
-	public Logger getLogger()
+	static
 	{
-		return logger;
+		for (final ClanMemberRank clanMemberRank : ClanMemberRank.values())
+		{
+			RANKS.put(clanMemberRank.value, clanMemberRank);
+		}
 	}
 
-	@Inject
-	@Override
-	public boolean isInterpolatePlayerAnimations() {
-		return false;
-	}
-
-	@Inject
-	@Override
-	public Callbacks getCallbacks()
+	/**
+	 * Utility method that maps the rank value to its respective
+	 * {@link ClanMemberRank} value.
+	 *
+	 * @param rank the rank value
+	 * @return rank type
+	 */
+	public static ClanMemberRank valueOf(int rank)
 	{
-		return callbacks;
+		return RANKS.get(rank);
 	}
 
-	@Inject
-	@MethodHook("openMenu")
-	public void openMenu(int var0, int var1)
-	{
-		client.getCallbacks().post(new MenuOpened());
-	}
-
-	@Inject
-	@FieldHook("cycle")
-	public static void onCycleCntrChanged(int idx)
-	{
-		client.getCallbacks().post(new ClientTick());
-	}
-
-	@Inject
-	@Override
-	public Canvas getCanvas() {
-		System.out.println("Impl Canvas");
-		return null;
-	}
-
-
+	/**
+	 * The value of the clan rank.
+	 */
+	private final int value;
 }
