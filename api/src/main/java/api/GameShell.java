@@ -24,6 +24,8 @@
  */
 package api;
 
+import callbacks.DrawCallbacks;
+
 import java.awt.Canvas;
 
 /**
@@ -51,6 +53,8 @@ public interface GameShell
 	 * @return true if on the main thread, false otherwise
 	 */
 	boolean isClientThread();
+
+	DrawCallbacks getDrawCallbacks();
 
 	void resizeCanvas();
 }

@@ -31,6 +31,7 @@ import api.Player;
 import api.events.ClientTick;
 import api.events.MenuOpened;
 import callbacks.Callbacks;
+import callbacks.DrawCallbacks;
 import net.runelite.api.mixins.FieldHook;
 import net.runelite.api.mixins.MethodHook;
 import net.runelite.mapping.Import;
@@ -58,6 +59,9 @@ public abstract class RSClientMixin implements RSClient
 	private Logger logger;
 
 	@Inject
+	private DrawCallbacks drawCallbacks;
+
+	@Inject
 	@Override
 	public Logger getLogger()
 	{
@@ -75,6 +79,13 @@ public abstract class RSClientMixin implements RSClient
 	public Callbacks getCallbacks()
 	{
 		return callbacks;
+	}
+
+	@Inject
+	@Override
+	public DrawCallbacks getDrawCallbacks()
+	{
+		return drawCallbacks;
 	}
 
 	@Inject

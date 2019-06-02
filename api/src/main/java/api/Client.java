@@ -32,7 +32,6 @@ import callbacks.Callbacks;
 import callbacks.DrawCallbacks;
 import java.awt.Canvas;
 import java.awt.Dimension;
-import java.awt.Point;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
