@@ -646,5 +646,5 @@ public enum Varbits
 	/**
 	 * The raw varbit ID.
 	 */
-	private final int id;
+	public final int id;
 }
