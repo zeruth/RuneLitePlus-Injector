@@ -691,7 +691,7 @@ public class WorldMap {
    @Export("setCurrentMapArea")
    void setCurrentMapArea(WorldMapArea var1) {
       if(this.currentMapArea0 == null || var1 != this.currentMapArea0) {
-         this.initializeWorldMapManager(var1);
+         this.initializeWorldMap(var1);
          this.jump(-1, -1, -1);
       }
    }
@@ -701,8 +701,8 @@ public class WorldMap {
       signature = "(Lag;I)V",
       garbageValue = "-1072205896"
    )
-   @Export("initializeWorldMapManager")
-   void initializeWorldMapManager(WorldMapArea var1) {
+   @Export("initializeWorldMap")
+   void initializeWorldMap(WorldMapArea var1) {
       this.currentMapArea0 = var1;
       this.worldMapManager = new WorldMapManager(this.mapSceneSprites, this.fonts, this.__l, this.__e);
       this.cacheLoader.reset(this.currentMapArea0.archiveName());
@@ -717,7 +717,7 @@ public class WorldMap {
    public void __h_526(WorldMapArea var1, TileLocation var2, TileLocation var3, boolean var4) {
       if(var1 != null) {
          if(this.currentMapArea0 == null || var1 != this.currentMapArea0) {
-            this.initializeWorldMapManager(var1);
+            this.initializeWorldMap(var1);
          }
 
          if(!var4 && this.currentMapArea0.containsCoord(var2.plane, var2.x, var2.y)) {

@@ -1,11 +1,11 @@
 package rs.api;
 
 import api.RenderOverview;
+import api.WorldMapData;
 import net.runelite.mapping.Import;
 
 public interface RSWorldMap extends RenderOverview
 {
-	// TODO: FIX THIS
 	@Import("worldMapX")
 	int getWorldMapX();
 
@@ -21,11 +21,11 @@ public interface RSWorldMap extends RenderOverview
 	@Import("worldMapTargetY")
 	int getWorldMapTargetY();
 
-	@Import("worldMapDisplayWidth")
-	int getWorldMapDisplayWidth();
-
-	@Import("worldMapDisplayHeight")
-	int getWorldMapDisplayHeight();
+	//@Import("worldMapDisplayWidth")
+	//int getWorldMapDisplayWidth();
+//Both unused
+	//@Import("worldMapDisplayHeight")
+	//int getWorldMapDisplayHeight();
 
 	@Import("worldMapDisplayX")
 	int getWorldMapDisplayX();
@@ -36,7 +36,7 @@ public interface RSWorldMap extends RenderOverview
 	@Import("setWorldMapPosition")
 	void setWorldMapPosition(int worldMapX, int worldMapY, boolean changedSurface);
 
-	@Import("setWorldMapPositionTargetWorldPoint")
+	@Import("setWorldMapPositionTarget")
 	void setWorldMapPositionTarget(int worldPointX, int worldPointY);
 
 	@Import("worldMapManager")
@@ -47,7 +47,7 @@ public interface RSWorldMap extends RenderOverview
 	@Override
 	void initializeWorldMap(WorldMapData var1);
 
-	@Import("worldMapData")
+	@Import("mainMapArea")
 	@Override
-	RSWorldMapData getWorldMapData();
+	RSWorldMapArea getWorldMapData();
 }
