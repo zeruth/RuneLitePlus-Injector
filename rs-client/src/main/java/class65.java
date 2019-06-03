@@ -124,7 +124,7 @@ public class class65 extends class179 {
                      int var9 = 4;
                      boolean var10 = true;
                      if(var0 instanceof Npc) {
-                        var10 = ((Npc)var0).definition.__ak;
+                        var10 = ((Npc)var0).definition.isClickable;
                      }
 
                      if(var10) {

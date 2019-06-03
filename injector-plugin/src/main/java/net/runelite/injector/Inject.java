@@ -24,6 +24,7 @@
  */
 package net.runelite.injector;
 
+import net.runelite.injector.raw.DrawAfterWidgets;
 import java.util.HashMap;
 import java.util.Map;
 import net.runelite.asm.ClassFile;
@@ -45,6 +46,7 @@ import net.runelite.asm.pool.Class;
 import net.runelite.asm.signature.Signature;
 import net.runelite.deob.DeobAnnotations;
 import net.runelite.deob.deobfuscators.arithmetic.DMath;
+import net.runelite.injector.raw.ScriptVM;
 import net.runelite.mapping.Import;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,6 +69,8 @@ public class Inject
 	private final InjectConstruct construct = new InjectConstruct(this);
 
 	private final MixinInjector mixinInjector = new MixinInjector(this);
+	private final DrawAfterWidgets drawAfterWidgets = new DrawAfterWidgets(this);
+	private final ScriptVM scriptVM = new ScriptVM(this);
 
 	// deobfuscated contains exports etc to apply to vanilla
 	private final ClassGroup deobfuscated, vanilla;
@@ -298,12 +302,10 @@ public class Inject
 				Type returnType = classToType(apiMethod.getReturnType());
 				if (!validateTypeIsConvertibleTo(fieldType, returnType))
 				{
-					System.out.println("Type " + fieldType + " is not convertable to " + returnType + " for getter " + apiMethod);
-					//throw new InjectionException("Type " + fieldType + " is not convertable to " + returnType + " for getter " + apiMethod);
+					throw new InjectionException("Type " + fieldType + " is not convertable to " + returnType + " for getter " + apiMethod);
 				}
-				if (validateTypeIsConvertibleTo(fieldType, returnType)) {
+
 					getters.injectGetter(targetClass, apiMethod, otherf, getter);
-				}
 			}
 
 			for (Method m : cf.getMethods())
@@ -316,6 +318,9 @@ public class Inject
 		logger.info("Injected {} getters, {} settters, {} invokers",
 			getters.getInjectedGetters(),
 			setters.getInjectedSetters(), invokes.getInjectedInvokers());
+
+		drawAfterWidgets.inject();
+		scriptVM.inject();
 	}
 
 	private java.lang.Class injectInterface(ClassFile cf, ClassFile other)
@@ -332,6 +337,10 @@ public class Inject
 			return null;
 		}
 
+		if (other == null)
+		{
+			return null;
+		}
 		String ifaceName = API_PACKAGE_BASE + a.getElement().getString();
 		java.lang.Class<?> apiClass;
 
@@ -483,9 +492,7 @@ public class Inject
 		}
 		catch (ClassNotFoundException ex)
 		{
-			System.out.println("Deobfuscated type " + type.getInternalName() + " has no API type: "+API_PACKAGE_BASE + cf.getName().replace("/", "."));
-			//throw new InjectionException("Deobfuscated type " + type.getInternalName() + " has no API type", ex);
-			return Type.BOOLEAN;
+			throw new InjectionException("Deobfuscated type " + type.getInternalName() + " has no API type", ex);
 		}
 
 		java.lang.Class<?> rlApiType = null;

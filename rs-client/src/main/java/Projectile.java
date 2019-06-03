@@ -47,8 +47,8 @@ public final class Projectile extends Entity {
    @ObfuscatedGetter(
       intValue = -675081925
    )
-   @Export("int5")
-   int int5;
+   @Export("endHeight")
+   int endHeight;
    @ObfuscatedName("g")
    @ObfuscatedGetter(
       intValue = 358196599
@@ -65,14 +65,14 @@ public final class Projectile extends Entity {
    @ObfuscatedGetter(
       intValue = -769539171
    )
-   @Export("int3")
-   int int3;
+   @Export("slope")
+   int slope;
    @ObfuscatedName("x")
    @ObfuscatedGetter(
       intValue = -2074328969
    )
-   @Export("int4")
-   int int4;
+   @Export("startHeight")
+   int startHeight;
    @ObfuscatedName("d")
    @ObfuscatedGetter(
       intValue = 551413977
@@ -148,10 +148,10 @@ public final class Projectile extends Entity {
       this.sourceZ = var5;
       this.cycleStart = var6;
       this.cycleEnd = var7;
-      this.int3 = var8;
-      this.int4 = var9;
+      this.slope = var8;
+      this.startHeight = var9;
       this.targetIndex = var10;
-      this.int5 = var11;
+      this.endHeight = var11;
       this.isMoving = false;
       int var12 = class50.getSpotAnimationDefinition(this.id).sequence;
       if(var12 != -1) {
@@ -174,8 +174,8 @@ public final class Projectile extends Entity {
          var5 = (double)(var1 - this.sourceX);
          double var7 = (double)(var2 - this.sourceY);
          double var9 = Math.sqrt(var5 * var5 + var7 * var7);
-         this.x = (double)this.sourceX + var5 * (double)this.int4 / var9;
-         this.y = (double)this.sourceY + (double)this.int4 * var7 / var9;
+         this.x = (double)this.sourceX + var5 * (double)this.startHeight / var9;
+         this.y = (double)this.sourceY + (double)this.startHeight * var7 / var9;
          this.z = (double)this.sourceZ;
       }
 
@@ -184,7 +184,7 @@ public final class Projectile extends Entity {
       this.speedY = ((double)var2 - this.y) / var5;
       this.speed = Math.sqrt(this.speedY * this.speedY + this.speedX * this.speedX);
       if(!this.isMoving) {
-         this.speedZ = -this.speed * Math.tan(0.02454369D * (double)this.int3);
+         this.speedZ = -this.speed * Math.tan(0.02454369D * (double)this.slope);
       }
 
       this.accelerationZ = ((double)var3 - this.z - var5 * this.speedZ) * 2.0D / (var5 * var5);

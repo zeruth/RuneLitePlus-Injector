@@ -75,7 +75,7 @@ public interface RSModel extends RSEntity, Model
 	@Override
 	int[] getFaceColors3();
 
-	@Import("triangleTransparencies")
+	@Import("faceAlphas")
 	@Override
 	byte[] getTriangleTransparencies();
 
@@ -83,31 +83,31 @@ public interface RSModel extends RSEntity, Model
 	@Override
 	byte[] getFaceRenderPriorities();
 
-	@Import("vertexGroups")
+	@Import("vertexLabels")
 	int[][] getVertexGroups();
 
-	@Import("modelHeight")
+	@Import("height")
 	@Override
 	int getModelHeight();
 
-	//@Import("animate")
-	//void animate(int type, int[] list, int x, int y, int z);
+	@Import("transform")
+	void animate(int type, int[] list, int x, int y, int z);
 
 	@Import("calculateBoundsCylinder")
 	@Override
 	void calculateBoundsCylinder();
 
-	@Import("calculateExtreme")
+	@Import("calculateBoundingBox")
 	@Override
 	void calculateExtreme(int orientation);
 
 	@Import("resetBounds")
 	void resetBounds();
 
-	@Import("toSharedModel")
+	@Import("toSharedSequenceModel")
 	RSModel toSharedModel(boolean b);
 
-	@Import("toSharedSpotAnimModel")
+	@Import("toSharedSpotAnimationModel")
 	RSModel toSharedSpotAnimModel(boolean b);
 
 	@Import("rotateY90Ccw")
@@ -119,34 +119,34 @@ public interface RSModel extends RSEntity, Model
 	@Import("rotateY270Ccw")
 	void rotateY270Ccw();
 
-	@Import("isClickable")
-	boolean isClickable();
+	@Import("isSingleTile")
+	boolean isSingleTile();
 
 	@Import("radius")
 	@Override
 	int getRadius();
 
-	@Import("centerX")
+	@Import("xMid")
 	@Override
 	int getCenterX();
 
-	@Import("centerY")
+	@Import("yMid")
 	@Override
 	int getCenterY();
 
-	@Import("centerZ")
+	@Import("zMid")
 	@Override
 	int getCenterZ();
 
-	@Import("extremeX")
+	@Import("xMidOffset")
 	@Override
 	int getExtremeX();
 
-	@Import("extremeY")
+	@Import("yMidOffset")
 	@Override
 	int getExtremeY();
 
-	@Import("extremeZ")
+	@Import("zMidOffset")
 	@Override
 	int getExtremeZ();
 
@@ -154,7 +154,7 @@ public interface RSModel extends RSEntity, Model
 	@Override
 	short[] getFaceTextures();
 
-	@Import("XYZMag")
+	@Import("xzRadius")
 	@Override
 	int getXYZMag();
 

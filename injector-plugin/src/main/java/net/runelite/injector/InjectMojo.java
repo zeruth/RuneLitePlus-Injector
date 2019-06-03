@@ -105,8 +105,7 @@ public class InjectMojo extends AbstractMojo
 
 		if (iv.getMissing() > 0)
 		{
-			System.out.println("Unable to inject all methods");
-			//throw new MojoExecutionException("Unable to inject all methods");
+			throw new MojoExecutionException("Unable to inject all methods");
 		}
 
 		try

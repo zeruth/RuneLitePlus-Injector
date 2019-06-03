@@ -30,7 +30,7 @@ import api.ItemDefinition;
 import api.ItemID;
 import api.Sprite;
 import api.events.GameStateChanged;
-import api.events.PostItemComposition;
+import api.events.PostItemDefinition;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
@@ -253,9 +253,9 @@ public class ItemManager
 	}
 
 	@Subscribe
-	public void onPostItemComposition(PostItemComposition event)
+	public void onPostItemDefinition(PostItemDefinition event)
 	{
-		itemDefinitions.put(event.getItemComposition().getId(), event.getItemComposition());
+		itemDefinitions.put(event.getItemDefinition().getId(), event.getItemDefinition());
 	}
 
 	/**

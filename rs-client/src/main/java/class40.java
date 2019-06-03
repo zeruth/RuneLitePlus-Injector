@@ -655,7 +655,7 @@ public class class40 {
                if(var20.targetIndex > 0) {
                   Npc var22 = Client.npcs[var20.targetIndex - 1];
                   if(var22 != null && var22.x >= 0 && var22.x < 13312 && var22.y >= 0 && var22.y < 13312) {
-                     var20.setDestination(var22.x, var22.y, class32.getTileHeight(var22.x, var22.y, var20.plane) - var20.int5, Client.cycle);
+                     var20.setDestination(var22.x, var22.y, class32.getTileHeight(var22.x, var22.y, var20.plane) - var20.endHeight, Client.cycle);
                   }
                }
 
@@ -669,7 +669,7 @@ public class class40 {
                   }
 
                   if(var23 != null && var23.x >= 0 && var23.x < 13312 && var23.y >= 0 && var23.y < 13312) {
-                     var20.setDestination(var23.x, var23.y, class32.getTileHeight(var23.x, var23.y, var20.plane) - var20.int5, Client.cycle);
+                     var20.setDestination(var23.x, var23.y, class32.getTileHeight(var23.x, var23.y, var20.plane) - var20.endHeight, Client.cycle);
                   }
                }
 

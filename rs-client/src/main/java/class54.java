@@ -687,7 +687,7 @@ public final class class54 {
             TileLocation var15;
             if(var0 == 6606) {
                var15 = new TileLocation(Interpreter.Interpreter_intStack[--class179.Interpreter_intStackSize]);
-               BufferedFile.worldMap().__ak_530(var15.x, var15.y);
+               BufferedFile.worldMap().setWorldMapPositionTarget(var15.x, var15.y);
                return 1;
             } else if(var0 == 6607) {
                var15 = new TileLocation(Interpreter.Interpreter_intStack[--class179.Interpreter_intStackSize]);
