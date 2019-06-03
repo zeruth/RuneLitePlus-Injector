@@ -70,12 +70,6 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	@Override
-	public boolean isInterpolatePlayerAnimations() {
-		return false;
-	}
-
-	@Inject
-	@Override
 	public Callbacks getCallbacks()
 	{
 		return callbacks;
@@ -87,27 +81,9 @@ public abstract class RSClientMixin implements RSClient
 	{
 		return drawCallbacks;
 	}
-
-	@Inject
-	@MethodHook("openMenu")
-	public void openMenu(int var0, int var1)
-	{
-		client.getCallbacks().post(new MenuOpened());
-	}
-
-	@Inject
-	@FieldHook("cycle")
-	public static void onCycleCntrChanged(int idx)
-	{
-		client.getCallbacks().post(new ClientTick());
-	}
-
 	@Inject
 	@Override
-	public GameState getGameState()
-	{
-		return GameState.of(getRSGameState());
+	public GameState getGameState() {
+		return GameState.LOGIN_SCREEN;
 	}
-
-
 }

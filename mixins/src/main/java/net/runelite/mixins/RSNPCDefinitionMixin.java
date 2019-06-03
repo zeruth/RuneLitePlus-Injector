@@ -8,17 +8,4 @@ import rs.api.RSNPCDefinition;
 public abstract class RSNPCDefinitionMixin implements RSNPCDefinition
 {
 
-    @Inject
-    @Override
-    public int[] getConfigs()
-    {
-        return new int[1];
-    }
-
-    @Inject
-    @Override
-    public int getId()
-    {
-        return 1;
-    }
 }

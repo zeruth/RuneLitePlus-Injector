@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Cas <https://github.com/casvandongen>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,46 +23,41 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.mixins;
+package net.runelite.client.plugins.test;
 
-import java.awt.Polygon;
-import java.util.ArrayList;
-import java.util.List;
+import api.Client;
+import net.runelite.client.ui.overlay.Overlay;
+import net.runelite.client.ui.overlay.OverlayLayer;
+import net.runelite.client.ui.overlay.OverlayPosition;
 
-import api.HeadIcon;
-import api.Model;
-import api.Perspective;
-import api.Point;
-import api.SkullIcon;
-import api.coords.LocalPoint;
-import api.model.Triangle;
-import api.model.Vertex;
-import net.runelite.api.mixins.Copy;
-import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.Mixin;
-import net.runelite.api.mixins.Replace;
-import net.runelite.api.mixins.Shadow;
-import rs.api.RSClient;
-import rs.api.RSModel;
-import rs.api.RSName;
-import rs.api.RSPlayer;
+import javax.inject.Inject;
+import java.awt.*;
 
-import static api.HeadIcon.MAGIC;
-import static api.HeadIcon.MELEE;
-import static api.HeadIcon.RANGED;
-import static api.HeadIcon.REDEMPTION;
-import static api.HeadIcon.RETRIBUTION;
-import static api.HeadIcon.SMITE;
-import static api.SkullIcon.DEAD_MAN_FIVE;
-import static api.SkullIcon.DEAD_MAN_FOUR;
-import static api.SkullIcon.DEAD_MAN_ONE;
-import static api.SkullIcon.DEAD_MAN_THREE;
-import static api.SkullIcon.DEAD_MAN_TWO;
-import static api.SkullIcon.SKULL;
-import static api.SkullIcon.SKULL_FIGHT_PIT;
-
-@Mixin(RSPlayer.class)
-public abstract class RSPlayerMixin implements RSPlayer
+class TestOverlay extends Overlay
 {
+	private static final Color SHORTCUT_HIGH_LEVEL_COLOR = Color.ORANGE;
 
+	private final Client client;
+	private final Test plugin;
+	private final TestConfig config;
+
+	@Inject
+	private TestOverlay(Client client, Test plugin, TestConfig config)
+	{
+		super(plugin);
+		setPosition(OverlayPosition.DYNAMIC);
+		setLayer(OverlayLayer.ABOVE_SCENE);
+		this.client = client;
+		this.plugin = plugin;
+		this.config = config;
+	}
+
+	@Override
+	public Dimension render(Graphics2D graphics)
+	{
+		System.out.println("Rendered Test");
+		graphics.setColor(Color.RED);
+		graphics.drawString("Hello World", 20, 20);
+		return null;
+	}
 }

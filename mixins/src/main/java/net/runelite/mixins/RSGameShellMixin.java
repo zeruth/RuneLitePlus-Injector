@@ -68,15 +68,6 @@ public abstract class RSGameShellMixin implements RSGameShell
 	}
 
 	@Inject
-	@MethodHook("focusGained")
-	public void onFocusGained(FocusEvent focusEvent)
-	{
-		final FocusChanged focusChanged = new FocusChanged();
-		focusChanged.setFocused(true);
-		client.getCallbacks().post(focusChanged);
-	}
-
-	@Inject
 	@MethodHook("post")
 	public void onPost(Object canvas)
 	{
@@ -84,18 +75,6 @@ public abstract class RSGameShellMixin implements RSGameShell
 		if (drawCallbacks != null)
 		{
 			drawCallbacks.draw();
-		}
-	}
-
-	@FieldHook("isCanvasInvalid")
-	@Inject
-	public void onReplaceCanvasNextFrameChanged(int idx)
-	{
-		// when this is initially called the client instance doesn't exist yet
-		if (client != null /*&& client.isGpu() */&& isReplaceCanvasNextFrame())
-		{
-			setReplaceCanvasNextFrame(false);
-			setResizeCanvasNextFrame(true);
 		}
 	}
 }

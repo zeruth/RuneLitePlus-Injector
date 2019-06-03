@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016-2017, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Cas <https://github.com/casvandongen>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,46 +22,25 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.mixins;
+package com.runeswag.client.plugins;
 
-import java.awt.Polygon;
-import java.util.ArrayList;
-import java.util.List;
+import com.runeswag.client.config.Config;
+import com.runeswag.client.config.ConfigGroup;
+import com.runeswag.client.config.ConfigItem;
 
-import api.HeadIcon;
-import api.Model;
-import api.Perspective;
-import api.Point;
-import api.SkullIcon;
-import api.coords.LocalPoint;
-import api.model.Triangle;
-import api.model.Vertex;
-import net.runelite.api.mixins.Copy;
-import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.Mixin;
-import net.runelite.api.mixins.Replace;
-import net.runelite.api.mixins.Shadow;
-import rs.api.RSClient;
-import rs.api.RSModel;
-import rs.api.RSName;
-import rs.api.RSPlayer;
+import java.awt.*;
 
-import static api.HeadIcon.MAGIC;
-import static api.HeadIcon.MELEE;
-import static api.HeadIcon.RANGED;
-import static api.HeadIcon.REDEMPTION;
-import static api.HeadIcon.RETRIBUTION;
-import static api.HeadIcon.SMITE;
-import static api.SkullIcon.DEAD_MAN_FIVE;
-import static api.SkullIcon.DEAD_MAN_FOUR;
-import static api.SkullIcon.DEAD_MAN_ONE;
-import static api.SkullIcon.DEAD_MAN_THREE;
-import static api.SkullIcon.DEAD_MAN_TWO;
-import static api.SkullIcon.SKULL;
-import static api.SkullIcon.SKULL_FIGHT_PIT;
-
-@Mixin(RSPlayer.class)
-public abstract class RSPlayerMixin implements RSPlayer
+@ConfigGroup("test")
+public interface TestConfig extends Config
 {
-
+	@ConfigItem(
+		keyName = "Testing 1",
+		name = "Test option",
+		description = "Enable/disable nothing",
+		position = 1
+	)
+	default boolean tested()
+	{
+		return true;
+	}
 }
