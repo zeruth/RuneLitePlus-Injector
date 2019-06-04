@@ -125,7 +125,7 @@ final class class1 implements class0 {
          var4.noClickThrough = Interpreter.Interpreter_intStack[--class179.Interpreter_intStackSize] == 1;
          return 1;
       } else if(var0 == 1006) {
-         var4.__fm = Interpreter.Interpreter_intStack[--class179.Interpreter_intStackSize] == 1;
+         var4.noScrollThrough = Interpreter.Interpreter_intStack[--class179.Interpreter_intStackSize] == 1;
          return 1;
       } else {
          return 2;

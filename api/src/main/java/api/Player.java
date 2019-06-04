@@ -24,8 +24,8 @@
  */
 package api;
 
+import java.awt.Polygon;
 import javax.annotation.Nullable;
-import java.awt.*;
 
 /**
  * Represents a player entity in the game.

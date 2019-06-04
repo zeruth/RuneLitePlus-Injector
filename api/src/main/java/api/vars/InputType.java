@@ -24,9 +24,9 @@
  */
 package api.vars;
 
+import api.VarClientInt;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import api.VarClientInt;
 
 /**
  * An enumeration of input types for {@link VarClientInt#INPUT_TYPE}.

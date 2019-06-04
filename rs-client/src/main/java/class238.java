@@ -156,7 +156,7 @@ public final class class238 {
                            class30.method569();
                         }
                      }
-                  } else if(var9.__fm && MouseHandler.MouseHandler_x >= var12 && MouseHandler.MouseHandler_y >= var13 && MouseHandler.MouseHandler_x < var14 && MouseHandler.MouseHandler_y < var15) {
+                  } else if(var9.noScrollThrough && MouseHandler.MouseHandler_x >= var12 && MouseHandler.MouseHandler_y >= var13 && MouseHandler.MouseHandler_x < var14 && MouseHandler.MouseHandler_y < var15) {
                      for(var26 = (ScriptEvent)Client.scriptEvents.last(); var26 != null; var26 = (ScriptEvent)Client.scriptEvents.previous()) {
                         if(var26.boolean1 && var26.widget.onScroll == var26.args0) {
                            var26.remove();
@@ -525,13 +525,13 @@ public final class class238 {
                         }
 
                         var9.__fg = Client.cycleCntr;
-                        if(var9.__ed != null) {
+                        if(var9.onKeyListener != null) {
                            for(var35 = 0; var35 < Client.__client_pm; ++var35) {
                               ScriptEvent var31 = new ScriptEvent();
                               var31.widget = var9;
                               var31.keyTyped = Client.__client_pn[var35];
                               var31.keyPressed = Client.__client_pq[var35];
-                              var31.args0 = var9.__ed;
+                              var31.args0 = var9.onKeyListener;
                               Client.scriptEvents.addFirst(var31);
                            }
                         }

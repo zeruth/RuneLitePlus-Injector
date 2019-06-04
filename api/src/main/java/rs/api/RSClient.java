@@ -317,7 +317,7 @@ public interface RSClient extends RSGameShell, Client
 	@Override
 	RSWorld[] getWorldList();
 
-	@Import("addMessage")
+	@Import("addChatMessage")
 	void addChatMessage(int type, String name, String message, String sender);
 
 	@Override
@@ -465,7 +465,7 @@ public interface RSClient extends RSGameShell, Client
 	@Override
 	Map getChatLineMap();
 
-	@Import("messages")
+	@Import("Messages_hashTable")
 	@Override
 	RSIterableNodeHashTable getMessages();
 
@@ -596,7 +596,7 @@ public interface RSClient extends RSGameShell, Client
 	@Construct
 	RSGroundItem createItem();
 
-	@Import("Interpreter_stringStackSize")
+	@Import("Interpreter_intStackSize")
 	@Override
 	int getIntStackSize();
 
@@ -722,10 +722,10 @@ public interface RSClient extends RSGameShell, Client
 	@Import("getFrames")
 	RSFrames getFrames(int frameId);
 
-	@Import("minimapSprite")
+	@Import("sceneMinimapSprite")
 	RSSprite getMinimapSprite();
 
-	@Import("minimapSprite")
+	@Import("sceneMinimapSprite")
 	void setMinimapSprite(Sprite spritePixels);
 
 	@Import("drawObject")
@@ -734,7 +734,7 @@ public interface RSClient extends RSGameShell, Client
 	@Construct
 	RSScriptEvent createScriptEvent();
 
-	@Import("runScript")
+	@Import("runScript0")
 	void runScript(RSScriptEvent ev, int ex);
 
 	@Import("hintArrowType")
@@ -855,10 +855,10 @@ public interface RSClient extends RSGameShell, Client
 	@Import("ObjectDefinition_cachedModels")
 	RSEvictingDualNodeHashTable getCachedModels2();
 
-	@Import("cycle")
+	@Import("Scene_drawnCount")
 	int getCycle();
 
-	@Import("cycle")
+	@Import("Scene_drawnCount")
 	void setCycle(int cycle);
 
 	@Import("visibilityMap")
@@ -877,7 +877,7 @@ public interface RSClient extends RSGameShell, Client
 	void setCameraZ2(int cameraZ2);
 
 	@Import("Scene_cameraXTile")
-	void setScreenCenterX(int screenCenterX); // <-- This is correct!
+	void setScreenCenterX(int screenCenterX);
 
 	@Import("Scene_cameraYTile")
 	void setScreenCenterZ(int screenCenterZ); // <-- This is correct!
@@ -885,17 +885,17 @@ public interface RSClient extends RSGameShell, Client
 	@Import("Scene_plane")
 	void setScenePlane(int scenePlane);
 
-	@Import("minTileX")
+	@Import("Scene_cameraXTileMin")
 	void setMinTileX(int i);
 
-	@Import("minTileY")
-	void setMinTileZ(int i);
+	@Import("Scene_cameraYTileMin")
+	void setMinTileZ(int i); // <-- This is correct!
 
-	@Import("maxTileX")
+	@Import("Scene_cameraXTileMax")
 	void setMaxTileX(int i);
 
-	@Import("maxTileY")
-	void setMaxTileZ(int i);
+	@Import("Scene_cameraYTileMax")
+	void setMaxTileZ(int i); // <-- This is correct!
 
 	@Import("tileUpdateCount")
 	int getTileUpdateCount();
@@ -915,8 +915,8 @@ public interface RSClient extends RSGameShell, Client
 	@Import("Rasterizer2D_height")
 	int getGraphicsPixelsHeight();
 
-	@Import("fillRectangle")
-	void RasterizerFillRectangle(int x, int y, int w, int h, int rgb);
+	@Import("Rasterizer2D_fillRectangle")
+	void rasterizerFillRectangle(int x, int y, int w, int h, int rgb);
 
 	@Import("Rasterizer2D_xClipStart")
 	int getStartX();
@@ -952,23 +952,23 @@ public interface RSClient extends RSGameShell, Client
 	@Import("fontBold12")
 	RSFont getFontBold12();
 
-	@Import("drawHorizontalLine")
-	void RasterizerDrawHorizontalLine(int x, int y, int w, int rgb);
+	@Import("Rasterizer2D_drawHorizontalLine")
+	void rasterizerDrawHorizontalLine(int x, int y, int w, int rgb);
 
-	@Import("drawVerticalLine")
-	void RasterizerDrawVerticalLine(int x, int y, int h, int rgb);
+	@Import("Rasterizer2D_drawVerticalLine")
+	void rasterizerDrawVerticalLine(int x, int y, int h, int rgb);
 
 	@Import("drawGradient")
-	void RasterizerDrawGradient(int x, int y, int w, int h, int rgbTop, int rgbBottom);
+	void rasterizerDrawGradient(int x, int y, int w, int h, int rgbTop, int rgbBottom);
 
-	@Import("fillRectangleAlpha")
-	void RasterizerFillRectangleAlpha(int x, int y, int w, int h, int rgb, int a);
+	@Import("Rasterizer2D_drawRectangleAlpha")
+	void rasterizerFillRectangleAlpha(int x, int y, int w, int h, int rgb, int a);
 
-	@Import("drawRectangle")
-	void RasterizerDrawRectangle(int x, int y, int w, int h, int rgb);
+	@Import("Rasterizer2D_drawRectangle")
+	void rasterizerDrawRectangle(int x, int y, int w, int h, int rgb);
 
 	@Import("drawCircle")
-	void RasterizerDrawCircle(int x, int y, int r, int rgb);
+	void rasterizerDrawCircle(int x, int y, int r, int rgb);
 
 	@Import("HealthBarDefinition_cached")
 	@Override

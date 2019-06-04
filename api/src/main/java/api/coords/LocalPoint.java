@@ -25,10 +25,9 @@
  */
 package api.coords;
 
-import javax.annotation.Nullable;
-
 import api.Client;
 import api.Perspective;
+import javax.annotation.Nullable;
 import lombok.Value;
 
 /**

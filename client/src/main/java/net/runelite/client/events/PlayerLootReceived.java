@@ -24,9 +24,8 @@
  */
 package net.runelite.client.events;
 
-import java.util.Collection;
-
 import api.Player;
+import java.util.Collection;
 import lombok.Value;
 import net.runelite.client.game.ItemStack;
 

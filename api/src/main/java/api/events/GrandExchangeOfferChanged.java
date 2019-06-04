@@ -24,9 +24,9 @@
  */
 package api.events;
 
-import lombok.Data;
 import api.GrandExchangeOffer;
 import api.GrandExchangeOfferState;
+import lombok.Data;
 
 /**
  * An event where a {@link GrandExchangeOffer} has been updated with

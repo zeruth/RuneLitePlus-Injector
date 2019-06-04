@@ -1,13 +1,12 @@
 package net.runelite.client.ui.overlay.arrow;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-
 import api.Client;
 import api.GameObject;
 import api.ObjectDefinition;
 import api.Scene;
 import api.Tile;
+import java.util.ArrayList;
+import java.util.HashSet;
 
 class ArrowUtil
 {

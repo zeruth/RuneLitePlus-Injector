@@ -398,8 +398,8 @@ public class Widget extends Node {
    @ObfuscatedGetter(
       intValue = -1658511475
    )
-   @Export("__bw")
-   public int __bw;
+   @Export("itemQuantityMode")
+   public int itemQuantityMode;
    @ObfuscatedName("cr")
    @ObfuscatedGetter(
       intValue = 1435746863
@@ -578,8 +578,8 @@ public class Widget extends Node {
    @Export("__em")
    public Object[] __em;
    @ObfuscatedName("ed")
-   @Export("__ed")
-   public Object[] __ed;
+   @Export("onKeyListener")
+   public Object[] onKeyListener;
    @ObfuscatedName("ex")
    @Export("__ex")
    public Object[] __ex;
@@ -590,8 +590,8 @@ public class Widget extends Node {
    @Export("__el")
    public Object[] __el;
    @ObfuscatedName("en")
-   @Export("__en")
-   public Object[] __en;
+   @Export("onDialogAbortListener")
+   public Object[] onDialogAbortListener;
    @ObfuscatedName("ei")
    @Export("__ei")
    public Object[] __ei;
@@ -710,8 +710,8 @@ public class Widget extends Node {
    @Export("noClickThrough")
    public boolean noClickThrough;
    @ObfuscatedName("fm")
-   @Export("__fm")
-   public boolean __fm;
+   @Export("noScrollThrough")
+   public boolean noScrollThrough;
    @ObfuscatedName("fz")
    @Export("__fz")
    public boolean __fz;
@@ -782,7 +782,7 @@ public class Widget extends Node {
       this.__bh = 0;
       this.modelOrthog = false;
       this.__bv = false;
-      this.__bw = 2;
+      this.itemQuantityMode = 2;
       this.fontId = -1;
       this.text = "";
       this.text2 = "";
@@ -817,7 +817,7 @@ public class Widget extends Node {
       this.rootIndex = -1;
       this.cycle = -1;
       this.noClickThrough = false;
-      this.__fm = false;
+      this.noScrollThrough = false;
       this.__fz = false;
    }
 

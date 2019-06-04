@@ -161,7 +161,7 @@ final class class11 implements Comparator {
       } else if(var0 == 1418) {
          var3.__em = var8;
       } else if(var0 == 1419) {
-         var3.__ed = var8;
+         var3.onKeyListener = var8;
       } else if(var0 == 1420) {
          var3.__ex = var8;
       } else if(var0 == 1421) {
@@ -169,7 +169,7 @@ final class class11 implements Comparator {
       } else if(var0 == 1422) {
          var3.__el = var8;
       } else if(var0 == 1423) {
-         var3.__en = var8;
+         var3.onDialogAbortListener = var8;
       } else if(var0 == 1424) {
          var3.__ei = var8;
       } else if(var0 == 1425) {

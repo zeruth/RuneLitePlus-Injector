@@ -24,9 +24,9 @@
  */
 package api.events;
 
-import lombok.Value;
 import api.Item;
 import api.Tile;
+import lombok.Value;
 
 /**
  * Called when the quantity of an item pile changes.

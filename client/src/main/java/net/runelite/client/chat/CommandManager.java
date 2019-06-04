@@ -25,17 +25,16 @@
  */
 package net.runelite.client.chat;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
 import api.Client;
 import api.ScriptID;
 import api.VarClientStr;
 import api.events.CommandExecuted;
 import api.events.ScriptCallbackEvent;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.eventbus.EventBus;

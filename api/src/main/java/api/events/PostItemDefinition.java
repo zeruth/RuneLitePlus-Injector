@@ -24,8 +24,8 @@
  */
 package api.events;
 
-import lombok.Data;
 import api.ItemDefinition;
+import lombok.Data;
 
 /**
  * An event called after a new {@link ItemDefinition} is created and

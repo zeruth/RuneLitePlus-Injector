@@ -24,12 +24,11 @@
  */
 package api.coords;
 
-import lombok.Value;
-
 import static api.coords.Direction.EAST;
 import static api.coords.Direction.NORTH;
 import static api.coords.Direction.SOUTH;
 import static api.coords.Direction.WEST;
+import lombok.Value;
 
 /**
  * Represents an in-game orientation that uses fixed point arithmetic.

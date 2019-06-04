@@ -204,7 +204,8 @@ public class WorldMapSection3 implements WorldMapSection {
       signature = "(IB)V",
       garbageValue = "23"
    )
-   static void method346(int var0) {
+   @Export("runWidgetOnLoadListener")
+   static void runWidgetOnLoadListener(int var0) {
       if(var0 != -1) {
          if(GroundItemPile.loadWidgetGroup(var0)) {
             Widget[] var1 = Widget.widgets[var0];

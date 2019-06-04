@@ -40,7 +40,7 @@ public class RawPcmStream extends PcmStream {
    @Export("__k")
    boolean __k;
    @ObfuscatedName("n")
-   @Export("__n")
+   @Export("surfaceOffsetY")
    int __n;
    @ObfuscatedName("i")
    @Export("__i")

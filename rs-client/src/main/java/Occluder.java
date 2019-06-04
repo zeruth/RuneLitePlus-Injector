@@ -83,7 +83,7 @@ public final class Occluder {
    @ObfuscatedGetter(
       intValue = -407777817
    )
-   @Export("__n")
+   @Export("surfaceOffsetY")
    int __n;
    @ObfuscatedName("i")
    @ObfuscatedGetter(

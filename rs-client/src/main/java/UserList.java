@@ -103,7 +103,7 @@ public abstract class UserList {
    )
    @Export("contains")
    public boolean contains(Username var1) {
-      return !var1.hasCleanName()?false:(this.usernamesMap.containsKey(var1)?true:this.previousUsernamesMap.containsKey(var1));
+      return var1.hasCleanName() && (this.usernamesMap.containsKey(var1) || this.previousUsernamesMap.containsKey(var1));
    }
 
    @ObfuscatedName("y")

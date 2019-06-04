@@ -48,7 +48,7 @@ public class Skills {
             var1.read(new Buffer(var2));
          }
 
-         var1.__f_425();
+         var1.post();
          if(var1.noteTemplate != -1) {
             var1.__o_426(getItemDefinition(var1.noteTemplate), getItemDefinition(var1.note));
          }

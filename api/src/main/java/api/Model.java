@@ -24,10 +24,9 @@
  */
 package api;
 
-import java.util.List;
-
 import api.model.Triangle;
 import api.model.Vertex;
+import java.util.List;
 
 /**
  * Represents the model of an object.

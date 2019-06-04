@@ -91,7 +91,7 @@ public interface RSActor extends RSEntity, Actor
 	@Import("spotAnimationFrame")
 	int getSpotAnimationFrame();
 
-	@Import("spotAnimation")
+	@Import("spotAnimationFrame")
 	@Override
 	void setSpotAnimationFrame(int id);
 
@@ -132,12 +132,12 @@ public interface RSActor extends RSEntity, Actor
 	@Import("healthBars")
 	RSIterableNodeDeque getHealthBars();
 
-	@Import("hitsplatValues")
+	@Import("hitSplatValues")
 	int[] getHitsplatValues();
 
-	@Import("hitsplatTypes")
+	@Import("hitSplatTypes")
 	int[] getHitsplatTypes();
 
-	@Import("hitsplatCycles")
+	@Import("hitSplatCycles")
 	int[] getHitsplatCycles();
 }

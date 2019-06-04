@@ -24,10 +24,9 @@
  */
 package api.model;
 
+import api.Point;
 import java.util.ArrayList;
 import java.util.List;
-
-import api.Point;
 
 /**
  * Provides utility methods for computing the convex hull of a list of

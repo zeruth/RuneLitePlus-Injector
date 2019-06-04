@@ -96,10 +96,10 @@ public class class30 {
             }
 
             ScriptEvent var5;
-            if(var1 == 0 && var3.__en != null) {
+            if(var1 == 0 && var3.onDialogAbortListener != null) {
                var5 = new ScriptEvent();
                var5.widget = var3;
-               var5.args0 = var3.__en;
+               var5.args0 = var3.onDialogAbortListener;
                AbstractIndexCache.runScript(var5);
             }
 

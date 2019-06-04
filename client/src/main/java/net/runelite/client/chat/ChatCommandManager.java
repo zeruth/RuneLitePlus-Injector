@@ -24,6 +24,9 @@
  */
 package net.runelite.client.chat;
 
+import api.Client;
+import api.GameState;
+import api.events.ChatMessage;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ScheduledExecutorService;
@@ -31,10 +34,6 @@ import java.util.function.BiConsumer;
 import java.util.function.BiPredicate;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
-import api.Client;
-import api.GameState;
-import api.events.ChatMessage;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.eventbus.EventBus;
 import net.runelite.client.eventbus.Subscribe;

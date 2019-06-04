@@ -35,7 +35,7 @@ public class class40 {
       if(var7 != 0 && this.field326 != 0 && this.field329 != null) {
          var8 = this.method744(var8, var7);
          var7 = this.method774(var7);
-         Rasterizer2D.method6004(var1, var2, var5, var6, var3, var4, this.field329[var7 - 1][var8], this.field326);
+         Rasterizer2D.raster2d7(var1, var2, var5, var6, var3, var4, this.field329[var7 - 1][var8], this.field326);
       }
    }
 

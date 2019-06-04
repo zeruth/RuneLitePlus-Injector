@@ -318,7 +318,7 @@ public class IndexCacheLoader {
                   class30.__ar_bd[var21].__t_507(var42, var41, 128, 16777215);
                   var15 = true;
                } else {
-                  class30.__ar_bd[var21].__x_504(var42, var41);
+                  class30.__ar_bd[var21].drawAt(var42, var41);
                }
 
                if(Frames.__en_bc != null) {
@@ -353,8 +353,8 @@ public class IndexCacheLoader {
 
          class197.rasterProvider.drawFull(0, 0);
       } else {
-         Login.__cu_g.__x_504(Login.__cu_q, 0);
-         Fonts.__kz_l.__x_504(Login.__cu_q + 382, 0);
+         Login.__cu_g.drawAt(Login.__cu_q, 0);
+         Fonts.__kz_l.drawAt(Login.__cu_q + 382, 0);
          WorldMapSectionType.__h_e.__q_496(Login.__cu_q + 382 - WorldMapSectionType.__h_e.subWidth / 2, 18);
          if(Client.gameState == 0 || Client.gameState == 5) {
             var23 = 20;

@@ -24,8 +24,8 @@
  */
 package api.events;
 
-import lombok.Data;
 import api.Skill;
+import lombok.Data;
 
 /**
  * An event where a players skill level has been temporarily modified.

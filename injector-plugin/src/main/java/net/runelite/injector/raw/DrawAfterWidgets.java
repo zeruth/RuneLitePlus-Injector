@@ -24,6 +24,9 @@
  */
 package net.runelite.injector.raw;
 
+import java.util.HashSet;
+import java.util.ListIterator;
+import java.util.Set;
 import net.runelite.asm.ClassFile;
 import net.runelite.asm.Method;
 import net.runelite.asm.attributes.code.Instruction;
@@ -36,16 +39,11 @@ import net.runelite.asm.attributes.code.instructions.IMul;
 import net.runelite.asm.attributes.code.instructions.InvokeStatic;
 import net.runelite.asm.signature.Signature;
 import net.runelite.deob.DeobAnnotations;
+import net.runelite.injector.Inject;
+import static net.runelite.injector.InjectHookMethod.HOOKS;
+import net.runelite.injector.InjectionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import java.util.HashSet;
-import java.util.ListIterator;
-import java.util.Set;
-import net.runelite.injector.Inject;
-import net.runelite.injector.InjectionException;
-
-import static net.runelite.injector.InjectHookMethod.HOOKS;
 
 public class DrawAfterWidgets
 {
@@ -73,41 +71,47 @@ public class DrawAfterWidgets
 			--> This hook depends on the positions of "if (535573958 * kl != -1)" and "jz.db();".
 
 
-			Revision 153 - client.ll():
+			Revision 180 - client.gs():
 			______________________________________________________
 
-			if (535573958 * kl != -1) {
-				me = 0;
-				var1 = kl * 1593233303;
-				var2 = 523525871 * q;
-				var3 = -1668171507 * h.n;
-				if (!bo.p(var1, (byte)111)) {
-					for(var4 = 0; var4 < 100; ++var4) {
-						mb[var4] = true;
-					}
-				} else {
-					z.lj = null;
-					bl.hz(fa.g[var1], -1, 0, 0, var2, var3, 0, 0, -1, 1505114436);
-					if (z.lj != null) {
-						bl.hz(z.lj, -1412584499, 0, 0, var2, var3, 1475313862 * bq.la, aq.lc * 1205565233, -1, 2123188146);
-						z.lj = null;
-					}
-				}
-			}
+		   @Export("drawLoggedIn")
+		   final void drawLoggedIn() {
+		      if(rootWidgetGroup != -1) {
+		         ClientPreferences.method1809(rootWidgetGroup);
+		      }
 
-			// <-- INJECT CALL HERE
+		      int var1;
+		      for(var1 = 0; var1 < rootWidgetCount; ++var1) {
+		         if(__client_od[var1]) {
+		            __client_ot[var1] = true;
+		         }
 
-			jz.db(); <-- noClip method
+		         __client_oq[var1] = __client_od[var1];
+		         __client_od[var1] = false;
+		      }
+
+		      __client_oo = cycle;
+		      __client_lq = -1;
+		      __client_ln = -1;
+		      UserComparator6.__fg_jh = null;
+		      if(rootWidgetGroup != -1) {
+		         rootWidgetCount = 0;
+		         Interpreter.method1977(rootWidgetGroup, 0, 0, SoundCache.canvasWidth, Huffman.canvasHeight, 0, 0, -1);
+		      }
+
+				< --  here appearantly
+
+		      Rasterizer2D.Rasterizer2D_resetClip();
 			______________________________________________________
 		 */
 
 		boolean injected = false;
 
-		Method noClip = findStaticMethod("noClip");
+		Method noClip = findStaticMethod("Rasterizer2D_resetClip"); // !!!!!
 
 		if (noClip == null)
 		{
-			throw new InjectionException("Mapped method \"noClip\" could not be found.");
+			throw new InjectionException("Mapped method \"Rasterizer2D_resetClip\" could not be found.");
 		}
 
 		net.runelite.asm.pool.Method poolNoClip = noClip.getPoolMethod();

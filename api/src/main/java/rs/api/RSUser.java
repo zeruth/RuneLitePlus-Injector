@@ -8,6 +8,6 @@ public interface RSUser extends Nameable, Comparable
 	@Import("name")
 	RSUsername getRsName();
 
-	@Import("prevName")
+	@Import("previousUsername")
 	RSUsername getRsPrevName();
 }

@@ -24,9 +24,8 @@
  */
 package net.runelite.client.menus;
 
+import api.widgets.WidgetInfo;
 import java.awt.Color;
-
-import api.WidgetInfo;
 import net.runelite.client.ui.JagexColors;
 import net.runelite.client.util.ColorUtil;
 

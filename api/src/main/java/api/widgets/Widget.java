@@ -24,13 +24,11 @@
  */
 package api.widgets;
 
-import java.awt.*;
-import java.util.Collection;
-
 import api.FontTypeFace;
-import api.WidgetItem;
-import api.WidgetID;
+import api.Point;
 import api.SpriteID;
+import java.awt.Rectangle;
+import java.util.Collection;
 
 /**
  * Represents an on-screen UI element that is drawn on the canvas.
@@ -304,7 +302,7 @@ public interface Widget
 	 *
 	 * @return the upper-left coordinate of where this widget is drawn
 	 */
-	api.Point getCanvasLocation();
+	Point getCanvasLocation();
 
 	/**
 	 * Gets the width of the widget.

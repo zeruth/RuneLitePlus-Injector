@@ -71,8 +71,8 @@ public class UserComparator9 extends AbstractUserComparator {
          var2.height = class328.indexedSpriteHeight;
          var2.yOffset = class328.indexedSpriteOffsetXs[var1];
          var2.xOffset = class328.indexedSpriteOffsetYs[var1];
-         var2.subWidth = VarbitDefinition.__ia_u[var1];
-         var2.subHeight = SecureRandomCallable.__bk_g[var1];
+         var2.subWidth = VarbitDefinition.indexedSpriteWidths[var1];
+         var2.subHeight = SecureRandomCallable.indexedSpriteHeights[var1];
          int var3 = var2.subHeight * var2.subWidth;
          byte[] var4 = class328.spritePixels[var1];
          var2.pixels = new int[var3];
@@ -84,8 +84,8 @@ public class UserComparator9 extends AbstractUserComparator {
 
       class328.indexedSpriteOffsetXs = null;
       class328.indexedSpriteOffsetYs = null;
-      VarbitDefinition.__ia_u = null;
-      SecureRandomCallable.__bk_g = null;
+      VarbitDefinition.indexedSpriteWidths = null;
+      SecureRandomCallable.indexedSpriteHeights = null;
       class328.indexedSpritePalette = null;
       class328.spritePixels = null;
       return var0;

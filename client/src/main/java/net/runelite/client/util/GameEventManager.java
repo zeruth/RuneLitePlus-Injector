@@ -24,13 +24,6 @@
  */
 package net.runelite.client.util;
 
-import java.util.Arrays;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.function.Consumer;
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
 import api.Client;
 import api.Constants;
 import api.GameState;
@@ -50,6 +43,12 @@ import api.events.ItemSpawned;
 import api.events.NpcSpawned;
 import api.events.PlayerSpawned;
 import api.events.WallObjectSpawned;
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.function.Consumer;
+import javax.inject.Inject;
+import javax.inject.Singleton;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.eventbus.EventBus;
 

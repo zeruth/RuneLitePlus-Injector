@@ -74,8 +74,8 @@ public class DevicePcmPlayerProvider implements PcmPlayerProvider {
       class328.indexedSpriteCount = var1.__ag_302();
       class328.indexedSpriteOffsetXs = new int[class328.indexedSpriteCount];
       class328.indexedSpriteOffsetYs = new int[class328.indexedSpriteCount];
-      VarbitDefinition.__ia_u = new int[class328.indexedSpriteCount];
-      SecureRandomCallable.__bk_g = new int[class328.indexedSpriteCount];
+      VarbitDefinition.indexedSpriteWidths = new int[class328.indexedSpriteCount];
+      SecureRandomCallable.indexedSpriteHeights = new int[class328.indexedSpriteCount];
       class328.spritePixels = new byte[class328.indexedSpriteCount][];
       var1.index = var0.length - 7 - class328.indexedSpriteCount * 8;
       class328.indexedSpriteWidth = var1.__ag_302();
@@ -92,11 +92,11 @@ public class DevicePcmPlayerProvider implements PcmPlayerProvider {
       }
 
       for(var3 = 0; var3 < class328.indexedSpriteCount; ++var3) {
-         VarbitDefinition.__ia_u[var3] = var1.__ag_302();
+         VarbitDefinition.indexedSpriteWidths[var3] = var1.__ag_302();
       }
 
       for(var3 = 0; var3 < class328.indexedSpriteCount; ++var3) {
-         SecureRandomCallable.__bk_g[var3] = var1.__ag_302();
+         SecureRandomCallable.indexedSpriteHeights[var3] = var1.__ag_302();
       }
 
       var1.index = var0.length - 7 - class328.indexedSpriteCount * 8 - (var2 - 1) * 3;
@@ -112,8 +112,8 @@ public class DevicePcmPlayerProvider implements PcmPlayerProvider {
       var1.index = 0;
 
       for(var3 = 0; var3 < class328.indexedSpriteCount; ++var3) {
-         int var4 = VarbitDefinition.__ia_u[var3];
-         int var5 = SecureRandomCallable.__bk_g[var3];
+         int var4 = VarbitDefinition.indexedSpriteWidths[var3];
+         int var5 = SecureRandomCallable.indexedSpriteHeights[var3];
          int var6 = var4 * var5;
          byte[] var7 = new byte[var6];
          class328.spritePixels[var3] = var7;
@@ -468,7 +468,7 @@ public class DevicePcmPlayerProvider implements PcmPlayerProvider {
                                  Rasterizer2D.drawGradient(var12, var13, var10.width, var10.height, var10.color, var10.color2);
                                  break;
                               case 2:
-                                 Rasterizer2D.method5938(var12, var13, var10.width, var10.height, var10.color, var10.color2, 255 - (var10.transparency & 255), 255 - (var10.__af & 255));
+                                 Rasterizer2D.drawGradientAlpha(var12, var13, var10.width, var10.height, var10.color, var10.color2, 255 - (var10.transparency & 255), 255 - (var10.__af & 255));
                                  break;
                               default:
                                  if(var14 == 0) {
@@ -542,7 +542,7 @@ public class DevicePcmPlayerProvider implements PcmPlayerProvider {
                                  }
                               } else {
                                  if(var10.itemId != -1) {
-                                    var37 = class226.getItemSprite(var10.itemId, var10.itemQuantity, var10.outline, var10.spriteShadow, var10.__bw, false);
+                                    var37 = class226.getItemSprite(var10.itemId, var10.itemQuantity, var10.outline, var10.spriteShadow, var10.itemQuantityMode, false);
                                  } else {
                                     var37 = var10.getSprite(false);
                                  }

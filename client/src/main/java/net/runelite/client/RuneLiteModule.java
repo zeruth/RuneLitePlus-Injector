@@ -25,7 +25,7 @@
 package net.runelite.client;
 
 import api.Client;
-import callbacks.Callbacks;
+import api.hooks.Callbacks;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provides;
 import com.google.inject.name.Names;

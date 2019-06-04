@@ -24,8 +24,8 @@
  */
 package api.events;
 
+import api.widgets.WidgetInfo;
 import lombok.Data;
-import api.WidgetInfo;
 
 /**
  * An event where an option has been clicked in a {@link api.widgets.Widget}s menu.

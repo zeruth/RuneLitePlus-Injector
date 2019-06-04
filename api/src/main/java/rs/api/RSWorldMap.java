@@ -27,11 +27,11 @@ public interface RSWorldMap extends RenderOverview
 	//@Import("worldMapDisplayHeight")
 	//int getWorldMapDisplayHeight();
 
-	@Import("worldMapDisplayX")
-	int getWorldMapDisplayX();
+	//@Import("worldMapDisplayX")
+	//int getWorldMapDisplayX();
 
-	@Import("worldMapDisplayY")
-	int getWorldMapDisplayY();
+	//@Import("worldMapDisplayY")
+	//int getWorldMapDisplayY();
 
 	@Import("setWorldMapPosition")
 	void setWorldMapPosition(int worldMapX, int worldMapY, boolean changedSurface);

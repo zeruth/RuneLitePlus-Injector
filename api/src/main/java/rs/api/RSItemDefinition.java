@@ -33,7 +33,7 @@ public interface RSItemDefinition extends ItemDefinition
 	@Override
 	int getPrice();
 
-	@Import("isMembers")
+	@Import("isMembersOnly")
 	@Override
 	boolean isMembers();
 
@@ -57,7 +57,7 @@ public interface RSItemDefinition extends ItemDefinition
 	@Override
 	String[] getInventoryActions();
 
-	@Import("shiftClickIndex0")
+	@Import("getShiftClickIndex")
 	@Override
 	int getShiftClickActionIndex();
 }

@@ -24,11 +24,11 @@
  */
 package api.widgets;
 
+import api.Point;
 import java.awt.Rectangle;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.ToString;
-import api.Point;
 
 /**
  * An item that is being represented in a {@link Widget}.

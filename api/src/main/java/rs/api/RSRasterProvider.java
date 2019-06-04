@@ -29,7 +29,8 @@
 package rs.api;
 
 import api.MainBufferProvider;
-import java.awt.*;
+import java.awt.Component;
+import java.awt.Image;
 import net.runelite.mapping.Import;
 
 public interface RSRasterProvider extends RSAbstractRasterProvider, MainBufferProvider

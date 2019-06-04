@@ -26,7 +26,6 @@ package api;
 
 import api.coords.LocalPoint;
 import api.coords.WorldPoint;
-
 import java.util.List;
 
 /**
@@ -131,12 +130,10 @@ public interface Tile
 	 *
 	 * @return the ground items
 	 */
-	//List<Item> getGroundItems();
+	List<Item> getGroundItems();
 
 	/**
 	 * Return the tile under this one, if this tile is a bridge
-	 *
-	 * @return
 	 */
 	Tile getBridge();
 }

@@ -26,7 +26,6 @@ package net.runelite.client.ui;
 
 import api.Client;
 import api.Constants;
-
 import java.applet.Applet;
 import java.awt.BorderLayout;
 import java.awt.Color;

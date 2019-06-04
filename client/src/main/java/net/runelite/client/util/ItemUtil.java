@@ -24,6 +24,7 @@
  */
 package net.runelite.client.util;
 
+import api.Item;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
@@ -31,8 +32,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import javax.annotation.Nullable;
-
-import api.Item;
 import net.runelite.http.api.loottracker.GameItem;
 
 /**

@@ -24,9 +24,9 @@
  */
 package api.events;
 
-import lombok.Data;
 import api.Projectile;
 import api.coords.LocalPoint;
+import lombok.Data;
 
 /**
  * An event called whenever a {@link Projectile} has moved towards a point.

@@ -59,10 +59,10 @@ public class FriendsList extends UserList {
       signature = "(Lkp;ZI)Z",
       garbageValue = "1557073132"
    )
-   @Export("__q_465")
-   public boolean __q_465(Username var1, boolean var2) {
+   @Export("isFriended")
+   public boolean isFriended(Username var1, boolean var2) {
       Friend var3 = (Friend)this.getByUsername(var1);
-      return var3 == null?false:!var2 || var3.world0 != 0;
+      return var3 != null && (!var2 || var3.world0 != 0);
    }
 
    @ObfuscatedName("x")

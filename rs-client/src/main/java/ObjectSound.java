@@ -86,7 +86,7 @@ public final class ObjectSound extends Node {
    @ObfuscatedGetter(
       intValue = -1041508847
    )
-   @Export("__n")
+   @Export("surfaceOffsetY")
    int __n;
    @ObfuscatedName("i")
    @ObfuscatedSignature(

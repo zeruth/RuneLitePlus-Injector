@@ -22,5 +22,94 @@ import rs.api.RSIndexCache;
 @Mixin(RSAbstractIndexCache.class)
 public abstract class RSAbstractIndexCacheMixin implements RSAbstractIndexCache
 {
+	@Shadow("client")
+	private static RSClient client;
 
+	@Inject
+	private boolean overlayOutdated;
+
+	@Inject
+	@Override
+	public boolean isOverlayOutdated()
+	{
+		return overlayOutdated;
+	}
+
+	@Copy("takeRecord")
+	abstract byte[] rs$getConfigData(int archiveId, int fileId);
+
+	@Replace("takeRecord")
+	public byte[] rl$getConfigData(int archiveId, int fileId)
+	{
+		byte[] rsData = rs$getConfigData(archiveId, fileId);
+		RSIndexCache indexData = (RSIndexCache) this;
+
+		if (!OverlayIndex.hasOverlay(indexData.getIndex(), archiveId))
+		{
+			return rsData;
+		}
+
+		Logger log = client.getLogger();
+
+		InputStream in = getClass().getResourceAsStream("/runelite/" + indexData.getIndex() + "/" + archiveId);
+		if (in == null)
+		{
+			log.warn("Missing overlay data for {}/{}", indexData.getIndex(), archiveId);
+			return rsData;
+		}
+
+		InputStream in2 = getClass().getResourceAsStream("/runelite/" + indexData.getIndex() + "/" + archiveId + ".hash");
+		if (rsData == null)
+		{
+			if (in2 != null)
+			{
+				log.warn("Hash file for non existing archive {}/{}", indexData.getIndex(), archiveId);
+				return null;
+			}
+
+			log.debug("Adding archive {}/{}", indexData.getIndex(), archiveId);
+
+			try
+			{
+				return ByteStreams.toByteArray(in);
+			}
+			catch (IOException ex)
+			{
+				log.warn("error loading archive replacement", ex);
+			}
+
+			return null;
+		}
+		if (in2 == null)
+		{
+			log.warn("Missing hash file for {}/{}", indexData.getIndex(), archiveId);
+			return rsData;
+		}
+
+		HashCode rsDataHash = Hashing.sha256().hashBytes(rsData);
+
+		String rsHash = BaseEncoding.base16().encode(rsDataHash.asBytes());
+
+		try
+		{
+			String replaceHash = CharStreams.toString(new InputStreamReader(in2));
+
+			if (replaceHash.equals(rsHash))
+			{
+				log.debug("Replacing archive {}/{}",
+					indexData.getIndex(), archiveId);
+				return ByteStreams.toByteArray(in);
+			}
+
+			log.warn("Mismatch in overlaid cache archive hash for {}/{}: {} != {}",
+				indexData.getIndex(), archiveId, replaceHash, rsHash);
+			overlayOutdated = true;
+		}
+		catch (IOException ex)
+		{
+			log.warn("error checking hash", ex);
+		}
+
+		return rsData;
+	}
 }

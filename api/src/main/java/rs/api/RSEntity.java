@@ -29,10 +29,10 @@ import net.runelite.mapping.Import;
 
 public interface RSEntity extends RSNode, Renderable
 {
-	@Import("modelHeight")
+	@Import("height")
 	int getModelHeight();
 
-	@Import("modelHeight")
+	@Import("height")
 	@Override
 	void setModelHeight(int modelHeight);
 

@@ -25,11 +25,11 @@
  */
 package net.runelite.client.game;
 
+import static api.ItemID.*;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import java.util.Collection;
 import java.util.Collections;
-import static api.ItemID.*;
 
 /**
  * Converts untradeable items to it's tradeable counterparts

@@ -24,6 +24,14 @@
  */
 package api;
 
+import api.config.Constants;
+import static api.config.Constants.TILE_FLAG_BRIDGE;
+import api.coords.LocalPoint;
+import api.model.Jarvis;
+import api.model.Triangle;
+import api.model.Vertex;
+import api.widgets.Widget;
+import api.widgets.WidgetInfo;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
@@ -36,15 +44,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-
-import static api.config.Constants.TILE_FLAG_BRIDGE;
-
-import api.config.Constants;
-import api.coords.LocalPoint;
-import api.model.Jarvis;
-import api.model.Triangle;
-import api.model.Vertex;
-import api.widgets.Widget;
 
 /**
  * A utility class containing methods to help with conversion between

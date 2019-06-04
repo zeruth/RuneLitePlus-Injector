@@ -20,8 +20,8 @@ public class VarbitDefinition extends DualNode {
    @Export("VarbitDefinition_cached")
    public static EvictingDualNodeHashTable VarbitDefinition_cached;
    @ObfuscatedName("u")
-   @Export("__ia_u")
-   static int[] __ia_u;
+   @Export("indexedSpriteWidths")
+   static int[] indexedSpriteWidths;
    @ObfuscatedName("q")
    @ObfuscatedGetter(
       intValue = 1552575189

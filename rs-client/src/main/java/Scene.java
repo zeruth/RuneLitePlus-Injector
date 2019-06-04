@@ -61,8 +61,8 @@ public class Scene {
    @ObfuscatedSignature(
       signature = "[Leh;"
    )
-   @Export("gameObjects")
-   static GameObject[] gameObjects;
+   @Export("Scene_gameObjects")
+   static GameObject[] Scene_gameObjects;
    @ObfuscatedName("ac")
    @Export("checkClick")
    static boolean checkClick;
@@ -175,8 +175,8 @@ public class Scene {
    @Export("tiles")
    Tile[][][] tiles;
    @ObfuscatedName("g")
-   @Export("minPlane")
-   int minPlane;
+   @Export("Scene_minPlane")
+   int Scene_minPlane;
    @ObfuscatedName("l")
    @Export("tempGameObjectsCount")
    int tempGameObjectsCount;
@@ -200,7 +200,7 @@ public class Scene {
       Scene_isLowDetail = true;
       tileUpdateCount = 0;
       Scene_plane = 0;
-      gameObjects = new GameObject[100];
+      Scene_gameObjects = new GameObject[100];
       checkClick = false;
       Scene_selectedPlane = 0;
       Scene_selectedScreenX = 0;
@@ -225,7 +225,7 @@ public class Scene {
    }
 
    public Scene(int var1, int var2, int var3, int[][][] var4) {
-      this.minPlane = 0;
+      this.Scene_minPlane = 0;
       this.tempGameObjectsCount = 0;
       this.tempGameObjects = new GameObject[5000];
       this.__bk = new int[][]{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1}, {0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0}, {1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1}, {1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1}};
@@ -266,8 +266,8 @@ public class Scene {
 
       this.tempGameObjectsCount = 0;
 
-      for(var1 = 0; var1 < gameObjects.length; ++var1) {
-         gameObjects[var1] = null;
+      for(var1 = 0; var1 < Scene_gameObjects.length; ++var1) {
+         Scene_gameObjects[var1] = null;
       }
 
    }
@@ -275,7 +275,7 @@ public class Scene {
    @ObfuscatedName("f")
    @Export("init")
    public void init(int var1) {
-      this.minPlane = var1;
+      this.Scene_minPlane = var1;
 
       for(int var2 = 0; var2 < this.xSize; ++var2) {
          for(int var3 = 0; var3 < this.ySize; ++var3) {
@@ -1141,7 +1141,7 @@ public class Scene {
       Tile[][] var8;
       int var9;
       int var10;
-      for(var7 = this.minPlane; var7 < this.planes; ++var7) {
+      for(var7 = this.Scene_minPlane; var7 < this.planes; ++var7) {
          var8 = this.tiles[var7];
 
          for(var9 = Scene_cameraXTileMin; var9 < Scene_cameraXTileMax; ++var9) {
@@ -1173,7 +1173,7 @@ public class Scene {
       int var14;
       Tile var15;
       int var16;
-      for(var7 = this.minPlane; var7 < this.planes; ++var7) {
+      for(var7 = this.Scene_minPlane; var7 < this.planes; ++var7) {
          var8 = this.tiles[var7];
 
          for(var9 = -25; var9 <= 0; ++var9) {
@@ -1224,7 +1224,7 @@ public class Scene {
          }
       }
 
-      for(var7 = this.minPlane; var7 < this.planes; ++var7) {
+      for(var7 = this.Scene_minPlane; var7 < this.planes; ++var7) {
          var8 = this.tiles[var7];
 
          for(var9 = -25; var9 <= 0; ++var9) {
@@ -1611,7 +1611,7 @@ public class Scene {
                                           }
                                        }
 
-                                       gameObjects[var21++] = var12;
+                                       Scene_gameObjects[var21++] = var12;
                                        var24 = Scene_cameraXTile - var12.startX;
                                        var14 = var12.endX - Scene_cameraXTile;
                                        if(var14 > var24) {
@@ -1633,7 +1633,7 @@ public class Scene {
                                     var25 = -1;
 
                                     for(var24 = 0; var24 < var21; ++var24) {
-                                       GameObject var35 = gameObjects[var24];
+                                       GameObject var35 = Scene_gameObjects[var24];
                                        if(var35.lastDrawn != Scene_drawnCount) {
                                           if(var35.__d > var11) {
                                              var11 = var35.__d;
@@ -1641,8 +1641,8 @@ public class Scene {
                                           } else if(var11 == var35.__d) {
                                              var15 = var35.centerX - Scene_cameraX;
                                              var16 = var35.centerY - Scene_cameraZ;
-                                             var17 = gameObjects[var25].centerX - Scene_cameraX;
-                                             var18 = gameObjects[var25].centerY - Scene_cameraZ;
+                                             var17 = Scene_gameObjects[var25].centerX - Scene_cameraX;
+                                             var18 = Scene_gameObjects[var25].centerY - Scene_cameraZ;
                                              if(var15 * var15 + var16 * var16 > var17 * var17 + var18 * var18) {
                                                 var25 = var24;
                                              }
@@ -1654,7 +1654,7 @@ public class Scene {
                                        break;
                                     }
 
-                                    GameObject var33 = gameObjects[var25];
+                                    GameObject var33 = Scene_gameObjects[var25];
                                     var33.lastDrawn = Scene_drawnCount;
                                     if(!this.__bq_256(var7, var33.startX, var33.endX, var33.startY, var33.endY, var33.entity.height)) {
                                        var33.entity.draw(var33.orientation, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var33.centerX - Scene_cameraX, var33.height - Scene_cameraY, var33.centerY - Scene_cameraZ, var33.tag);

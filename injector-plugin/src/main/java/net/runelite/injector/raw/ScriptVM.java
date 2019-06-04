@@ -84,7 +84,7 @@ public class ScriptVM
 
 			The currently executing script variable is located as the outermost Script local
 
-			The PC is located by its use in PutField ScriptState::invokedFromPC
+			The PC is located by its use in PutField ScriptFrame::invokedFromPC
 
 			The currently executing opcode is found by searching for iaload with the script's instruction array
 
@@ -104,10 +104,10 @@ public class ScriptVM
 
 		 */
 		String scriptObName = DeobAnnotations.getObfuscatedName(inject.getDeobfuscated().findClass("Script").getAnnotations());
-		Method runScript = findObMethod("copy$runScript");
+		Method runScript = findObMethod("copy$runScript0");
 		Method vmExecuteOpcode = findObMethod("vmExecuteOpcode");
-		Field scriptInstructions = findDeobField("instructions");
-		Field scriptStatePC = findDeobField("invokedFromPc");
+		Field scriptInstructions = findDeobField("opcodes");
+		Field scriptStatePC = findDeobField("pc");
 		Field currentScriptField = findObField("currentScript");
 		Field currentScriptPCField = findObField("currentScriptPC");
 

@@ -82,8 +82,8 @@ public final class Sprite extends Rasterizer2D {
    }
 
    @ObfuscatedName("q")
-   @Export("__q_498")
-   public void __q_498() {
+   @Export("setRaster")
+   public void setRaster() {
       Rasterizer2D.Rasterizer2D_replace(this.pixels, this.subWidth, this.subHeight);
    }
 
@@ -225,8 +225,8 @@ public final class Sprite extends Rasterizer2D {
    }
 
    @ObfuscatedName("x")
-   @Export("__x_504")
-   public void __x_504(int var1, int var2) {
+   @Export("drawAt")
+   public void drawAt(int var1, int var2) {
       var1 += this.yOffset;
       var2 += this.xOffset;
       int var3 = var1 + var2 * Rasterizer2D.Rasterizer2D_width;

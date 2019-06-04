@@ -35,7 +35,7 @@ public interface RSPlayer extends RSActor, Player
 	@Import("index")
 	int getPlayerId();
 
-	@Import("definition")
+	@Import("appearance")
 	@Override
 	RSPlayerAppearance getPlayerDefinition();
 
@@ -50,7 +50,7 @@ public interface RSPlayer extends RSActor, Player
 	@Override
 	int getTeam();
 
-	@Import("isInClanChat")
+	@Import("isClanMember")
 	@Override
 	boolean isClanMember();
 

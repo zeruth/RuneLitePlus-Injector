@@ -20,7 +20,7 @@ public interface RSTile extends Tile
 	@Override
 	ItemLayer getItemLayer();
 
-	@Import("decorativeObject")
+	@Import("wallDecoration")
 	@Override
 	DecorativeObject getDecorativeObject();
 
@@ -28,7 +28,7 @@ public interface RSTile extends Tile
 	@Override
 	GroundObject getGroundObject();
 
-	@Import("wallObject")
+	@Import("boundaryObject")
 	@Override
 	WallObject getWallObject();
 
@@ -36,7 +36,7 @@ public interface RSTile extends Tile
 	@Override
 	SceneTilePaint getSceneTilePaint();
 
-	@Import("overlay")
+	@Import("model")
 	@Override
 	SceneTileModel getSceneTileModel();
 
@@ -50,35 +50,35 @@ public interface RSTile extends Tile
 	@Override
 	int getPlane();
 
-	@Import("renderLevel")
+	@Import("originalPlane")
 	@Override
 	int getRenderLevel();
 
-	@Import("physicalLevel")
+	@Import("minPlane")
 	int getPhysicalLevel();
 
-	@Import("flags")
-	int getFlags();
+	//@Import("flags")
+	//int getFlags(); ---- unused, think it's gameobjectedgemask
 
-	@Import("bridge")
+	@Import("linkedBelowTile")
 	@Override
 	RSTile getBridge();
 
-	@Import("draw")
+	@Import("drawPrimary")
 	boolean isDraw();
 
-	@Import("draw")
+	@Import("drawPrimary")
 	void setDraw(boolean draw);
 
-	@Import("visible")
+	@Import("drawSecondary")
 	boolean isVisible();
 
-	@Import("visible")
+	@Import("drawSecondary")
 	void setVisible(boolean visible);
 
-	@Import("drawEntities")
+	@Import("drawGameObjects")
 	void setDrawEntities(boolean drawEntities);
 
-	@Import("wallCullDirection")
+	@Import("drawGameObjectEdges")
 	void setWallCullDirection(int wallCullDirection);
 }

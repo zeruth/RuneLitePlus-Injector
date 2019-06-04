@@ -24,13 +24,12 @@
  */
 package api;
 
+import api.coords.LocalPoint;
+import api.coords.WorldPoint;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.geom.Area;
 import javax.annotation.Nullable;
-
-import api.coords.LocalPoint;
-import api.coords.WorldPoint;
 
 /**
  * Represents an object that a tile holds.

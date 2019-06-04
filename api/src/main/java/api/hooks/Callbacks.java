@@ -24,12 +24,12 @@
  */
 package api.hooks;
 
+import api.MainBufferProvider;
+import api.widgets.WidgetItem;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
-import api.MainBufferProvider;
-import api.widgets.WidgetItem;
 
 /**
  * Interface of callbacks the injected client uses to send events

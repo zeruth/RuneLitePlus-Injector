@@ -24,8 +24,8 @@
  */
 package api.events;
 
-import lombok.Data;
 import api.HealthBar;
+import lombok.Data;
 
 @Data
 public class PostHealthBar

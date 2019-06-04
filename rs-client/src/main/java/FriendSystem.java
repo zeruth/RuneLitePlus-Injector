@@ -114,9 +114,9 @@ public class FriendSystem {
       signature = "(Lkp;ZI)Z",
       garbageValue = "2057092629"
    )
-   @Export("__u_155")
-   final boolean __u_155(Username var1, boolean var2) {
-      return var1 == null?false:(var1.__equals_466(Canvas.localPlayer.username)?true:this.friendsList.__q_465(var1, var2));
+   @Export("isFriended")
+   final boolean isFriended(Username var1, boolean var2) {
+      return var1 != null && (var1.__equals_466(Canvas.localPlayer.username) || this.friendsList.isFriended(var1, var2));
    }
 
    @ObfuscatedName("g")
@@ -124,9 +124,9 @@ public class FriendSystem {
       signature = "(Lkp;I)Z",
       garbageValue = "1482725020"
    )
-   @Export("__g_156")
-   final boolean __g_156(Username var1) {
-      return var1 == null?false:this.ignoreList.contains(var1);
+   @Export("isIgnored")
+   final boolean isIgnored(Username var1) {
+      return var1 != null && this.ignoreList.contains(var1);
    }
 
    @ObfuscatedName("l")
@@ -151,12 +151,12 @@ public class FriendSystem {
                WorldMapIcon1.method219(30, "", var4);
             } else {
                Object var10001;
-               if(this.__u_155(var2, false)) {
+               if(this.isFriended(var2, false)) {
                   var10000 = (new StringBuilder()).append(var1);
                   var10001 = null;
                   var4 = var10000.append(" is already on your friend list").toString();
                   WorldMapIcon1.method219(30, "", var4);
-               } else if(this.__g_156(var2)) {
+               } else if(this.isIgnored(var2)) {
                   var10000 = new StringBuilder();
                   var10001 = null;
                   var10000 = var10000.append("Please remove ").append(var1);
@@ -204,9 +204,9 @@ public class FriendSystem {
                var10000 = null;
                var4 = "You can\'t add yourself to your own ignore list";
                WorldMapIcon1.method219(30, "", var4);
-            } else if(this.__g_156(var2)) {
+            } else if(this.isIgnored(var2)) {
                class22.method294(var1);
-            } else if(this.__u_155(var2, false)) {
+            } else if(this.isFriended(var2, false)) {
                var10000 = new StringBuilder();
                Object var10001 = null;
                var10000 = var10000.append("Please remove ").append(var1);

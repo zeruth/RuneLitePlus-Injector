@@ -40,10 +40,10 @@ public abstract class RSItemDefinitionMixin implements RSItemDefinition
 		this.shiftClickActionIndex = shiftClickActionIndex;
 	}
 
-	@Copy("getShiftClickActionIndex")
+	@Copy("getShiftClickIndex")
 	abstract int rs$getShiftClickActionIndex();
 
-	@Replace("getShiftClickActionIndex")
+	@Replace("getShiftClickIndex")
 	public int getShiftClickActionIndex()
 	{
 		return shiftClickActionIndex == DEFAULT_CUSTOM_SHIFT_CLICK_INDEX ? rs$getShiftClickActionIndex() : shiftClickActionIndex;
@@ -57,7 +57,7 @@ public abstract class RSItemDefinitionMixin implements RSItemDefinition
 	}
 
 	@Inject
-	@MethodHook(value = "getItemDefinition", end = true)
+	@MethodHook(value = "post", end = true)
 	public void post()
 	{
 		final PostItemDefinition event = new PostItemDefinition();

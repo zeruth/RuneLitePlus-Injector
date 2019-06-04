@@ -80,8 +80,8 @@ public class FontName {
    )
    static void method5636() {
       Login.__cu_bk = false;
-      Login.__cu_g.__x_504(Login.__cu_q, 0);
-      Fonts.__kz_l.__x_504(Login.__cu_q + 382, 0);
+      Login.__cu_g.drawAt(Login.__cu_q, 0);
+      Fonts.__kz_l.drawAt(Login.__cu_q + 382, 0);
       WorldMapSectionType.__h_e.__q_496(Login.__cu_q + 382 - WorldMapSectionType.__h_e.subWidth / 2, 18);
    }
 
@@ -172,7 +172,7 @@ public class FontName {
             } else if(var0 == 3609) {
                var5 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
                var5 = NpcDefinition.method5161(var5);
-               Interpreter.Interpreter_intStack[++class179.Interpreter_intStackSize - 1] = WorldMapArea.friendSystem.__u_155(new Username(var5, KeyHandler.loginType), false)?1:0;
+               Interpreter.Interpreter_intStack[++class179.Interpreter_intStackSize - 1] = WorldMapArea.friendSystem.isFriended(new Username(var5, KeyHandler.loginType), false)?1:0;
                return 1;
             } else if(var0 == 3611) {
                if(PacketWriter.clanChat != null) {
@@ -257,7 +257,7 @@ public class FontName {
             } else if(var0 == 3623) {
                var5 = Interpreter.Interpreter_stringStack[--Interpreter.Interpreter_stringStackSize];
                var5 = NpcDefinition.method5161(var5);
-               Interpreter.Interpreter_intStack[++class179.Interpreter_intStackSize - 1] = WorldMapArea.friendSystem.__g_156(new Username(var5, KeyHandler.loginType))?1:0;
+               Interpreter.Interpreter_intStack[++class179.Interpreter_intStackSize - 1] = WorldMapArea.friendSystem.isIgnored(new Username(var5, KeyHandler.loginType))?1:0;
                return 1;
             } else if(var0 == 3624) {
                var3 = Interpreter.Interpreter_intStack[--class179.Interpreter_intStackSize];

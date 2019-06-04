@@ -119,7 +119,7 @@ public class WorldMapIcon1 extends AbstractWorldMapIcon {
       garbageValue = "-460290173"
    )
    static void method219(int var0, String var1, String var2) {
-      GrandExchangeEvents.addMessage(var0, var1, var2, (String)null);
+      GrandExchangeEvents.addChatMessage(var0, var1, var2, (String)null);
    }
 
    @ObfuscatedName("fz")

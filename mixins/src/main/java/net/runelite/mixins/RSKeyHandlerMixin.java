@@ -15,7 +15,7 @@ import rs.api.RSKeyHandler;
 @Mixin(RSKeyHandler.class)
 public abstract class RSKeyHandlerMixin implements RSKeyHandler
 {
-	@Shadow("clientInstance")
+	@Shadow("client")
 	private static RSClient client;
 
 	@Copy("keyPressed")

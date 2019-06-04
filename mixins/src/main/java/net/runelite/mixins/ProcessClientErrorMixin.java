@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Abex
+ * Copyright (c) 2018, Lotto <https://github.com/devLotto>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,13 +22,33 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package api.events;
+package net.runelite.mixins;
 
-import api.Node;
+import net.runelite.api.mixins.Mixin;
+import net.runelite.api.mixins.Replace;
+import net.runelite.api.mixins.Shadow;
+import rs.api.RSClient;
+import rs.api.RSRunException;
 
-public interface Script extends Node
+@Mixin(RSClient.class)
+public abstract class ProcessClientErrorMixin implements RSClient
 {
-	int[] getIntOperands();
+	@Shadow("client")
+	private static RSClient client;
 
-	int[] getInstructions();
+	@Replace("sendStackTrace")
+	static void rl$processClientError(String string, Throwable throwable)
+	{
+		if (throwable != null)
+		{
+			Throwable throwableToScan = throwable;
+
+			if (throwable instanceof RSRunException)
+			{
+				throwableToScan = ((RSRunException) throwable).getParent();
+			}
+
+			client.getLogger().error("Game crash: {}", string, throwableToScan);
+		}
+	}
 }

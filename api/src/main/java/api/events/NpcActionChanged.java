@@ -24,8 +24,8 @@
  */
 package api.events;
 
-import lombok.Data;
 import api.NPCDefinition;
+import lombok.Data;
 
 /**
  * An event where an action of an {@link NPCDefinition} has changed.

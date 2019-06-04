@@ -5,7 +5,7 @@ import net.runelite.mapping.Import;
 
 public interface RSHealthBarDefinition extends RSDualNode, HealthBar
 {
-	@Import("healthScale")
+	@Import("width")
 	int getHealthScale();
 
 	@Import("getSprite1")

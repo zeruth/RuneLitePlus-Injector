@@ -89,7 +89,7 @@ public class MusicPatchNode extends Node {
    @ObfuscatedGetter(
       intValue = 476852577
    )
-   @Export("__n")
+   @Export("surfaceOffsetY")
    int __n;
    @ObfuscatedName("i")
    @ObfuscatedGetter(

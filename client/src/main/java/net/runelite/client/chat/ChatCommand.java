@@ -24,10 +24,9 @@
  */
 package net.runelite.client.chat;
 
+import api.events.ChatMessage;
 import java.util.function.BiConsumer;
 import java.util.function.BiPredicate;
-
-import api.events.ChatMessage;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import net.runelite.client.events.ChatInput;

@@ -24,12 +24,11 @@
  */
 package net.runelite.client.ui.overlay.worldmap;
 
+import api.Point;
+import api.coords.WorldPoint;
 import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-
-import api.Point;
-import api.coords.WorldPoint;
 import lombok.Data;
 
 @Data

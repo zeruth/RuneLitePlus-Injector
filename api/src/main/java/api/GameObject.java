@@ -25,8 +25,7 @@
 package api;
 
 import api.coords.Angle;
-
-import java.awt.*;
+import java.awt.Polygon;
 
 /**
  * Represents a game object.
