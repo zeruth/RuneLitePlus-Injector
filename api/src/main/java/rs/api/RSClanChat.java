@@ -4,9 +4,9 @@ import net.runelite.mapping.Import;
 
 public interface RSClanChat extends RSUserList<RSClanMate>
 {
-	@Import("clanOwner")
+	@Import("owner")
 	String getClanOwner();
 
-	@Import("clanChatName")
+	@Import("name")
 	String getClanChatName();
 }

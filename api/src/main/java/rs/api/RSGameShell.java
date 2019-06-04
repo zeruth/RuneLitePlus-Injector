@@ -24,9 +24,8 @@
  */
 package rs.api;
 
-import java.awt.Canvas;
-
 import api.GameShell;
+import java.awt.Canvas;
 import net.runelite.mapping.Import;
 
 public interface RSGameShell extends GameShell

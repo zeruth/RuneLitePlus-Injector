@@ -244,8 +244,8 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
       signature = "(IIB)V",
       garbageValue = "-90"
    )
-   @Export("__u_90")
-   protected final void __u_90(int var1, int var2) {
+   @Export("setMaxCanvasSize")
+   protected final void setMaxCanvasSize(int var1, int var2) {
       if(this.maxCanvasWidth != var1 || var2 != this.maxCanvasHeight) {
          this.__ay_96();
       }
@@ -367,8 +367,8 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
       signature = "(I)V",
       garbageValue = "-338689747"
    )
-   @Export("__z_92")
-   final void __z_92() {
+   @Export("resizeCanvas")
+   final void resizeCanvas() {
       Container var1 = this.container();
       if(var1 != null) {
          Bounds var2 = this.getFrameContentBounds();
@@ -682,7 +682,7 @@ public abstract class GameShell extends Applet implements Runnable, FocusListene
    final void __ac_95() {
       Bounds var1 = this.getFrameContentBounds();
       if(var1.__q != this.contentWidth || this.contentHeight != var1.__w || this.resizeCanvasNextFrame) {
-         this.__z_92();
+         this.resizeCanvas();
          this.resizeCanvasNextFrame = false;
       }
 

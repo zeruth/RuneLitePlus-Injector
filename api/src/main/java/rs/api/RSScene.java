@@ -6,20 +6,20 @@ import net.runelite.mapping.Import;
 
 public interface RSScene extends Scene
 {
-	@Import("gameObjects")
-	RSGameObject[] getObjects();
+	//@Import("Scene_gameObjects") --- unused and causing trouble
+	//RSGameObject[] getObjects();
 
 	@Import("tiles")
 	@Override
 	RSTile[][][] getTiles();
 
-	@Import("draw")
+	@Import("drawTile")
 	void draw(Tile tile, boolean var2);
 
 	@Import("tileHeights")
 	int[][][] getTileHeights();
 
-	@Import("drawTile")
+	@Import("drawTileMinimap")
 	void drawTile(int[] pixels, int pixelOffset, int width, int z, int x, int y);
 
 	@Import("occlude")

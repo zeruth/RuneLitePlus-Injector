@@ -339,8 +339,8 @@ public class ItemDefinition extends DualNode {
       signature = "(I)V",
       garbageValue = "1659281458"
    )
-   @Export("__f_425")
-   void __f_425() {
+   @Export("post")
+   void post() {
    }
 
    @ObfuscatedName("q")

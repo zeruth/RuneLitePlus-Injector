@@ -28,6 +28,7 @@ import api.ChatMessageType;
 import api.ClanMember;
 import api.EnumDefinition;
 import api.Friend;
+import api.GameState;
 import api.GrandExchangeOffer;
 import api.GraphicsObject;
 import api.HashTable;
@@ -52,6 +53,7 @@ import api.NPC;
 import api.Node;
 import api.PacketBuffer;
 import static api.Perspective.LOCAL_TILE_SIZE;
+import api.Player;
 import api.Point;
 import api.Prayer;
 import api.Projectile;
@@ -60,8 +62,6 @@ import api.Sprite;
 import api.Tile;
 import api.VarPlayer;
 import api.Varbits;
-import api.WidgetInfo;
-import api.WidgetItem;
 import api.WidgetNode;
 import api.WorldType;
 import api.coords.LocalPoint;
@@ -70,11 +70,13 @@ import api.events.BoostedLevelChanged;
 import api.events.CanvasSizeChanged;
 import api.events.ChatMessage;
 import api.events.ClanChanged;
+import api.events.ClientTick;
 import api.events.DraggingWidgetChanged;
 import api.events.ExperienceChanged;
 import api.events.GameStateChanged;
 import api.events.GrandExchangeOfferChanged;
 import api.events.MenuEntryAdded;
+import api.events.MenuOpened;
 import api.events.MenuOptionClicked;
 import api.events.MenuShouldLeftClick;
 import api.events.NpcSpawned;
@@ -85,10 +87,15 @@ import api.events.ResizeableChanged;
 import api.events.UsernameChanged;
 import api.events.VarbitChanged;
 import api.events.WidgetLoaded;
+import api.hooks.Callbacks;
+import api.hooks.DrawCallbacks;
 import api.vars.AccountType;
 import api.widgets.Widget;
+import api.widgets.WidgetInfo;
+import api.widgets.WidgetItem;
 import api.widgets.WidgetType;
-import callbacks.DrawCallbacks;
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -97,25 +104,18 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.Nullable;
 import javax.inject.Named;
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
-import api.GameState;
-import api.Player;
-import api.events.ClientTick;
-import api.events.MenuOpened;
-import callbacks.Callbacks;
 import net.runelite.api.mixins.Copy;
 import net.runelite.api.mixins.FieldHook;
+import net.runelite.api.mixins.Inject;
 import net.runelite.api.mixins.MethodHook;
+import net.runelite.api.mixins.Mixin;
 import net.runelite.api.mixins.Replace;
+import net.runelite.api.mixins.Shadow;
+import org.slf4j.Logger;
 import rs.api.RSAbstractIndexCache;
 import rs.api.RSChatChannel;
 import rs.api.RSClanChat;
 import rs.api.RSClient;
-import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.Mixin;
-import net.runelite.api.mixins.Shadow;
-import org.slf4j.Logger;
 import rs.api.RSEnumDefinition;
 import rs.api.RSFriendSystem;
 import rs.api.RSFriendsList;
@@ -192,6 +192,16 @@ public abstract class RSClientMixin implements RSClient
 
 	@Inject
 	private static HealthBarOverride healthBarOverride;
+
+	@Inject
+	private static boolean printMenuActions;
+
+	@Inject
+	@Override
+	public void setPrintMenuActions(boolean yes)
+	{
+		printMenuActions = yes;
+	}
 
 	@Inject
 	public RSClientMixin()
@@ -620,7 +630,7 @@ public abstract class RSClientMixin implements RSClient
 		oldMenuEntryCount = count;
 	}
 
-	@FieldHook("menuOptionCount")
+	@FieldHook("menuOptionsCount")
 	@Inject
 	public static void onMenuOptionsChanged(int idx)
 	{
@@ -845,7 +855,7 @@ public abstract class RSClientMixin implements RSClient
 		return clanMemberManager != null && clanMemberManager.isMember(createName(name, getLoginType()));
 	}
 
-	@FieldHook("draggingWidget")
+	@FieldHook("clickedWidget")
 	@Inject
 	public static void draggingWidgetChanged(int idx)
 	{
@@ -893,7 +903,7 @@ public abstract class RSClientMixin implements RSClient
 		}
 	}
 
-	@FieldHook("itemPressedDuration")
+	@FieldHook("widgetDragDuration")
 	@Inject
 	public static void itemPressedDurationChanged(int idx)
 	{
@@ -915,7 +925,7 @@ public abstract class RSClientMixin implements RSClient
 		}
 	}
 
-	@FieldHook("skillExperiences")
+	@FieldHook("experience")
 	@Inject
 	public static void experiencedChanged(int idx)
 	{
@@ -931,7 +941,7 @@ public abstract class RSClientMixin implements RSClient
 		}
 	}
 
-	@FieldHook("boostedSkillLevels")
+	@FieldHook("currentLevels")
 	@Inject
 	public static void boostedSkillLevelsChanged(int idx)
 	{
@@ -946,7 +956,7 @@ public abstract class RSClientMixin implements RSClient
 		}
 	}
 
-	@FieldHook("playerOptions")
+	@FieldHook("playerMenuActions")
 	@Inject
 	public static void playerOptionsChanged(int idx)
 	{
@@ -974,7 +984,7 @@ public abstract class RSClientMixin implements RSClient
 	}
 
 
-	@FieldHook("cachedNPCs")
+	@FieldHook("npcs")
 	@Inject
 	public static void cachedNPCsChanged(int idx)
 	{
@@ -993,7 +1003,7 @@ public abstract class RSClientMixin implements RSClient
 		}
 	}
 
-	@FieldHook("cachedPlayers")
+	@FieldHook("players")
 	@Inject
 	public static void cachedPlayersChanged(int idx)
 	{
@@ -1039,7 +1049,7 @@ public abstract class RSClientMixin implements RSClient
 		client.getCallbacks().post(offerChangedEvent);
 	}
 
-	@FieldHook("clientVarps")
+	@FieldHook("Varps_main")
 	@Inject
 	public static void settingsChanged(int idx)
 	{
@@ -1048,7 +1058,7 @@ public abstract class RSClientMixin implements RSClient
 		client.getCallbacks().post(varbitChanged);
 	}
 
-	@FieldHook("isResized")
+	@FieldHook("isResizable")
 	@Inject
 	public static void resizeChanged(int idx)
 	{
@@ -1065,7 +1075,7 @@ public abstract class RSClientMixin implements RSClient
 		}
 	}
 
-	@FieldHook("clanMemberManager")
+	@FieldHook("clanChat")
 	@Inject
 	public static void clanMemberManagerChanged(int idx)
 	{
@@ -1214,6 +1224,11 @@ public abstract class RSClientMixin implements RSClient
 	@Replace("menuAction")
 	static void rl$menuAction(int actionParam, int widgetId, int menuAction, int id, String menuOption, String menuTarget, int var6, int var7)
 	{
+		if (printMenuActions && client.getLogger().isDebugEnabled())
+		{
+			client.getLogger().debug("Menuaction: {} {} {} {} {} {} {} {}", actionParam, widgetId, menuAction, id, menuOption, menuTarget, var6, var7);
+		}
+
 		/* Along the way, the RuneScape client may change a menuAction by incrementing it with 2000.
 		 * I have no idea why, but it does. Their code contains the same conditional statement.
 		 */
@@ -1239,7 +1254,7 @@ public abstract class RSClientMixin implements RSClient
 		rs$menuAction(actionParam, widgetId, menuAction, id, menuOption, menuTarget, var6, var7);
 	}
 
-	@FieldHook("username")
+	@FieldHook("Login_username")
 	@Inject
 	public static void onUsernameChanged(int idx)
 	{
@@ -1292,7 +1307,7 @@ public abstract class RSClientMixin implements RSClient
 	}
 
 	@Inject
-	@MethodHook(value = "addMessage", end = true)
+	@MethodHook(value = "addChatMessage", end = true)
 	public static void onAddChatMessage(int type, String name, String message, String sender)
 	{
 		Logger logger = client.getLogger();
@@ -1318,7 +1333,7 @@ public abstract class RSClientMixin implements RSClient
 		callbacks.clientMainLoop();
 	}
 
-	@MethodHook("renderWidgetLayer")
+	@MethodHook("drawWidgetGroup")
 	@Inject
 	public static void renderWidgetLayer(Widget[] widgets, int parentId, int minX, int minY, int maxX, int maxY, int x, int y, int var8)
 	{

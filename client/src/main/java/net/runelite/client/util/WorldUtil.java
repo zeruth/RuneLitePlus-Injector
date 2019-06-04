@@ -25,7 +25,6 @@
 package net.runelite.client.util;
 
 import api.WorldType;
-
 import java.util.EnumSet;
 
 /**

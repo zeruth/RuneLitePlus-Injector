@@ -24,29 +24,18 @@
  */
 package net.runelite.client.ui.overlay;
 
+import api.widgets.Widget;
+import static api.widgets.WidgetID.*;
+import static api.widgets.WidgetInfo.TO_GROUP;
+import api.widgets.WidgetItem;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import api.widgets.Widget;
-import api.widgets.WidgetItem;
 import lombok.AccessLevel;
 import lombok.Setter;
-
-import static api.WidgetInfo.TO_GROUP;
-import static api.widgets.WidgetID.BANK_GROUP_ID;
-import static api.widgets.WidgetID.BANK_INVENTORY_GROUP_ID;
-import static api.widgets.WidgetID.DEPOSIT_BOX_GROUP_ID;
-import static api.widgets.WidgetID.EQUIPMENT_GROUP_ID;
-import static api.widgets.WidgetID.EQUIPMENT_INVENTORY_GROUP_ID;
-import static api.widgets.WidgetID.GRAND_EXCHANGE_INVENTORY_GROUP_ID;
-import static api.widgets.WidgetID.GUIDE_PRICES_INVENTORY_GROUP_ID;
-import static api.widgets.WidgetID.INVENTORY_GROUP_ID;
-import static api.widgets.WidgetID.SEED_VAULT_INVENTORY_GROUP_ID;
-import static api.widgets.WidgetID.SHOP_INVENTORY_GROUP_ID;
 
 public abstract class WidgetItemOverlay extends Overlay
 {

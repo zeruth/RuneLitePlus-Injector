@@ -9,10 +9,6 @@
 
 package net.runelite.client.util;
 
-import java.util.Comparator;
-import java.util.Objects;
-import java.util.TreeMap;
-
 import api.Client;
 import api.InventoryID;
 import api.Item;
@@ -21,6 +17,9 @@ import api.Player;
 import api.Varbits;
 import api.WorldType;
 import api.coords.WorldPoint;
+import java.util.Comparator;
+import java.util.Objects;
+import java.util.TreeMap;
 import net.runelite.client.game.ItemManager;
 import static net.runelite.client.util.StackFormatter.quantityToRSDecimalStack;
 import org.apache.commons.lang3.ArrayUtils;

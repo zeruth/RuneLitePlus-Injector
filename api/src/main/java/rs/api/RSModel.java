@@ -25,9 +25,8 @@
 package rs.api;
 
 import api.Model;
+import java.awt.Polygon;
 import net.runelite.mapping.Import;
-
-import java.awt.*;
 
 public interface RSModel extends RSEntity, Model
 {
@@ -113,7 +112,7 @@ public interface RSModel extends RSEntity, Model
 	@Import("rotateY90Ccw")
 	void rotateY90Ccw();
 
-	@Import("rotateY180Ccw")
+	@Import("rotateY180")
 	void rotateY180Ccw();
 
 	@Import("rotateY270Ccw")

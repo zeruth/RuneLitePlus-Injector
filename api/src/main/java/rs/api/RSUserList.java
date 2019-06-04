@@ -10,10 +10,10 @@ public interface RSUserList<T extends RSUser>
 	@Import("array")
 	T[] getNameables();
 
-	@Import("isMember")
+	@Import("contains")
 	boolean isMember(RSUsername var1);
 
-	@Import("findByName")
+	@Import("getByUsername")
 	T findByName(RSUsername name);
 
 	/**

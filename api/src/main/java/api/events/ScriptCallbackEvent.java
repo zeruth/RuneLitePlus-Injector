@@ -24,6 +24,7 @@
  */
 package api.events;
 
+import api.Script;
 import lombok.Data;
 
 /**

@@ -85,7 +85,7 @@ public class WorldMapRegion {
       Sprite var4 = class13.method164(this.x, this.y, this.__d);
       if(var4 != null) {
          if(var3 == this.__d * 64) {
-            var4.__x_504(var1, var2);
+            var4.drawAt(var1, var2);
          } else {
             var4.__al_517(var1, var2, var3, var3);
          }
@@ -321,7 +321,7 @@ public class WorldMapRegion {
                byte[] var7 = var5.takeRecordFlat(var8);
                class27 var9 = SecureRandomCallable.method1145(var7);
                Sprite var10 = new Sprite(this.__d * 64, this.__d * 64);
-               var10.__q_498();
+               var10.setRaster();
                if(this.field239 != null) {
                   this.method546(var2, var3, var9);
                } else {

@@ -25,8 +25,8 @@
 package net.runelite.client.ui.overlay;
 
 import api.Client;
-import api.WidgetInfo;
 import api.widgets.Widget;
+import api.widgets.WidgetInfo;
 import com.google.common.collect.ImmutableMap;
 import java.awt.Dimension;
 import java.awt.Graphics2D;

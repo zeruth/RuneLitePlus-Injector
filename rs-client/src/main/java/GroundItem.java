@@ -55,9 +55,9 @@ public final class GroundItem extends Entity {
       }
 
       if(SpotAnimationDefinition.method4822() == 1) {
-         TextureProvider.client.__u_90(765, 503);
+         TextureProvider.client.setMaxCanvasSize(765, 503);
       } else {
-         TextureProvider.client.__u_90(7680, 2160);
+         TextureProvider.client.setMaxCanvasSize(7680, 2160);
       }
 
       if(Client.gameState >= 25) {

@@ -24,6 +24,12 @@
  */
 package net.runelite.client.ui.overlay.worldmap;
 
+import api.Client;
+import api.Point;
+import api.RenderOverview;
+import api.coords.WorldPoint;
+import api.widgets.Widget;
+import api.widgets.WidgetInfo;
 import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.awt.Graphics2D;
@@ -33,13 +39,6 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
-import api.Client;
-import api.Point;
-import api.RenderOverview;
-import api.WidgetInfo;
-import api.coords.WorldPoint;
-import api.widgets.Widget;
 import net.runelite.client.input.MouseManager;
 import net.runelite.client.ui.FontManager;
 import net.runelite.client.ui.JagexColors;

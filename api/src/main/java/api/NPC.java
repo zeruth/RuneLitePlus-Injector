@@ -24,9 +24,8 @@
  */
 package api;
 
-import rs.api.RSNPCDefinition;
-
 import javax.annotation.Nullable;
+import rs.api.RSNPCDefinition;
 
 /**
  * Represents a non-player character in the game.

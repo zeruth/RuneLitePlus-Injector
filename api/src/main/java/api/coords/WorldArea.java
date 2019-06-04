@@ -30,11 +30,10 @@ import api.CollisionDataFlag;
 import api.Point;
 import api.Tile;
 import api.config.Constants;
-import lombok.Getter;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import lombok.Getter;
 
 /**
  * Represents an area on the world.

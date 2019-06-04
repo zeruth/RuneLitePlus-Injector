@@ -24,6 +24,13 @@
  */
 package net.runelite.client.ui.overlay.arrow;
 
+import api.Client;
+import api.GameObject;
+import api.NPC;
+import api.Perspective;
+import api.Point;
+import api.coords.LocalPoint;
+import api.coords.WorldPoint;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
@@ -32,14 +39,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import javax.inject.Inject;
 import javax.inject.Singleton;
-
-import api.Client;
-import api.GameObject;
-import api.NPC;
-import api.Perspective;
-import api.Point;
-import api.coords.LocalPoint;
-import api.coords.WorldPoint;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.ui.overlay.Overlay;
 import net.runelite.client.ui.overlay.OverlayLayer;

@@ -25,7 +25,6 @@
 package net.runelite.client.config;
 
 import api.config.Constants;
-
 import java.awt.Dimension;
 
 @ConfigGroup("runelite")

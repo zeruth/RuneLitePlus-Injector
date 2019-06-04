@@ -72,6 +72,7 @@ public class MouseRecorder implements Runnable {
       signature = "(IIIIIB)V",
       garbageValue = "-51"
    )
+   @Export("drawObject")
    static final void drawObject(int var0, int var1, int var2, int var3, int var4) {
       long var5 = class65.scene.__ar_244(var0, var1, var2);
       int var7;
@@ -325,11 +326,11 @@ public class MouseRecorder implements Runnable {
                      var14 = true;
                   }
 
-                  if(var17.__f_124()) {
+                  if(var17.isFriend()) {
                      NetFileRequest.method4554(var1, var2, var12, var13, class39.mapDotSprites[3], var4);
                   } else if(var14) {
                      NetFileRequest.method4554(var1, var2, var12, var13, class39.mapDotSprites[4], var4);
-                  } else if(var17.__o_127()) {
+                  } else if(var17.isClanMember()) {
                      NetFileRequest.method4554(var1, var2, var12, var13, class39.mapDotSprites[5], var4);
                   } else {
                      NetFileRequest.method4554(var1, var2, var12, var13, class39.mapDotSprites[2], var4);

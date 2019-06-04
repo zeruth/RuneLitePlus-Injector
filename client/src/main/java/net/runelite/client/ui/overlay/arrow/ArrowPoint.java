@@ -24,13 +24,12 @@
  */
 package net.runelite.client.ui.overlay.arrow;
 
+import api.Point;
+import api.coords.WorldPoint;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.util.EnumSet;
 import java.util.HashSet;
-
-import api.Point;
-import api.coords.WorldPoint;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;

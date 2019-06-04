@@ -24,8 +24,8 @@
  */
 package api.events;
 
-import lombok.Value;
 import api.ClanMember;
+import lombok.Value;
 
 @Value
 public class ClanMemberJoined

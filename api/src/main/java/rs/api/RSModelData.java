@@ -13,7 +13,7 @@ public interface RSModelData extends RSEntity
 	@Import("indices2")
 	int[] getTrianglePointsY();
 
-	@Import("indices13")
+	@Import("indices3")
 	int[] getTrianglePointsZ();
 
 	@Import("verticesX")

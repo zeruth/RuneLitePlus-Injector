@@ -69,7 +69,7 @@ public class InjectorValidator
 		// find methods of the interface not implemented in the class
 		for (net.runelite.asm.pool.Class clazz : cf.getInterfaces().getInterfaces())
 		{
-			if (clazz.getName().startsWith(API_PACKAGE_BASE) == false)
+			if (!clazz.getName().startsWith(API_PACKAGE_BASE))
 			{
 				continue;
 			}
@@ -93,7 +93,7 @@ public class InjectorValidator
 
 			for (Method method : c.getMethods())
 			{
-				if (method.isSynthetic())
+				if (method.isSynthetic() || method.isDefault())
 				{
 					continue;
 				}

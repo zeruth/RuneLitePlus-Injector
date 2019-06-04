@@ -14,8 +14,8 @@ public class class258 {
       var0.height = class328.indexedSpriteHeight;
       var0.yOffset = class328.indexedSpriteOffsetXs[0];
       var0.xOffset = class328.indexedSpriteOffsetYs[0];
-      var0.subWidth = VarbitDefinition.__ia_u[0];
-      var0.subHeight = SecureRandomCallable.__bk_g[0];
+      var0.subWidth = VarbitDefinition.indexedSpriteWidths[0];
+      var0.subHeight = SecureRandomCallable.indexedSpriteHeights[0];
       int var1 = var0.subHeight * var0.subWidth;
       byte[] var2 = class328.spritePixels[0];
       var0.pixels = new int[var1];
@@ -26,8 +26,8 @@ public class class258 {
 
       class328.indexedSpriteOffsetXs = null;
       class328.indexedSpriteOffsetYs = null;
-      VarbitDefinition.__ia_u = null;
-      SecureRandomCallable.__bk_g = null;
+      VarbitDefinition.indexedSpriteWidths = null;
+      SecureRandomCallable.indexedSpriteHeights = null;
       class328.indexedSpritePalette = null;
       class328.spritePixels = null;
       return var0;

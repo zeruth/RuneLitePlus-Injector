@@ -29,8 +29,8 @@ import api.coords.WorldArea;
 import api.coords.WorldPoint;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
-import javax.annotation.Nullable;
 import java.awt.image.BufferedImage;
+import javax.annotation.Nullable;
 
 /**
  * Represents a RuneScape actor/entity.

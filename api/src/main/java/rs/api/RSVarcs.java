@@ -5,6 +5,6 @@ import net.runelite.mapping.Import;
 
 public interface RSVarcs
 {
-	//@Import("varcMap")
-	//Map<Integer, Object> getVarcMap();
+	@Import("map")
+	Map<Integer, Object> getVarcMap();
 }

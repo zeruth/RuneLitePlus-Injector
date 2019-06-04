@@ -24,8 +24,8 @@
  */
 package net.runelite.injector;
 
-import net.runelite.injector.raw.DrawAfterWidgets;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import net.runelite.asm.ClassFile;
 import net.runelite.asm.ClassGroup;
@@ -46,6 +46,7 @@ import net.runelite.asm.pool.Class;
 import net.runelite.asm.signature.Signature;
 import net.runelite.deob.DeobAnnotations;
 import net.runelite.deob.deobfuscators.arithmetic.DMath;
+import net.runelite.injector.raw.DrawAfterWidgets;
 import net.runelite.injector.raw.ScriptVM;
 import net.runelite.mapping.Import;
 import org.slf4j.Logger;
@@ -238,6 +239,7 @@ public class Inject
 			ClassFile other = vanilla.findClass(obfuscatedName);
 			assert other != null : "unable to find vanilla class from obfuscated name: " + obfuscatedName;
 
+			HashSet<String> unfound = new HashSet<>();
 			for (Field f : cf.getFields())
 			{
 				an = f.getAnnotations();
@@ -273,7 +275,7 @@ public class Inject
 					assert !f.isStatic();
 
 					// non static field exported on non exported interface
-					logger.debug("Non static exported field {} on non exported interface", exportedName);
+		//			logger.debug("Non static exported field {} on non exported interface", exportedName);
 					continue;
 				}
 
@@ -292,7 +294,7 @@ public class Inject
 				apiMethod = findImportMethodOnApi(targetApiClass, exportedName, false);
 				if (apiMethod == null)
 				{
-					logger.debug("Unable to find import method on api class {} with imported name {}, not injecting getter", targetApiClass, exportedName);
+		//			logger.debug("Unable to find import method on api class {} with imported name {}, not injecting getter", targetApiClass, exportedName);
 					continue;
 				}
 
@@ -302,10 +304,21 @@ public class Inject
 				Type returnType = classToType(apiMethod.getReturnType());
 				if (!validateTypeIsConvertibleTo(fieldType, returnType))
 				{
-					throw new InjectionException("Type " + fieldType + " is not convertable to " + returnType + " for getter " + apiMethod);
+					logger.info("Type " + fieldType + " is not convertable to " + returnType + " for getter " + apiMethod + ". Fuck it, I'll search some more");
+					unfound.add(exportedName);
+					continue;
+					//throw new InjectionException("Type " + fieldType + " is not convertable to " + returnType + " for getter " + apiMethod);
 				}
 
-					getters.injectGetter(targetClass, apiMethod, otherf, getter);
+				unfound.remove(exportedName);
+				getters.injectGetter(targetClass, apiMethod, otherf, getter);
+			}
+			if (!unfound.isEmpty())
+			{
+				for (String s : unfound)
+				{
+					logger.warn(s + " could not be found!");
+				}
 			}
 
 			for (Method m : cf.getMethods())
@@ -315,7 +328,7 @@ public class Inject
 			}
 		}
 		
-		logger.info("Injected {} getters, {} settters, {} invokers",
+		logger.info("Injected {} getters, {} setters, {} invokers",
 			getters.getInjectedGetters(),
 			setters.getInjectedSetters(), invokes.getInjectedInvokers());
 
@@ -505,12 +518,14 @@ public class Inject
 			}
 		}
 
-		if (rlApiType == null)
-		{
-			throw new InjectionException("RS API type " + rsApiType + " does not extend RL API interface");
-		}
+	//	if (rlApiType == null)
+	//	{
+	//		throw new InjectionException("RS API type " + rsApiType + " does not extend RL API interface");
+	//	}
 
-		return Type.getType("L" + rlApiType.getName().replace('.', '/') + ";", type.getDimensions());
+		final java.lang.Class<?> finalType = rlApiType == null ? rsApiType : rlApiType;
+
+		return Type.getType("L" + finalType.getName().replace('.', '/') + ";", type.getDimensions());
 	}
 
 	Type apiTypeToDeobfuscatedType(Type type) throws InjectionException

@@ -403,7 +403,7 @@ public class Message extends DualNode {
 
          var3 = (238 + (int)(Math.random() * 20.0D) - 10 << 16) + (238 + (int)(Math.random() * 20.0D) - 10 << 8) + (238 + (int)(Math.random() * 20.0D) - 10);
          var4 = 238 + (int)(Math.random() * 20.0D) - 10 << 16;
-         WidgetGroupParent.sceneMinimapSprite.__q_498();
+         WidgetGroupParent.sceneMinimapSprite.setRaster();
 
          int var6;
          for(var5 = 1; var5 < 103; ++var5) {

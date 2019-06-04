@@ -5155,7 +5155,7 @@ public final class Client extends GameShell implements Usernamed {
                rootWidgetGroup = var16;
                this.__iu_141(false);
                DevicePcmPlayerProvider.method845(var16);
-               WorldMapSection3.method346(rootWidgetGroup);
+               WorldMapSection3.runWidgetOnLoadListener(rootWidgetGroup);
 
                for(var5 = 0; var5 < 100; ++var5) {
                   __client_od[var5] = true;
@@ -5305,9 +5305,9 @@ public final class Client extends GameShell implements Usernamed {
                   var58.modelOffsetY = var54.offsetY2d;
                   var58.modelZoom = var54.zoom2d;
                   if(var54.isStackable == 1) {
-                     var58.__bw = 1;
+                     var58.itemQuantityMode = 1;
                   } else {
-                     var58.__bw = 2;
+                     var58.itemQuantityMode = 2;
                   }
 
                   if(var58.__bf > 0) {
@@ -5331,7 +5331,7 @@ public final class Client extends GameShell implements Usernamed {
                boolean var44 = false;
                if(var47) {
                   var6 = var3.readStringCp1252NullTerminated();
-                  if(WorldMapArea.friendSystem.__g_156(new Username(var6, KeyHandler.loginType))) {
+                  if(WorldMapArea.friendSystem.isIgnored(new Username(var6, KeyHandler.loginType))) {
                      var44 = true;
                   }
                }
@@ -5739,7 +5739,7 @@ public final class Client extends GameShell implements Usernamed {
                   }
                }
 
-               if(var11.isUser && WorldMapArea.friendSystem.__g_156(new Username(var37, KeyHandler.loginType))) {
+               if(var11.isUser && WorldMapArea.friendSystem.isIgnored(new Username(var37, KeyHandler.loginType))) {
                   var46 = true;
                }
 
@@ -5748,9 +5748,9 @@ public final class Client extends GameShell implements Usernamed {
                   __client_pb = (__client_pb + 1) % 100;
                   String var28 = AbstractFont.escapeBrackets(class233.method4527(KitDefinition.method4866(var3)));
                   if(var11.modIcon != -1) {
-                     GrandExchangeEvents.addMessage(9, ItemContainer.method1170(var11.modIcon) + var37, var28, Clock.method3534(var24));
+                     GrandExchangeEvents.addChatMessage(9, ItemContainer.method1170(var11.modIcon) + var37, var28, Clock.method3534(var24));
                   } else {
-                     GrandExchangeEvents.addMessage(9, var37, var28, Clock.method3534(var24));
+                     GrandExchangeEvents.addChatMessage(9, var37, var28, Clock.method3534(var24));
                   }
                }
 
@@ -5952,7 +5952,7 @@ public final class Client extends GameShell implements Usernamed {
                   rootWidgetGroup = var5;
                   this.__iu_141(false);
                   DevicePcmPlayerProvider.method845(rootWidgetGroup);
-                  WorldMapSection3.method346(rootWidgetGroup);
+                  WorldMapSection3.runWidgetOnLoadListener(rootWidgetGroup);
 
                   for(var7 = 0; var7 < 100; ++var7) {
                      __client_od[var7] = true;
@@ -6148,7 +6148,7 @@ public final class Client extends GameShell implements Usernamed {
                   }
                }
 
-               if(WorldMapArea.friendSystem.__g_156(new Username(var37, KeyHandler.loginType))) {
+               if(WorldMapArea.friendSystem.isIgnored(new Username(var37, KeyHandler.loginType))) {
                   var33 = true;
                }
 

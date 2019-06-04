@@ -67,14 +67,14 @@ public final class WorldMapManager {
    @ObfuscatedGetter(
       intValue = -1459928419
    )
-   @Export("__k")
-   int __k;
+   @Export("surfaceOffsetX")
+   int surfaceOffsetX;
    @ObfuscatedName("n")
    @ObfuscatedGetter(
       intValue = 1364441271
    )
-   @Export("__n")
-   int __n;
+   @Export("surfaceOffsetY")
+   int surfaceOffsetY;
    @ObfuscatedName("i")
    @ObfuscatedGetter(
       intValue = 1729323633
@@ -136,8 +136,8 @@ public final class WorldMapManager {
          this.mapAreaData.originX();
          this.mapAreaData.originPlane();
          this.mapAreaData.originY();
-         this.__k = this.mapAreaData.minX() * 64;
-         this.__n = this.mapAreaData.minY() * 64;
+         this.surfaceOffsetX = this.mapAreaData.minX() * 64;
+         this.surfaceOffsetY = this.mapAreaData.minY() * 64;
          this.__i = (this.mapAreaData.maxX() - this.mapAreaData.minX() + 1) * 64;
          this.__a = (this.mapAreaData.maxY() - this.mapAreaData.minY() + 1) * 64;
          int var16 = this.mapAreaData.maxX() - this.mapAreaData.minX() + 1;
@@ -204,7 +204,7 @@ public final class WorldMapManager {
       int[] var12 = new int[4];
       Rasterizer2D.Rasterizer2D_getClipArray(var12);
       class22 var13 = this.method643(var1, var2, var3, var4);
-      float var14 = this.__d_75(var7 - var5, var3 - var1);
+      float var14 = this.getPixelsPerTile(var7 - var5, var3 - var1);
       int var15 = (int)Math.ceil((double)var14);
       this.__z = var15;
       if(!this.__g.containsKey(Integer.valueOf(var15))) {
@@ -227,8 +227,8 @@ public final class WorldMapManager {
       Rasterizer2D.Rasterizer2D_replace(var9, var10, var11);
       Rasterizer2D.Rasterizer2D_setClipArray(var12);
       var18 = (int)(64.0F * var14);
-      var19 = this.__k + var1;
-      int var20 = var2 + this.__n;
+      var19 = this.surfaceOffsetX + var1;
+      int var20 = var2 + this.surfaceOffsetY;
 
       for(int var21 = var13.field166; var21 < var13.field166 + var13.field169; ++var21) {
          for(int var22 = var13.field167; var22 < var13.field167 + var13.field164; ++var22) {
@@ -246,10 +246,10 @@ public final class WorldMapManager {
    @Export("__w_73")
    public final void __w_73(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, HashSet var9, HashSet var10, int var11, int var12, boolean var13) {
       class22 var14 = this.method643(var1, var2, var3, var4);
-      float var15 = this.__d_75(var7 - var5, var3 - var1);
+      float var15 = this.getPixelsPerTile(var7 - var5, var3 - var1);
       int var16 = (int)(var15 * 64.0F);
-      int var17 = this.__k + var1;
-      int var18 = var2 + this.__n;
+      int var17 = this.surfaceOffsetX + var1;
+      int var18 = var2 + this.surfaceOffsetY;
 
       int var19;
       int var20;
@@ -304,8 +304,8 @@ public final class WorldMapManager {
 
                while(var11.hasNext()) {
                   AbstractWorldMapIcon var12 = (AbstractWorldMapIcon)var11.next();
-                  int var13 = var3 * (var12.coord2.x - this.__k) / this.__i;
-                  int var14 = var4 - (var12.coord2.y - this.__n) * var4 / this.__a;
+                  int var13 = var3 * (var12.coord2.x - this.surfaceOffsetX) / this.__i;
+                  int var14 = var4 - (var12.coord2.y - this.surfaceOffsetY) * var4 / this.__a;
                   Rasterizer2D.method5928(var13 + var1, var14 + var2, 2, 16776960, 256);
                }
             }
@@ -325,10 +325,10 @@ public final class WorldMapManager {
          return var11;
       } else {
          class22 var12 = this.method643(var1, var2, var3, var4);
-         float var13 = this.__d_75(var7, var3 - var1);
+         float var13 = this.getPixelsPerTile(var7, var3 - var1);
          int var14 = (int)(var13 * 64.0F);
-         int var15 = this.__k + var1;
-         int var16 = var2 + this.__n;
+         int var15 = this.surfaceOffsetX + var1;
+         int var16 = var2 + this.surfaceOffsetY;
 
          for(int var17 = var12.field166; var17 < var12.field166 + var12.field169; ++var17) {
             for(int var18 = var12.field167; var18 < var12.field164 + var12.field167; ++var18) {
@@ -350,10 +350,10 @@ public final class WorldMapManager {
    )
    class22 method643(int var1, int var2, int var3, int var4) {
       class22 var5 = new class22(this);
-      int var6 = this.__k + var1;
-      int var7 = var2 + this.__n;
-      int var8 = var3 + this.__k;
-      int var9 = var4 + this.__n;
+      int var6 = this.surfaceOffsetX + var1;
+      int var7 = var2 + this.surfaceOffsetY;
+      int var8 = var3 + this.surfaceOffsetX;
+      int var9 = var4 + this.surfaceOffsetY;
       int var10 = var6 / 64;
       int var11 = var7 / 64;
       int var12 = var8 / 64;
@@ -448,8 +448,8 @@ public final class WorldMapManager {
       signature = "(III)F",
       garbageValue = "1249403507"
    )
-   @Export("__d_75")
-   float __d_75(int var1, int var2) {
+   @Export("getPixelsPerTile")
+   float getPixelsPerTile(int var1, int var2) {
       float var3 = (float)var1 / (float)var2;
       if(var3 > 8.0F) {
          return 8.0F;

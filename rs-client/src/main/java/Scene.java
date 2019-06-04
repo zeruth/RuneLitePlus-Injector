@@ -61,8 +61,8 @@ public class Scene {
    @ObfuscatedSignature(
       signature = "[Leh;"
    )
-   @Export("gameObjects")
-   static GameObject[] gameObjects;
+   @Export("Scene_gameObjects")
+   static GameObject[] Scene_gameObjects;
    @ObfuscatedName("ac")
    @Export("checkClick")
    static boolean checkClick;
@@ -200,7 +200,7 @@ public class Scene {
       Scene_isLowDetail = true;
       tileUpdateCount = 0;
       Scene_plane = 0;
-      gameObjects = new GameObject[100];
+      Scene_gameObjects = new GameObject[100];
       checkClick = false;
       Scene_selectedPlane = 0;
       Scene_selectedScreenX = 0;
@@ -266,8 +266,8 @@ public class Scene {
 
       this.tempGameObjectsCount = 0;
 
-      for(var1 = 0; var1 < gameObjects.length; ++var1) {
-         gameObjects[var1] = null;
+      for(var1 = 0; var1 < Scene_gameObjects.length; ++var1) {
+         Scene_gameObjects[var1] = null;
       }
 
    }
@@ -1611,7 +1611,7 @@ public class Scene {
                                           }
                                        }
 
-                                       gameObjects[var21++] = var12;
+                                       Scene_gameObjects[var21++] = var12;
                                        var24 = Scene_cameraXTile - var12.startX;
                                        var14 = var12.endX - Scene_cameraXTile;
                                        if(var14 > var24) {
@@ -1633,7 +1633,7 @@ public class Scene {
                                     var25 = -1;
 
                                     for(var24 = 0; var24 < var21; ++var24) {
-                                       GameObject var35 = gameObjects[var24];
+                                       GameObject var35 = Scene_gameObjects[var24];
                                        if(var35.lastDrawn != Scene_drawnCount) {
                                           if(var35.__d > var11) {
                                              var11 = var35.__d;
@@ -1641,8 +1641,8 @@ public class Scene {
                                           } else if(var11 == var35.__d) {
                                              var15 = var35.centerX - Scene_cameraX;
                                              var16 = var35.centerY - Scene_cameraZ;
-                                             var17 = gameObjects[var25].centerX - Scene_cameraX;
-                                             var18 = gameObjects[var25].centerY - Scene_cameraZ;
+                                             var17 = Scene_gameObjects[var25].centerX - Scene_cameraX;
+                                             var18 = Scene_gameObjects[var25].centerY - Scene_cameraZ;
                                              if(var15 * var15 + var16 * var16 > var17 * var17 + var18 * var18) {
                                                 var25 = var24;
                                              }
@@ -1654,7 +1654,7 @@ public class Scene {
                                        break;
                                     }
 
-                                    GameObject var33 = gameObjects[var25];
+                                    GameObject var33 = Scene_gameObjects[var25];
                                     var33.lastDrawn = Scene_drawnCount;
                                     if(!this.__bq_256(var7, var33.startX, var33.endX, var33.startY, var33.endY, var33.entity.height)) {
                                        var33.entity.draw(var33.orientation, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var33.centerX - Scene_cameraX, var33.height - Scene_cameraY, var33.centerY - Scene_cameraZ, var33.tag);

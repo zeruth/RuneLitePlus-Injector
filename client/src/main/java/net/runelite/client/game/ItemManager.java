@@ -25,9 +25,12 @@
 package net.runelite.client.game;
 
 import api.Client;
+import static api.Constants.CLIENT_DEFAULT_ZOOM;
+import static api.Constants.HIGH_ALCHEMY_CONSTANT;
 import api.GameState;
 import api.ItemDefinition;
 import api.ItemID;
+import static api.ItemID.*;
 import api.Sprite;
 import api.events.GameStateChanged;
 import api.events.PostItemDefinition;
@@ -55,10 +58,6 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.http.api.item.ItemClient;
 import net.runelite.http.api.item.ItemPrice;
 import net.runelite.http.api.item.ItemStats;
-
-import static api.Constants.CLIENT_DEFAULT_ZOOM;
-import static api.Constants.HIGH_ALCHEMY_CONSTANT;
-import static api.ItemID.*;
 
 @Singleton
 @Slf4j

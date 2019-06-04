@@ -50,7 +50,7 @@ public class MidiPcmStream extends PcmStream {
    @Export("__k")
    int[] __k;
    @ObfuscatedName("n")
-   @Export("__n")
+   @Export("surfaceOffsetY")
    int[] __n;
    @ObfuscatedName("y")
    @Export("__y")

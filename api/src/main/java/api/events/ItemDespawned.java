@@ -24,9 +24,9 @@
  */
 package api.events;
 
-import lombok.Value;
 import api.Item;
 import api.Tile;
+import lombok.Value;
 
 /**
  * Called when an item pile despawns from the ground. When the client loads a new scene,

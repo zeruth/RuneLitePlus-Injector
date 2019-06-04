@@ -25,10 +25,10 @@ public abstract class RSHealthBarDefinitionMixin implements RSHealthBarDefinitio
 	@Shadow("healthBarOverride")
 	private static HealthBarOverride healthBarOverride;
 
-	@Copy("getHealthBarBackSprite")
+	@Copy("getSprite2")
 	abstract RSSprite rs$getHealthBarBackSprite();
 
-	@Replace("getHealthBarBackSprite")
+	@Replace("getSprite2")
 	public RSSprite rl$getHealthBarBackSprite()
 	{
 		/*
@@ -51,10 +51,10 @@ public abstract class RSHealthBarDefinitionMixin implements RSHealthBarDefinitio
 			: (RSSprite) healthBarOverride.backSpriteLarge;
 	}
 
-	@Copy("getHealthBarFrontSprite")
+	@Copy("getSprite1")
 	abstract RSSprite rs$getHealthBarFrontSprite();
 
-	@Replace("getHealthBarFrontSprite")
+	@Replace("getSprite1")
 	public RSSprite rl$getHealthBarFrontSprite()
 	{
 		/*

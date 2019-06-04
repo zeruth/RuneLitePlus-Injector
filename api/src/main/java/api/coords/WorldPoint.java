@@ -27,14 +27,12 @@ package api.coords;
 
 import api.Client;
 import api.Perspective;
-import lombok.Value;
-
+import static api.config.Constants.CHUNK_SIZE;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
-import static api.config.Constants.CHUNK_SIZE;
+import lombok.Value;
 
 /**
  * A three-dimensional point representing the coordinate of a Tile.

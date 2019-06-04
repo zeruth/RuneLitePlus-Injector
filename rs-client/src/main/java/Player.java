@@ -146,8 +146,8 @@ public final class Player extends Actor {
    @ObfuscatedSignature(
       signature = "Lkd;"
    )
-   @Export("isFriend")
-   TriBool isFriend;
+   @Export("isFriendTriBool")
+   TriBool isFriendTriBool;
    @ObfuscatedName("v")
    @ObfuscatedSignature(
       signature = "Lkd;"
@@ -186,7 +186,7 @@ public final class Player extends Actor {
       this.isUnanimated = false;
       this.team = 0;
       this.isHidden = false;
-      this.isFriend = TriBool.TriBool_unknown;
+      this.isFriendTriBool = TriBool.TriBool_unknown;
       this.isInClanChat = TriBool.TriBool_unknown;
       this.__ag = false;
    }
@@ -302,13 +302,13 @@ public final class Player extends Actor {
       signature = "(B)Z",
       garbageValue = "92"
    )
-   @Export("__f_124")
-   boolean __f_124() {
-      if(this.isFriend == TriBool.TriBool_unknown) {
+   @Export("isFriend")
+   boolean isFriend() {
+      if(this.isFriendTriBool == TriBool.TriBool_unknown) {
          this.__w_126();
       }
 
-      return this.isFriend == TriBool.TriBool_true;
+      return this.isFriendTriBool == TriBool.TriBool_true;
    }
 
    @ObfuscatedName("q")
@@ -318,7 +318,7 @@ public final class Player extends Actor {
    )
    @Export("__q_125")
    void __q_125() {
-      this.isFriend = TriBool.TriBool_unknown;
+      this.isFriendTriBool = TriBool.TriBool_unknown;
    }
 
    @ObfuscatedName("w")
@@ -328,7 +328,7 @@ public final class Player extends Actor {
    )
    @Export("__w_126")
    void __w_126() {
-      this.isFriend = WorldMapArea.friendSystem.__t_161(this.username)?TriBool.TriBool_true:TriBool.TriBool_false;
+      this.isFriendTriBool = WorldMapArea.friendSystem.__t_161(this.username)?TriBool.TriBool_true:TriBool.TriBool_false;
    }
 
    @ObfuscatedName("o")
@@ -336,8 +336,8 @@ public final class Player extends Actor {
       signature = "(B)Z",
       garbageValue = "21"
    )
-   @Export("__o_127")
-   boolean __o_127() {
+   @Export("isClanMember")
+   boolean isClanMember() {
       if(this.isInClanChat == TriBool.TriBool_unknown) {
          this.__g_129();
       }

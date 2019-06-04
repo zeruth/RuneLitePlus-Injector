@@ -25,8 +25,8 @@
 
 package api.events;
 
-import lombok.Data;
 import api.Skill;
+import lombok.Data;
 
 /**
  * An event where the experience level of a {@link Skill} has been modified.

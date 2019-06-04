@@ -24,8 +24,8 @@
  */
 package api.events;
 
-import lombok.Value;
 import api.World;
+import lombok.Value;
 
 /**
  * Event when the world list is loaded for the world switcher

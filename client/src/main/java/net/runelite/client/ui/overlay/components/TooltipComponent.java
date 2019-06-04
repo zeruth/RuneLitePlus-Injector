@@ -24,6 +24,7 @@
  */
 package net.runelite.client.ui.overlay.components;
 
+import api.IndexedSprite;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FontMetrics;
@@ -31,8 +32,6 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.util.regex.Pattern;
-
-import api.IndexedSprite;
 import lombok.Setter;
 import net.runelite.client.ui.overlay.RenderableEntity;
 

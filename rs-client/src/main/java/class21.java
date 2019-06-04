@@ -376,7 +376,7 @@ public abstract class class21 {
             var10 = var0.index;
             if(var3.username != null && var3.appearance != null) {
                boolean var19 = false;
-               if(var20.isUser && WorldMapArea.friendSystem.__g_156(var3.username)) {
+               if(var20.isUser && WorldMapArea.friendSystem.isIgnored(var3.username)) {
                   var19 = true;
                }
 

@@ -35,13 +35,19 @@ import api.config.Constants;
 import api.events.BeforeMenuRender;
 import api.events.BeforeRender;
 import api.events.GameTick;
+import api.hooks.Callbacks;
+import api.hooks.DrawCallbacks;
 import api.widgets.Widget;
+import static api.widgets.WidgetInfo.WORLD_MAP_VIEW;
 import api.widgets.WidgetItem;
-import callbacks.Callbacks;
-import callbacks.DrawCallbacks;
 import com.google.inject.Injector;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.GraphicsConfiguration;
+import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseWheelEvent;
@@ -64,8 +70,6 @@ import net.runelite.client.ui.overlay.OverlayManager;
 import net.runelite.client.ui.overlay.OverlayRenderer;
 import net.runelite.client.ui.overlay.infobox.InfoBoxManager;
 import net.runelite.client.util.DeferredEventBus;
-
-import static api.WidgetInfo.WORLD_MAP_VIEW;
 
 /**
  * This class contains field required for mixins and runelite hooks to work.
@@ -368,11 +372,6 @@ public class Hooks implements Callbacks
 		drawManager.processDrawComplete(() -> copy(finalImage));
 	}
 
-	@Override
-	public void drawItem(int itemId, api.WidgetItem widgetItem) {
-
-	}
-
 	/**
 	 * Copy an image
 	 *
@@ -512,6 +511,17 @@ public class Hooks implements Callbacks
 				pixels[pixelPos++] = 0;
 			}
 			pixelPos += pixelJump;
+		}
+	}
+
+
+	@Override
+	public void drawItem(int itemId, WidgetItem widgetItem)
+	{
+		// Empty bank item
+		if (widgetItem.getId() != NullItemID.NULL_6512)
+		{
+			overlayManager.getItemWidgets().add(widgetItem);
 		}
 	}
 

@@ -24,9 +24,9 @@
  */
 package api.events;
 
-import lombok.Data;
 import api.Actor;
 import api.Hitsplat;
+import lombok.Data;
 
 /**
  * An event called when a {@link Hitsplat} is processed on an {@link Actor}.

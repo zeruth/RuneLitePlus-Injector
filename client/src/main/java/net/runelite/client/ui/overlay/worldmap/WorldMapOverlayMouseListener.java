@@ -24,18 +24,18 @@
  */
 package net.runelite.client.ui.overlay.worldmap;
 
-import java.awt.*;
+
+import api.Client;
+import api.RenderOverview;
+import api.coords.WorldPoint;
+import api.widgets.Widget;
+import api.widgets.WidgetInfo;
+import java.awt.Rectangle;
 import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.swing.SwingUtilities;
-
-import api.Client;
-import api.RenderOverview;
-import api.WidgetInfo;
-import api.coords.WorldPoint;
-import api.widgets.Widget;
 import net.runelite.client.input.MouseAdapter;
 
 @Singleton

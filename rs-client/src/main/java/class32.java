@@ -55,11 +55,11 @@ public class class32 {
          var3.modelOffsetY = var6.offsetY2d;
          var3.modelZoom = var6.zoom2d;
          if(var0 == 1205) {
-            var3.__bw = 0;
+            var3.itemQuantityMode = 0;
          } else if(var0 == 1212 | 1 == var6.isStackable) {
-            var3.__bw = 1;
+            var3.itemQuantityMode = 1;
          } else {
-            var3.__bw = 2;
+            var3.itemQuantityMode = 2;
          }
 
          if(var3.__bf > 0) {

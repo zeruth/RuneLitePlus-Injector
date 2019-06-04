@@ -25,8 +25,8 @@
 package net.runelite.client.ui.overlay;
 
 import api.MenuAction;
-import api.WidgetInfo;
 import api.events.MenuOptionClicked;
+import api.widgets.WidgetInfo;
 import api.widgets.WidgetItem;
 import com.google.common.annotations.VisibleForTesting;
 import java.awt.Dimension;

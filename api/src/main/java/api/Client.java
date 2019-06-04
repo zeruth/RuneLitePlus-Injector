@@ -26,10 +26,11 @@ package api;
 
 import api.coords.LocalPoint;
 import api.coords.WorldPoint;
+import api.hooks.Callbacks;
+import api.hooks.DrawCallbacks;
 import api.vars.AccountType;
 import api.widgets.Widget;
-import callbacks.Callbacks;
-import callbacks.DrawCallbacks;
+import api.widgets.WidgetInfo;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.util.EnumSet;
@@ -37,7 +38,6 @@ import java.util.List;
 import java.util.Map;
 import javax.annotation.Nullable;
 import org.slf4j.Logger;
-
 
 /**
  * Represents the RuneScape client.

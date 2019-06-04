@@ -4,7 +4,6 @@ import api.Client;
 import api.Player;
 import api.WorldType;
 import api.coords.WorldPoint;
-
 import java.awt.Polygon;
 
 public class MiscUtils

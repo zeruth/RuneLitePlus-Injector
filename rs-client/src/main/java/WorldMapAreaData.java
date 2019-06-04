@@ -10,7 +10,7 @@ import net.runelite.mapping.ObfuscatedSignature;
 @Implements("WorldMapAreaData")
 public class WorldMapAreaData extends WorldMapArea {
    @ObfuscatedName("n")
-   @Export("__n")
+   @Export("surfaceOffsetY")
    HashSet __n;
    @ObfuscatedName("i")
    @Export("__i")

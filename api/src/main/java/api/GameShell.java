@@ -24,8 +24,7 @@
  */
 package api;
 
-import callbacks.DrawCallbacks;
-
+import api.hooks.DrawCallbacks;
 import java.awt.Canvas;
 
 /**

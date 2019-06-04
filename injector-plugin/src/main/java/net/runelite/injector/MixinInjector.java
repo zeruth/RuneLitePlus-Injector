@@ -77,7 +77,7 @@ public class MixinInjector
 	private static final Type NAMED = new Type("Ljavax/inject/Named;");
 
 	private static final String MIXIN_BASE = "net.runelite.mixins";
-	private static final String ASSERTION_FIELD = "$assertionsEnabled";
+	private static final String ASSERTION_FIELD = "$assertionsDisabled";
 
 	private final Inject inject;
 
@@ -942,15 +942,16 @@ public class MixinInjector
 						throw new InjectionException("Method hook for nonexistent method " + hookName + " on " + method);
 					}
 
-						if (method.isStatic() != targetMethod.isStatic()) {
-							throw new InjectionException("Method hook static flag must match target");
-						}
-
-						injectHookMethod.inject(method, targetMethod, hookName, end, false);
+					if (method.isStatic() != targetMethod.isStatic())
+					{
+						throw new InjectionException("Method hook static flag must match target - " + hookName);
 					}
+
+					injectHookMethod.inject(method, targetMethod, hookName, end, false);
 				}
 			}
 		}
+	}
 
 	private static class CopiedMethod
 	{

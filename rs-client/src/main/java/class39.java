@@ -173,13 +173,13 @@ public class class39 extends class21 {
                boolean var13;
                if(!var77) {
                   var13 = (Client.__client_ke & 1) != 0;
-                  var78 = var13 && var10.__f_124();
+                  var78 = var13 && var10.isFriend();
                }
 
                var13 = var78;
                if(!var78) {
                   boolean var79 = (Client.__client_ke & 2) != 0;
-                  var13 = var79 && var10.__o_127();
+                  var13 = var79 && var10.isClanMember();
                }
 
                var9 = var13;
@@ -342,7 +342,7 @@ public class class39 extends class21 {
             }
          }
 
-         if(var0.overheadText != null && (var1 >= var75 || !var0.__az && (Client.publicChatMode == 4 || !var0.isAutoChatting && (Client.publicChatMode == 0 || Client.publicChatMode == 3 || Client.publicChatMode == 1 && ((Player)var0).__f_124())))) {
+         if(var0.overheadText != null && (var1 >= var75 || !var0.__az && (Client.publicChatMode == 4 || !var0.isAutoChatting && (Client.publicChatMode == 0 || Client.publicChatMode == 3 || Client.publicChatMode == 1 && ((Player)var0).isFriend())))) {
             DevicePcmPlayerProvider.method840(var0, var0.defaultHeight);
             if(Client.viewportTempX > -1 && Client.overheadTextCount < Client.overheadTextLimit) {
                Client.overheadTextXOffsets[Client.overheadTextCount] = class2.fontBold12.stringWidth(var0.overheadText) / 2;

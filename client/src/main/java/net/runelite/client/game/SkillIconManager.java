@@ -24,10 +24,9 @@
  */
 package net.runelite.client.game;
 
+import api.Skill;
 import java.awt.image.BufferedImage;
 import javax.inject.Singleton;
-
-import api.Skill;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.client.util.ImageUtil;
 

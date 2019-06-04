@@ -24,8 +24,8 @@
  */
 package api.events;
 
-import lombok.Value;
 import api.Nameable;
+import lombok.Value;
 
 /**
  * An event where a {@link Nameable} has had their name changed.

@@ -92,7 +92,7 @@ public class WorldMapSection0 implements WorldMapSection {
    @ObfuscatedGetter(
       intValue = -1657956317
    )
-   @Export("__n")
+   @Export("surfaceOffsetY")
    int __n;
    @ObfuscatedName("i")
    @ObfuscatedGetter(
