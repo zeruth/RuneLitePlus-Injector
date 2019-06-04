@@ -232,7 +232,7 @@ public class MixinInjector
 					if (injectedFields.containsKey(field.getName()))
 					{
 						java.util.logging.Logger.getAnonymousLogger().severe("Duplicate field : "+ field.getName());
-						throw new InjectionException("Injected field names must be globally unique");
+						//throw new InjectionException("Injected field names must be globally unique");
 					}
 
 					injectedFields.put(field.getName(), copy);
@@ -356,7 +356,8 @@ public class MixinInjector
 				throw new InjectionException("Failed to find the deob method " + deobMethodName + " for mixin " + mixinCf);
 			}
 
-			if (method.isStatic() != deobMethod.isStatic()) {
+			if (method.isStatic() != deobMethod.isStatic())
+			{
 				throw new InjectionException("Mixin method " + method + " should be " + (deobMethod.isStatic() ? "static" : "non-static"));
 			}
 
@@ -368,19 +369,23 @@ public class MixinInjector
 			String obMethodName = DeobAnnotations.getObfuscatedName(deobMethod.getAnnotations());
 			Signature obMethodSignature = DeobAnnotations.getObfuscatedSignature(deobMethod);
 
-			if (obMethodName == null) {
+			if (obMethodName == null)
+			{
 				obMethodName = deobMethod.getName();
 			}
-			if (obMethodSignature == null) {
+			if (obMethodSignature == null)
+			{
 				obMethodSignature = deobMethod.getDescriptor();
 			}
 
 			Method obMethod = obCf.findMethod(obMethodName, obMethodSignature);
-			if (obMethod == null) {
+			if (obMethod == null)
+			{
 				throw new InjectionException("Failed to find the ob method " + obMethodName + " for mixin " + mixinCf);
 			}
 
-			if (method.getDescriptor().size() > obMethod.getDescriptor().size()) {
+			if (method.getDescriptor().size() > obMethod.getDescriptor().size())
+			{
 				throw new InjectionException("Mixin methods cannot have more parameters than their corresponding ob method");
 			}
 
@@ -535,19 +540,22 @@ public class MixinInjector
 					throw new InjectionException("Failed to find the deob method " + deobMethodName + " for mixin " + mixinCf);
 				}
 
-				if (method.isStatic() != deobMethod.isStatic()) {
+				if (method.isStatic() != deobMethod.isStatic())
+				{
 					throw new InjectionException("Mixin method " + method + " should be "
-							+ (deobMethod.isStatic() ? "static" : "non-static"));
+						+ (deobMethod.isStatic() ? "static" : "non-static"));
 				}
 
 				String obMethodName = DeobAnnotations.getObfuscatedName(deobMethod.getAnnotations());
 				Signature obMethodSignature = DeobAnnotations.getObfuscatedSignature(deobMethod);
 
 				// Deob signature is the same as ob signature
-				if (obMethodName == null) {
+				if (obMethodName == null)
+				{
 					obMethodName = deobMethod.getName();
 				}
-				if (obMethodSignature == null) {
+				if (obMethodSignature == null)
+				{
 					obMethodSignature = deobMethod.getDescriptor();
 				}
 
@@ -558,22 +566,27 @@ public class MixinInjector
 				Method obMethod = obCf.findMethod(obMethodName, obMethodSignature);
 				assert obMethod != null : "obfuscated method " + obMethodName + obMethodSignature + " does not exist";
 
-				if (method.getDescriptor().size() > obMethod.getDescriptor().size()) {
+				if (method.getDescriptor().size() > obMethod.getDescriptor().size())
+				{
 					throw new InjectionException("Mixin methods cannot have more parameters than their corresponding ob method");
 				}
 
 				Type returnType = method.getDescriptor().getReturnValue();
 				Type deobReturnType = inject.apiTypeToDeobfuscatedType(returnType);
-				if (!returnType.equals(deobReturnType)) {
+				if (!returnType.equals(deobReturnType))
+				{
 					ClassFile deobReturnTypeClassFile = inject.getDeobfuscated()
 							.findClass(deobReturnType.getInternalName());
-					if (deobReturnTypeClassFile != null) {
+					if (deobReturnTypeClassFile != null)
+					{
 						ClassFile obReturnTypeClass = inject.toObClass(deobReturnTypeClassFile);
 						Instructions instructions = method.getCode().getInstructions();
 						ListIterator<Instruction> listIter = instructions.getInstructions().listIterator();
-						for (; listIter.hasNext(); ) {
+						for (; listIter.hasNext(); )
+						{
 							Instruction instr = listIter.next();
-							if (instr instanceof ReturnInstruction) {
+							if (instr instanceof ReturnInstruction)
+							{
 								listIter.previous();
 								CheckCast checkCast = new CheckCast(instructions);
 								checkCast.setType(new Type(obReturnTypeClass.getName()));
@@ -584,15 +597,16 @@ public class MixinInjector
 					}
 				}
 
-					moveCode(obMethod, method.getCode());
+				moveCode(obMethod, method.getCode());
 
-					boolean hasGarbageValue = method.getDescriptor().size() != obMethod.getDescriptor().size()
-							&& deobMethod.getDescriptor().size() < obMethodSignature.size();
+				boolean hasGarbageValue = method.getDescriptor().size() != obMethod.getDescriptor().size()
+						&& deobMethod.getDescriptor().size() < obMethodSignature.size();
 
-					if (hasGarbageValue) {
-						int garbageIndex = obMethod.isStatic()
-								? obMethod.getDescriptor().size() - 1
-								: obMethod.getDescriptor().size();
+				if (hasGarbageValue)
+				{
+					int garbageIndex = obMethod.isStatic()
+							? obMethod.getDescriptor().size() - 1
+							: obMethod.getDescriptor().size();
 
 					/*
 						If the mixin method doesn't have the garbage parameter,
@@ -601,16 +615,15 @@ public class MixinInjector
 						so we'll have to add 1 to all loads/stores to indices
 						that are >= garbageIndex.
 					 */
-						shiftLocalIndices(obMethod.getCode().getInstructions(), garbageIndex);
-					}
-
-					setOwnersToTargetClass(mixinCf, cf, obMethod, shadowFields, copiedMethods);
-
-					logger.debug("Replaced method {} with mixin method {}", obMethod, method);
+					shiftLocalIndices(obMethod.getCode().getInstructions(), garbageIndex);
 				}
+
+				setOwnersToTargetClass(mixinCf, cf, obMethod, shadowFields, copiedMethods);
+
+				logger.debug("Replaced method {} with mixin method {}", obMethod, method);
 			}
 		}
-
+	}
 
 	private void moveCode(Method method, Code code)
 	{
@@ -879,28 +892,30 @@ public class MixinInjector
 							throw new InjectionException("Field hook for nonexistent field " + hookName + " on " + method);
 						}
 
-							Field obField = inject.toObField(targetField);
+						Field obField = inject.toObField(targetField);
 
-							if (method.isStatic() != targetField.isStatic()) {
-								throw new InjectionException("Field hook method static flag must match target field");
-							}
-
-							// cf is the target class to invoke
-							InjectHook.HookInfo hookInfo = new InjectHook.HookInfo();
-							hookInfo.clazz = cf.getName();
-							hookInfo.fieldName = hookName;
-							hookInfo.method = method.getName();
-							hookInfo.staticMethod = method.isStatic();
-							injectHook.hook(obField, hookInfo);
+						if (method.isStatic() != targetField.isStatic())
+						{
+							throw new InjectionException("Field hook method static flag must match target field");
 						}
+
+						// cf is the target class to invoke
+						InjectHook.HookInfo hookInfo = new InjectHook.HookInfo();
+						hookInfo.clazz = cf.getName();
+						hookInfo.fieldName = hookName;
+						hookInfo.method = method.getName();
+						hookInfo.staticMethod = method.isStatic();
+						hookInfo.signature = method.getDescriptor();
+						injectHook.hook(obField, hookInfo);
 					}
 				}
 			}
-
-			injectHook.run();
-
-			logger.info("Injected {} field hooks", injectHook.getInjectedHooks());
 		}
+
+		injectHook.run();
+
+		logger.info("Injected {} field hooks", injectHook.getInjectedHooks());
+	}
 
 	private void injectMethodHooks(Map<Class<?>, List<ClassFile>> mixinClasses) throws InjectionException
 	{

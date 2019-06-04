@@ -180,7 +180,7 @@ public class InjectHookMethod
 				{
 					invoke = new InvokeStatic(instructions,
 							new net.runelite.asm.pool.Method(
-									new net.runelite.asm.pool.Class(vanillaMethod.getClassFile().getName()),
+									new net.runelite.asm.pool.Class("client"), // Static methods are in client
 									hookMethod.getName(),
 									signature
 							)

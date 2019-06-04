@@ -28,12 +28,12 @@ public interface RSScene extends Scene
 	@Import("xSize")
 	int getMaxX();
 
-	@Import("ySize")
+	@Import("planes")
 	int getMaxY();
 
-	@Import("planes")
+	@Import("ySize")
 	int getMaxZ();
 
-	@Import("minPlane")
+	@Import("Scene_minPlane")
 	int getMinLevel();
 }

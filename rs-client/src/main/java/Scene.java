@@ -175,8 +175,8 @@ public class Scene {
    @Export("tiles")
    Tile[][][] tiles;
    @ObfuscatedName("g")
-   @Export("minPlane")
-   int minPlane;
+   @Export("Scene_minPlane")
+   int Scene_minPlane;
    @ObfuscatedName("l")
    @Export("tempGameObjectsCount")
    int tempGameObjectsCount;
@@ -225,7 +225,7 @@ public class Scene {
    }
 
    public Scene(int var1, int var2, int var3, int[][][] var4) {
-      this.minPlane = 0;
+      this.Scene_minPlane = 0;
       this.tempGameObjectsCount = 0;
       this.tempGameObjects = new GameObject[5000];
       this.__bk = new int[][]{{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0}, {0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1}, {0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1}, {1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0}, {1, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 0, 1, 1}, {1, 1, 1, 1, 1, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1}, {0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1}};
@@ -275,7 +275,7 @@ public class Scene {
    @ObfuscatedName("f")
    @Export("init")
    public void init(int var1) {
-      this.minPlane = var1;
+      this.Scene_minPlane = var1;
 
       for(int var2 = 0; var2 < this.xSize; ++var2) {
          for(int var3 = 0; var3 < this.ySize; ++var3) {
@@ -1141,7 +1141,7 @@ public class Scene {
       Tile[][] var8;
       int var9;
       int var10;
-      for(var7 = this.minPlane; var7 < this.planes; ++var7) {
+      for(var7 = this.Scene_minPlane; var7 < this.planes; ++var7) {
          var8 = this.tiles[var7];
 
          for(var9 = Scene_cameraXTileMin; var9 < Scene_cameraXTileMax; ++var9) {
@@ -1173,7 +1173,7 @@ public class Scene {
       int var14;
       Tile var15;
       int var16;
-      for(var7 = this.minPlane; var7 < this.planes; ++var7) {
+      for(var7 = this.Scene_minPlane; var7 < this.planes; ++var7) {
          var8 = this.tiles[var7];
 
          for(var9 = -25; var9 <= 0; ++var9) {
@@ -1224,7 +1224,7 @@ public class Scene {
          }
       }
 
-      for(var7 = this.minPlane; var7 < this.planes; ++var7) {
+      for(var7 = this.Scene_minPlane; var7 < this.planes; ++var7) {
          var8 = this.tiles[var7];
 
          for(var9 = -25; var9 <= 0; ++var9) {

@@ -52,6 +52,7 @@ import org.slf4j.LoggerFactory;
 
 public class InjectHook
 {
+	// TODO: Make fieldhooks work the way they do in rl (before option and with args)
 	private static final Logger logger = LoggerFactory.getLogger(InjectHook.class);
 
 	static class HookInfo
@@ -60,6 +61,7 @@ public class InjectHook
 		String clazz;
 		String method;
 		boolean staticMethod = true;
+		Signature signature;
 	}
 
 	private static final String HOOK_METHOD_SIGNATURE = "(I)V";

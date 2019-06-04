@@ -25,7 +25,6 @@
 package net.runelite.injector;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import net.runelite.asm.ClassFile;
 import net.runelite.asm.ClassGroup;
@@ -239,7 +238,6 @@ public class Inject
 			ClassFile other = vanilla.findClass(obfuscatedName);
 			assert other != null : "unable to find vanilla class from obfuscated name: " + obfuscatedName;
 
-			HashSet<String> unfound = new HashSet<>();
 			for (Field f : cf.getFields())
 			{
 				an = f.getAnnotations();
@@ -304,21 +302,10 @@ public class Inject
 				Type returnType = classToType(apiMethod.getReturnType());
 				if (!validateTypeIsConvertibleTo(fieldType, returnType))
 				{
-					logger.info("Type " + fieldType + " is not convertable to " + returnType + " for getter " + apiMethod + ". Fuck it, I'll search some more");
-					unfound.add(exportedName);
-					continue;
-					//throw new InjectionException("Type " + fieldType + " is not convertable to " + returnType + " for getter " + apiMethod);
+					throw new InjectionException("Type " + fieldType + " is not convertable to " + returnType + " for getter " + apiMethod);
 				}
 
-				unfound.remove(exportedName);
 				getters.injectGetter(targetClass, apiMethod, otherf, getter);
-			}
-			if (!unfound.isEmpty())
-			{
-				for (String s : unfound)
-				{
-					logger.warn(s + " could not be found!");
-				}
 			}
 
 			for (Method m : cf.getMethods())
@@ -350,10 +337,6 @@ public class Inject
 			return null;
 		}
 
-		if (other == null)
-		{
-			return null;
-		}
 		String ifaceName = API_PACKAGE_BASE + a.getElement().getString();
 		java.lang.Class<?> apiClass;
 
