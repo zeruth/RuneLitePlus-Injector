@@ -37,9 +37,6 @@ import rs.api.RSNode;
 @Mixin(RSActor.class)
 public abstract class RSActorMixin implements RSActor
 {
-	@Shadow("client")
-	private static RSClient client;
-
 	@Inject
 	@Override
 	public Actor getInteracting()

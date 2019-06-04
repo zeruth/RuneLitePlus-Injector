@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018 Abex
+ * Copyright (c) 2018, Cas <https://github.com/casvandongen>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,59 +22,26 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.mixins;
+package net.runelite.client.plugins.test;
 
-import java.awt.event.FocusEvent;
 
-import api.events.FocusChanged;
-import callbacks.DrawCallbacks;
-import net.runelite.api.mixins.FieldHook;
-import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.MethodHook;
-import net.runelite.api.mixins.Mixin;
-import net.runelite.api.mixins.Shadow;
-import rs.api.RSClient;
-import rs.api.RSGameShell;
+import net.runelite.client.config.Config;
+import net.runelite.client.config.ConfigGroup;
+import net.runelite.client.config.ConfigItem;
 
-@Mixin(RSGameShell.class)
-public abstract class RSGameShellMixin implements RSGameShell
+import java.awt.*;
+
+@ConfigGroup("test")
+public interface TestConfig extends Config
 {
-	@Shadow("client")
-	private static RSClient client;
-
-	@Inject
-	private Thread thread;
-
-	@Inject
-	@Override
-	public Thread getClientThread()
+	@ConfigItem(
+		keyName = "Testing 1",
+		name = "Test option",
+		description = "Enable/disable nothing",
+		position = 1
+	)
+	default boolean tested()
 	{
-		return thread;
-	}
-
-	@Inject
-	@Override
-	public boolean isClientThread()
-	{
-		return thread == Thread.currentThread();
-	}
-
-	@Inject
-	@MethodHook("run")
-	public void onRun()
-	{
-		thread = Thread.currentThread();
-		thread.setName("Client");
-	}
-
-	@Inject
-	@MethodHook("post")
-	public void onPost(Object canvas)
-	{
-		DrawCallbacks drawCallbacks = client.getDrawCallbacks();
-		if (drawCallbacks != null)
-		{
-			drawCallbacks.draw();
-		}
+		return true;
 	}
 }

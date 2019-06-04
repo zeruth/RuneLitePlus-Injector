@@ -1,5 +1,6 @@
 /*
- * Copyright (c) 2018 Abex
+ * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2018, Cas <https://github.com/casvandongen>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,59 +23,41 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package net.runelite.mixins;
+package net.runelite.client.plugins.test;
 
-import java.awt.event.FocusEvent;
+import api.Client;
+import net.runelite.client.ui.overlay.Overlay;
+import net.runelite.client.ui.overlay.OverlayLayer;
+import net.runelite.client.ui.overlay.OverlayPosition;
 
-import api.events.FocusChanged;
-import callbacks.DrawCallbacks;
-import net.runelite.api.mixins.FieldHook;
-import net.runelite.api.mixins.Inject;
-import net.runelite.api.mixins.MethodHook;
-import net.runelite.api.mixins.Mixin;
-import net.runelite.api.mixins.Shadow;
-import rs.api.RSClient;
-import rs.api.RSGameShell;
+import javax.inject.Inject;
+import java.awt.*;
 
-@Mixin(RSGameShell.class)
-public abstract class RSGameShellMixin implements RSGameShell
+class TestOverlay extends Overlay
 {
-	@Shadow("client")
-	private static RSClient client;
+	private static final Color SHORTCUT_HIGH_LEVEL_COLOR = Color.ORANGE;
+
+	private final Client client;
+	private final Test plugin;
+	private final TestConfig config;
 
 	@Inject
-	private Thread thread;
+	private TestOverlay(Client client, Test plugin, TestConfig config)
+	{
+		super(plugin);
+		setPosition(OverlayPosition.DYNAMIC);
+		setLayer(OverlayLayer.ABOVE_SCENE);
+		this.client = client;
+		this.plugin = plugin;
+		this.config = config;
+	}
 
-	@Inject
 	@Override
-	public Thread getClientThread()
+	public Dimension render(Graphics2D graphics)
 	{
-		return thread;
-	}
-
-	@Inject
-	@Override
-	public boolean isClientThread()
-	{
-		return thread == Thread.currentThread();
-	}
-
-	@Inject
-	@MethodHook("run")
-	public void onRun()
-	{
-		thread = Thread.currentThread();
-		thread.setName("Client");
-	}
-
-	@Inject
-	@MethodHook("post")
-	public void onPost(Object canvas)
-	{
-		DrawCallbacks drawCallbacks = client.getDrawCallbacks();
-		if (drawCallbacks != null)
-		{
-			drawCallbacks.draw();
-		}
+		System.out.println("Rendered Test");
+		graphics.setColor(Color.RED);
+		graphics.drawString("Hello World", 20, 20);
+		return null;
 	}
 }
