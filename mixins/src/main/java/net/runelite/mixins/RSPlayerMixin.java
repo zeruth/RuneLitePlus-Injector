@@ -61,6 +61,9 @@ import rs.api.RSUsername;
 @Mixin(RSPlayer.class)
 public abstract class RSPlayerMixin implements RSPlayer
 {
+	@Shadow("client")
+	private static RSClient client;
+
 	@Inject
 	@Override
 	public String getName()
