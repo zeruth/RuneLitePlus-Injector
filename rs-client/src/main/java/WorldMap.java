@@ -101,26 +101,26 @@ public class WorldMap {
    @ObfuscatedGetter(
       intValue = 1711576969
    )
-   @Export("__b")
-   int __b;
+   @Export("worldMapX")
+   int worldMapX;
    @ObfuscatedName("c")
    @ObfuscatedGetter(
       intValue = 1318118645
    )
-   @Export("__c")
-   int __c;
+   @Export("worldMapY")
+   int worldMapY;
    @ObfuscatedName("r")
    @ObfuscatedGetter(
       intValue = -89657613
    )
-   @Export("__r")
-   int __r;
+   @Export("worldMapTargetX")
+   int worldMapTargetX;
    @ObfuscatedName("p")
    @ObfuscatedGetter(
       intValue = -56022357
    )
-   @Export("__p")
-   int __p;
+   @Export("worldMapTargetY")
+   int worldMapTargetY;
    @ObfuscatedName("v")
    @Export("zoom")
    float zoom;
@@ -306,8 +306,8 @@ public class WorldMap {
    }
 
    public WorldMap() {
-      this.__r = -1;
-      this.__p = -1;
+      this.worldMapTargetX = -1;
+      this.worldMapTargetY = -1;
       this.__aq = -1;
       this.__aj = -1;
       this.__av = -1;
@@ -396,7 +396,7 @@ public class WorldMap {
          if(var3) {
             int var8 = (int)Math.ceil((double)((float)var6 / this.zoom));
             int var9 = (int)Math.ceil((double)((float)var7 / this.zoom));
-            List var10 = this.worldMapManager.__u_74(this.__b - var8 / 2 - 1, this.__c - var9 / 2 - 1, var8 / 2 + this.__b + 1, var9 / 2 + this.__c + 1, var4, var5, var6, var7, var1, var2);
+            List var10 = this.worldMapManager.__u_74(this.worldMapX - var8 / 2 - 1, this.worldMapY - var9 / 2 - 1, var8 / 2 + this.worldMapX + 1, var9 / 2 + this.worldMapY + 1, var4, var5, var6, var7, var1, var2);
             HashSet var11 = new HashSet();
 
             Iterator var12;
@@ -447,14 +447,14 @@ public class WorldMap {
          if(var4) {
             this.__at = var1;
             this.__ad = var2;
-            this.__ab = this.__b;
-            this.__ae = this.__c;
+            this.__ab = this.worldMapX;
+            this.__ae = this.worldMapY;
          }
 
          if(this.__ab != -1) {
             int var7 = var1 - this.__at;
             int var8 = var2 - this.__ad;
-            this.__l_522(this.__ab - (int)((float)var7 / this.zoomTarget), (int)((float)var8 / this.zoomTarget) + this.__ae, false);
+            this.setWorldMapPosition(this.__ab - (int)((float)var7 / this.zoomTarget), (int)((float)var8 / this.zoomTarget) + this.__ae, false);
          }
       } else {
          this.__e_523();
@@ -472,8 +472,8 @@ public class WorldMap {
    @Export("__o_520")
    void __o_520(int var1, int var2, boolean var3, long var4) {
       if(this.currentMapArea0 != null) {
-         int var6 = (int)((float)this.__b + ((float)(var1 - this.__av) - (float)this.__ap_537() * this.zoom / 2.0F) / this.zoom);
-         int var7 = (int)((float)this.__c - ((float)(var2 - this.__ar) - (float)this.__as_538() * this.zoom / 2.0F) / this.zoom);
+         int var6 = (int)((float)this.worldMapX + ((float)(var1 - this.__av) - (float)this.__ap_537() * this.zoom / 2.0F) / this.zoom);
+         int var7 = (int)((float)this.worldMapY - ((float)(var2 - this.__ar) - (float)this.__as_538() * this.zoom / 2.0F) / this.zoom);
          this.mouseCoord = this.currentMapArea0.coord(var6 + this.currentMapArea0.minX() * 64, var7 + this.currentMapArea0.minY() * 64);
          if(this.mouseCoord != null && var3) {
             int var9;
@@ -541,8 +541,8 @@ public class WorldMap {
    @Export("__g_521")
    void __g_521() {
       if(this.__x_524()) {
-         int var1 = this.__r - this.__b;
-         int var2 = this.__p - this.__c;
+         int var1 = this.worldMapTargetX - this.worldMapX;
+         int var2 = this.worldMapTargetY - this.worldMapY;
          if(var1 != 0) {
             var1 /= Math.min(8, Math.abs(var1));
          }
@@ -551,10 +551,10 @@ public class WorldMap {
             var2 /= Math.min(8, Math.abs(var2));
          }
 
-         this.__l_522(var1 + this.__b, var2 + this.__c, true);
-         if(this.__r == this.__b && this.__p == this.__c) {
-            this.__r = -1;
-            this.__p = -1;
+         this.setWorldMapPosition(var1 + this.worldMapX, var2 + this.worldMapY, true);
+         if(this.worldMapTargetX == this.worldMapX && this.worldMapTargetY == this.worldMapY) {
+            this.worldMapTargetX = -1;
+            this.worldMapTargetY = -1;
          }
 
       }
@@ -565,10 +565,10 @@ public class WorldMap {
       signature = "(IIZI)V",
       garbageValue = "-943230538"
    )
-   @Export("__l_522")
-   final void __l_522(int var1, int var2, boolean var3) {
-      this.__b = var1;
-      this.__c = var2;
+   @Export("setWorldMapPosition")
+   final void setWorldMapPosition(int var1, int var2, boolean var3) {
+      this.worldMapX = var1;
+      this.worldMapY = var2;
       class203.currentTimeMs();
       if(var3) {
          this.__e_523();
@@ -596,7 +596,7 @@ public class WorldMap {
    )
    @Export("__x_524")
    boolean __x_524() {
-      return this.__r != -1 && this.__p != -1;
+      return this.worldMapTargetX != -1 && this.worldMapTargetY != -1;
    }
 
    @ObfuscatedName("d")
@@ -691,7 +691,7 @@ public class WorldMap {
    @Export("setCurrentMapArea")
    void setCurrentMapArea(WorldMapArea var1) {
       if(this.currentMapArea0 == null || var1 != this.currentMapArea0) {
-         this.initializeWorldMapManager(var1);
+         this.initializeWorldMap(var1);
          this.jump(-1, -1, -1);
       }
    }
@@ -701,8 +701,8 @@ public class WorldMap {
       signature = "(Lag;I)V",
       garbageValue = "-1072205896"
    )
-   @Export("initializeWorldMapManager")
-   void initializeWorldMapManager(WorldMapArea var1) {
+   @Export("initializeWorldMap")
+   void initializeWorldMap(WorldMapArea var1) {
       this.currentMapArea0 = var1;
       this.worldMapManager = new WorldMapManager(this.mapSceneSprites, this.fonts, this.__l, this.__e);
       this.cacheLoader.reset(this.currentMapArea0.archiveName());
@@ -717,7 +717,7 @@ public class WorldMap {
    public void __h_526(WorldMapArea var1, TileLocation var2, TileLocation var3, boolean var4) {
       if(var1 != null) {
          if(this.currentMapArea0 == null || var1 != this.currentMapArea0) {
-            this.initializeWorldMapManager(var1);
+            this.initializeWorldMap(var1);
          }
 
          if(!var4 && this.currentMapArea0.containsCoord(var2.plane, var2.x, var2.y)) {
@@ -742,9 +742,9 @@ public class WorldMap {
             var4 = this.currentMapArea0.position(this.currentMapArea0.originPlane(), this.currentMapArea0.originX(), this.currentMapArea0.originY());
          }
 
-         this.__l_522(var4[0] - this.currentMapArea0.minX() * 64, var4[1] - this.currentMapArea0.minY() * 64, true);
-         this.__r = -1;
-         this.__p = -1;
+         this.setWorldMapPosition(var4[0] - this.currentMapArea0.minX() * 64, var4[1] - this.currentMapArea0.minY() * 64, true);
+         this.worldMapTargetX = -1;
+         this.worldMapTargetY = -1;
          this.zoom = this.__av_529(this.currentMapArea0.zoom());
          this.zoomTarget = this.zoom;
          this.__bq = null;
@@ -789,7 +789,7 @@ public class WorldMap {
 
          int var8 = (int)Math.ceil((double)((float)var3 / this.zoom));
          int var9 = (int)Math.ceil((double)((float)var4 / this.zoom));
-         this.worldMapManager.__q_72(this.__b - var8 / 2, this.__c - var9 / 2, var8 / 2 + this.__b, var9 / 2 + this.__c, var1, var2, var3 + var1, var2 + var4);
+         this.worldMapManager.__q_72(this.worldMapX - var8 / 2, this.worldMapY - var9 / 2, var8 / 2 + this.worldMapX, var9 / 2 + this.worldMapY, var1, var2, var3 + var1, var2 + var4);
          if(!this.elementsDisabled) {
             boolean var10 = false;
             if(var5 - this.__ba > 100) {
@@ -797,7 +797,7 @@ public class WorldMap {
                var10 = true;
             }
 
-            this.worldMapManager.__w_73(this.__b - var8 / 2, this.__c - var9 / 2, var8 / 2 + this.__b, var9 / 2 + this.__c, var1, var2, var3 + var1, var2 + var4, this.__af, this.flashingElements, this.__al, this.__ay, var10);
+            this.worldMapManager.__w_73(this.worldMapX - var8 / 2, this.worldMapY - var9 / 2, var8 / 2 + this.worldMapX, var9 / 2 + this.worldMapY, var1, var2, var3 + var1, var2 + var4, this.__af, this.flashingElements, this.__al, this.__ay, var10);
          }
 
          this.__v_528(var1, var2, var3, var4, var8, var9);
@@ -978,11 +978,11 @@ public class WorldMap {
       signature = "(III)V",
       garbageValue = "1820000123"
    )
-   @Export("__ak_530")
-   public void __ak_530(int var1, int var2) {
+   @Export("setWorldMapPositionTarget")
+   public void setWorldMapPositionTarget(int var1, int var2) {
       if(this.currentMapArea0 != null && this.currentMapArea0.containsPosition(var1, var2)) {
-         this.__r = var1 - this.currentMapArea0.minX() * 64;
-         this.__p = var2 - this.currentMapArea0.minY() * 64;
+         this.worldMapTargetX = var1 - this.currentMapArea0.minX() * 64;
+         this.worldMapTargetY = var2 - this.currentMapArea0.minY() * 64;
       }
    }
 
@@ -994,9 +994,9 @@ public class WorldMap {
    @Export("__aw_531")
    public void __aw_531(int var1, int var2) {
       if(this.currentMapArea0 != null) {
-         this.__l_522(var1 - this.currentMapArea0.minX() * 64, var2 - this.currentMapArea0.minY() * 64, true);
-         this.__r = -1;
-         this.__p = -1;
+         this.setWorldMapPosition(var1 - this.currentMapArea0.minX() * 64, var2 - this.currentMapArea0.minY() * 64, true);
+         this.worldMapTargetX = -1;
+         this.worldMapTargetY = -1;
       }
    }
 
@@ -1010,7 +1010,7 @@ public class WorldMap {
       if(this.currentMapArea0 != null) {
          int[] var4 = this.currentMapArea0.position(var1, var2, var3);
          if(var4 != null) {
-            this.__ak_530(var4[0], var4[1]);
+            this.setWorldMapPositionTarget(var4[0], var4[1]);
          }
 
       }
@@ -1039,7 +1039,7 @@ public class WorldMap {
    )
    @Export("__ae_534")
    public int __ae_534() {
-      return this.currentMapArea0 == null?-1:this.__b + this.currentMapArea0.minX() * 64;
+      return this.currentMapArea0 == null?-1:this.worldMapX + this.currentMapArea0.minX() * 64;
    }
 
    @ObfuscatedName("at")
@@ -1049,7 +1049,7 @@ public class WorldMap {
    )
    @Export("__at_535")
    public int __at_535() {
-      return this.currentMapArea0 == null?-1:this.__c + this.currentMapArea0.minY() * 64;
+      return this.currentMapArea0 == null?-1:this.worldMapY + this.currentMapArea0.minY() * 64;
    }
 
    @ObfuscatedName("ad")
@@ -1285,7 +1285,7 @@ public class WorldMap {
       if(this.cacheLoader.isLoaded()) {
          int var7 = (int)Math.ceil((double)((float)var3 / this.zoom));
          int var8 = (int)Math.ceil((double)((float)var4 / this.zoom));
-         List var9 = this.worldMapManager.__u_74(this.__b - var7 / 2 - 1, this.__c - var8 / 2 - 1, var7 / 2 + this.__b + 1, var8 / 2 + this.__c + 1, var1, var2, var3, var4, var5, var6);
+         List var9 = this.worldMapManager.__u_74(this.worldMapX - var7 / 2 - 1, this.worldMapY - var8 / 2 - 1, var7 / 2 + this.worldMapX + 1, var8 / 2 + this.worldMapY + 1, var1, var2, var3, var4, var5, var6);
          if(!var9.isEmpty()) {
             Iterator var10 = var9.iterator();
 

@@ -127,8 +127,8 @@ public class MouseHandler implements MouseListener, MouseMotionListener, FocusLi
    @ObfuscatedGetter(
       intValue = -215744973
    )
-   @Export("__bb_hz")
-   static int __bb_hz;
+   @Export("oculusOrbFocalPointX")
+   static int oculusOrbFocalPointX;
 
    static {
       MouseHandler_instance = new MouseHandler();

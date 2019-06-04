@@ -22,31 +22,18 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package api.events;
+package rs.api;
 
-import lombok.Data;
-import api.Actor;
+import net.runelite.mapping.Import;
 
-/**
- * An event where the graphic of an {@link Actor} has changed.
- * <p>
- * The graphic the player has changed to can be obtained using
- * {@link Actor#getGraphic()}.
- * <p>
- * Examples of when this event may trigger include:
- * <ul>
- *     <li>Casting a magic spell</li>
- *     <li>Using a fairy ring</li>
- *     <li>Breaking a teleport tab</li>
- * </ul>
- *
- * @see api.GraphicID
- */
-@Data
-public class GraphicChanged
+public interface RSSkeleton extends RSNode
 {
-	/**
-	 * The actor that has had their graphic changed.
-	 */
-	private Actor actor;
+	@Import("count")
+	int getCount();
+
+	@Import("transformTypes")
+	int[] getTypes();
+
+	@Import("labels")
+	int[][] getList();
 }

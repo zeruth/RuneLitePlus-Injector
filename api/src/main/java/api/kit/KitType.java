@@ -24,12 +24,12 @@
  */
 package api.kit;
 
-import api.PlayerDefinition;
+import api.PlayerAppearance;
 
 /**
  * Represents an equipment slot in a players composition.
  * <p>
- * These values are intended for use with {@link PlayerDefinition} equipment
+ * These values are intended for use with {@link PlayerAppearance} equipment
  * slots. For obtaining information about equipment in the local players
  * equipment {@link api.ItemContainer}, use
  * {@link api.EquipmentInventorySlot}.
@@ -61,7 +61,7 @@ public enum KitType
 	}
 
 	/**
-	 * Gets the raw equipment index for use in {@link PlayerDefinition#getEquipmentIds()}.
+	 * Gets the raw equipment index for use in {@link PlayerAppearance#getEquipmentIds()}.
 	 *
 	 * @return raw equipment index
 	 */

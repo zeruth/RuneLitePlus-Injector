@@ -123,6 +123,7 @@ public final class Npc extends Actor {
       signature = "(I)Ldu;",
       garbageValue = "-2134947096"
    )
+   @Export("getModel")
    protected final Model getModel() {
       if(this.definition == null) {
          return null;

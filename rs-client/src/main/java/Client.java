@@ -296,11 +296,11 @@ public final class Client extends GameShell implements Usernamed {
    @Export("indexCacheLoaderIndex")
    static int indexCacheLoaderIndex;
    @ObfuscatedName("qn")
-   @Export("__client_qn")
-   static int[] __client_qn;
+   @Export("unknownSoundValues1")
+   static int[] unknownSoundValues1;
    @ObfuscatedName("qd")
-   @Export("__client_qd")
-   static int[] __client_qd;
+   @Export("queuedSoundEffectDelays")
+   static int[] queuedSoundEffectDelays;
    @ObfuscatedName("nr")
    @Export("__client_nr")
    static int[] __client_nr;
@@ -329,8 +329,8 @@ public final class Client extends GameShell implements Usernamed {
    @Export("soundEffects")
    static SoundEffect[] soundEffects;
    @ObfuscatedName("qk")
-   @Export("__client_qk")
-   static int[] __client_qk;
+   @Export("soundLocations")
+   static int[] soundLocations;
    @ObfuscatedName("qm")
    @ObfuscatedGetter(
       intValue = -137788125
@@ -952,8 +952,8 @@ public final class Client extends GameShell implements Usernamed {
    @ObfuscatedGetter(
       intValue = 410614005
    )
-   @Export("__client_hw")
-   static int __client_hw;
+   @Export("cameraPitchTarget")
+   static int cameraPitchTarget;
    @ObfuscatedName("hp")
    @ObfuscatedGetter(
       intValue = -1163038981
@@ -988,8 +988,8 @@ public final class Client extends GameShell implements Usernamed {
    @ObfuscatedGetter(
       intValue = -1420078475
    )
-   @Export("__client_hj")
-   static int __client_hj;
+   @Export("oculusOrbState")
+   static int oculusOrbState;
    @ObfuscatedName("ho")
    @ObfuscatedGetter(
       intValue = 1005832199
@@ -1018,8 +1018,8 @@ public final class Client extends GameShell implements Usernamed {
    @ObfuscatedGetter(
       intValue = 236939601
    )
-   @Export("__client_ie")
-   static int __client_ie;
+   @Export("oculusOrbNormalSpeed")
+   static int oculusOrbNormalSpeed;
    @ObfuscatedName("in")
    @ObfuscatedGetter(
       intValue = 351193663
@@ -1435,18 +1435,18 @@ public final class Client extends GameShell implements Usernamed {
       __client_hg = 7759444;
       __client_hh = false;
       __client_hd = 0;
-      __client_hw = 128;
+      cameraPitchTarget = 128;
       minimapOrientation = 0;
       __client_hv = 0;
       __client_hu = 0;
       __client_hi = 0;
       __client_ht = 0;
-      __client_hj = 0;
+      oculusOrbState = 0;
       __client_ho = 50;
       __client_hc = 0;
       __client_hk = 0;
       __client_if = 0;
-      __client_ie = 12;
+      oculusOrbNormalSpeed = 12;
       __client_in = 6;
       __client_il = 0;
       __client_ij = false;
@@ -1606,9 +1606,9 @@ public final class Client extends GameShell implements Usernamed {
       __client_qc = 127;
       soundEffectCount = 0;
       soundEffectIds = new int[50];
-      __client_qn = new int[50];
-      __client_qd = new int[50];
-      __client_qk = new int[50];
+      unknownSoundValues1 = new int[50];
+	  queuedSoundEffectDelays = new int[50];
+      soundLocations = new int[50];
       soundEffects = new SoundEffect[50];
       isCameraLocked = false;
       __client_rh = new boolean[5];
@@ -2600,7 +2600,8 @@ public final class Client extends GameShell implements Usernamed {
       signature = "(ZI)V",
       garbageValue = "106302203"
    )
-   protected final void __ab_112(boolean var1) {
+   @Export("methodDraw")
+   protected final void methodDraw(boolean var1) {
       boolean var2;
       label166: {
          try {
@@ -4188,7 +4189,7 @@ public final class Client extends GameShell implements Usernamed {
                      __client_iy = 20;
                      __client_is = false;
                      var14 = Interpreter.method1915(ClientPacket.__gs_at, packetWriter.isaacCipher);
-                     var14.packetBuffer.__bx_323(__client_hw);
+                     var14.packetBuffer.__bx_323(cameraPitchTarget);
                      var14.packetBuffer.writeShortLE(minimapOrientation);
                      packetWriter.__q_167(var14);
                   }
@@ -4273,7 +4274,7 @@ public final class Client extends GameShell implements Usernamed {
                      if(rights >= 2 && KeyHandler.KeyHandler_pressedKeys[82] && IndexStoreAction.__ik_cn == 66) {
                         String var37 = KeyHandler.method839();
                         TextureProvider.client.clipboardSetString(var37);
-                     } else if(__client_hj != 1 || GzipDecompressor.__go_ck <= 0) {
+                     } else if(oculusOrbState != 1 || GzipDecompressor.__go_ck <= 0) {
                         __client_pn[__client_pm] = IndexStoreAction.__ik_cn;
                         __client_pq[__client_pm] = GzipDecompressor.__go_ck;
                         ++__client_pm;
@@ -4377,7 +4378,7 @@ public final class Client extends GameShell implements Usernamed {
                                                          var40.packetBuffer.__ai_315(var33);
                                                          packetWriter.__q_167(var40);
                                                       }
-                                                   } else if(this.__ht_140()) {
+                                                   } else if(this.shouldLeftClickOpenMenu()) {
                                                       this.openMenu(__client_ja, __client_je);
                                                    } else if(menuOptionsCount > 0) {
                                                       var3 = __client_ja;
@@ -5400,7 +5401,7 @@ public final class Client extends GameShell implements Usernamed {
             }
 
             if(ServerPacket.__ge_cy == var1.serverPacket0) {
-               class3.method43(true, var3);
+               class3.updateNpcs(true, var3);
                var1.serverPacket0 = null;
                return true;
             }
@@ -5546,7 +5547,7 @@ public final class Client extends GameShell implements Usernamed {
                   class22.method295(var58);
                   this.alignWidget(var58);
                   if(var58.type == 0) {
-                     class39.method736(Widget.widgets[var16 >> 16], var58, false);
+                     class39.revalidateWidgetScroll(Widget.widgets[var16 >> 16], var58, false);
                   }
                }
 
@@ -5577,7 +5578,7 @@ public final class Client extends GameShell implements Usernamed {
                GameShell.updateGameState(45);
                var2.close();
                var2 = null;
-               class31.method572(var40);
+               class31.changeWorld(var40);
                var1.serverPacket0 = null;
                return false;
             }
@@ -5591,7 +5592,7 @@ public final class Client extends GameShell implements Usernamed {
             }
 
             if(ServerPacket.__ge_ah == var1.serverPacket0) {
-               class3.method43(false, var3);
+               class3.updateNpcs(false, var3);
                var1.serverPacket0 = null;
                return true;
             }
@@ -5619,7 +5620,7 @@ public final class Client extends GameShell implements Usernamed {
                var19 = Huffman.getWidget(var16);
                if(var19 != null) {
                   class22.method295(var19);
-                  class39.method736(Widget.widgets[var19.id >>> 16], var19, true);
+                  class39.revalidateWidgetScroll(Widget.widgets[var19.id >>> 16], var19, true);
                }
 
                if(rootWidgetGroup != -1) {
@@ -6320,7 +6321,7 @@ public final class Client extends GameShell implements Usernamed {
                      }
                   }
 
-                  if((var15 == 1 || !AbstractRasterProvider.__lp_ca && var15 == 4) && this.__ht_140()) {
+                  if((var15 == 1 || !AbstractRasterProvider.__lp_ca && var15 == 4) && this.shouldLeftClickOpenMenu()) {
                      var15 = 2;
                   }
 
@@ -6336,7 +6337,7 @@ public final class Client extends GameShell implements Usernamed {
                return;
             }
 
-            if(DevicePcmPlayerProvider.dragInventoryWidget != null && !__client_jl && menuOptionsCount > 0 && !this.__ht_140()) {
+            if(DevicePcmPlayerProvider.dragInventoryWidget != null && !__client_jl && menuOptionsCount > 0 && !this.shouldLeftClickOpenMenu()) {
                int var10 = __client_ja;
                int var11 = __client_je;
                class231.method4520(UnitPriceComparator.tempMenuAction, var10, var11);
@@ -6372,8 +6373,8 @@ public final class Client extends GameShell implements Usernamed {
       signature = "(B)Z",
       garbageValue = "109"
    )
-   @Export("__ht_140")
-   final boolean __ht_140() {
+   @Export("shouldLeftClickOpenMenu")
+   final boolean shouldLeftClickOpenMenu() {
       int var1 = menuOptionsCount - 1;
       return (__client_ku == 1 && menuOptionsCount > 2 || UserComparator7.method3364(var1)) && !menuShiftClick[var1];
    }
@@ -6444,7 +6445,7 @@ public final class Client extends GameShell implements Usernamed {
       int var3 = SoundCache.canvasWidth;
       int var4 = Huffman.canvasHeight;
       if(GroundItemPile.loadWidgetGroup(var2)) {
-         WorldMapRegion.method565(Widget.widgets[var2], -1, var3, var4, var1);
+         WorldMapRegion.notRevalidateWidgetScroll(Widget.widgets[var2], -1, var3, var4, var1);
       }
 
    }
@@ -6568,7 +6569,7 @@ public final class Client extends GameShell implements Usernamed {
                      packetWriter.__q_167(var12);
                   }
                }
-            } else if(this.__ht_140()) {
+            } else if(this.shouldLeftClickOpenMenu()) {
                this.openMenu(__client_nk + widgetClickX, __client_np + widgetClickY);
             } else if(menuOptionsCount > 0) {
                int var13 = widgetClickX + __client_nk;

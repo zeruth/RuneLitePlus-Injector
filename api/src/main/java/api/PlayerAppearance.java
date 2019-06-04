@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018, Adam <Adam@sigterm.info>
+ * Copyright (c) 2017, Adam <Adam@sigterm.info>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms, with or without
@@ -22,30 +22,47 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package rs.api;
+package api;
 
-import net.runelite.mapping.Import;
+import api.kit.KitType;
 
-public interface RSFrame
+/**
+ * Represents the template of a player.
+ */
+public interface PlayerAppearance
 {
-	@Import("skin")
-	RSFrameMap getSkin();
+	/**
+	 * Gets an array of IDs related to equipment slots.
+	 * <p>
+	 * If the ID for a specific slot is between 256 and 512, subtracting
+	 * 256 will result in the kit ID. Values above 512 indicate an item
+	 * and can be converted to the item ID by subtracting 512.
+	 *
+	 * @return the equipment IDs
+	 */
+	int[] getEquipmentIds();
 
-	@Import("transformCount")
-	int getTransformCount();
+	/**
+	 * Gets the equipment ID of a particular slot.
+	 *
+	 * @param type equipment slot
+	 * @return the equipment ID
+	 */
+	int getEquipmentId(KitType type);
 
-	@Import("transformTypes")
-	int[] getTransformTypes();
+	/**
+	 * Gets the kit ID of a particular slot.
+	 *
+	 * @param type equipment slot
+	 * @return the kit ID
+	 */
+	int getKitId(KitType type);
 
-	@Import("translator_x")
-	int[] getTranslatorX();
+	/**
+	 * Update the cached hash value for player equipment
+	 * Used to cache the player models based on equipment.
+	 */
+	void setHash();
 
-	@Import("translator_y")
-	int[] getTranslatorY();
-
-	@Import("translator_z")
-	int[] getTranslatorZ();
-
-	@Import("showing")
-	boolean isShowing();
+	void setTransformedNpcId(int id);
 }

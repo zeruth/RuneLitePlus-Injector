@@ -24,7 +24,7 @@
  */
 package api;
 
-import java.awt.*;
+import java.awt.Polygon;
 
 /**
  * Represents a decorative object, such as an object on a wall.

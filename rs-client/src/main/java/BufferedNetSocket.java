@@ -108,6 +108,6 @@ public class BufferedNetSocket extends AbstractSocket {
       garbageValue = "-598265539"
    )
    static void method3500(int var0) {
-      Client.__client_hj = var0;
+      Client.oculusOrbState = var0;
    }
 }

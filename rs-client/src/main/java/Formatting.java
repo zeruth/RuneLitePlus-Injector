@@ -55,7 +55,7 @@ public class Formatting {
          class179.Interpreter_intStackSize -= 2;
          var3 = Interpreter.Interpreter_intStack[class179.Interpreter_intStackSize];
          var4 = Interpreter.Interpreter_intStack[class179.Interpreter_intStackSize + 1];
-         EnumDefinition var5 = Interpreter.method1979(var3);
+         EnumDefinition var5 = Interpreter.getEnum(var3);
          if(var5.valType != 's') {
             ;
          }
@@ -76,7 +76,7 @@ public class Formatting {
       } else if(var0 != 3408) {
          if(var0 == 3411) {
             var3 = Interpreter.Interpreter_intStack[--class179.Interpreter_intStackSize];
-            EnumDefinition var10 = Interpreter.method1979(var3);
+            EnumDefinition var10 = Interpreter.getEnum(var3);
             Interpreter.Interpreter_intStack[++class179.Interpreter_intStackSize - 1] = var10.size();
             return 1;
          } else {
@@ -88,7 +88,7 @@ public class Formatting {
          var4 = Interpreter.Interpreter_intStack[class179.Interpreter_intStackSize + 1];
          int var9 = Interpreter.Interpreter_intStack[class179.Interpreter_intStackSize + 2];
          var6 = Interpreter.Interpreter_intStack[class179.Interpreter_intStackSize + 3];
-         EnumDefinition var7 = Interpreter.method1979(var9);
+         EnumDefinition var7 = Interpreter.getEnum(var9);
          if(var3 == var7.keyType && var4 == var7.valType) {
             for(int var8 = 0; var8 < var7.size0; ++var8) {
                if(var6 == var7.keys[var8]) {

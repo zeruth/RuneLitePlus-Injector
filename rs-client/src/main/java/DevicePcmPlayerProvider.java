@@ -465,7 +465,7 @@ public class DevicePcmPlayerProvider implements PcmPlayerProvider {
                            if(var10.fill) {
                               switch(var10.rectangleMode.id) {
                               case 1:
-                                 Rasterizer2D.method5937(var12, var13, var10.width, var10.height, var10.color, var10.color2);
+                                 Rasterizer2D.drawGradient(var12, var13, var10.width, var10.height, var10.color, var10.color2);
                                  break;
                               case 2:
                                  Rasterizer2D.method5938(var12, var13, var10.width, var10.height, var10.color, var10.color2, 255 - (var10.transparency & 255), 255 - (var10.__af & 255));

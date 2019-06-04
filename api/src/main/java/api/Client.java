@@ -1601,7 +1601,7 @@ public interface Client extends GameShell
 
 	NodeCache getHealthBarCache();
 
-	void toggleRenderSelf();
+	void setRenderSelf(boolean enabled);
 
 	/**
 	 *

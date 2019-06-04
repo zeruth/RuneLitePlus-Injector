@@ -55,8 +55,8 @@ public class ModelData extends Entity {
    @Export("faceAlphas")
    byte[] faceAlphas;
    @ObfuscatedName("k")
-   @Export("__k")
-   byte[] __k;
+   @Export("textureCoords")
+   byte[] textureCoords;
    @ObfuscatedName("n")
    @Export("faceColors")
    short[] faceColors;
@@ -70,17 +70,17 @@ public class ModelData extends Entity {
    @Export("__z")
    int __z;
    @ObfuscatedName("j")
-   @Export("__j")
-   byte[] __j;
+   @Export("textureRenderTypes")
+   byte[] textureRenderTypes;
    @ObfuscatedName("s")
-   @Export("__s")
-   short[] __s;
+   @Export("texTriangleX")
+   short[] texTriangleX;
    @ObfuscatedName("t")
-   @Export("__t")
-   short[] __t;
+   @Export("texTriangleY")
+   short[] texTriangleY;
    @ObfuscatedName("y")
-   @Export("__y")
-   short[] __y;
+   @Export("texTriangleZ")
+   short[] texTriangleZ;
    @ObfuscatedName("h")
    @Export("__h")
    int[] __h;
@@ -194,7 +194,7 @@ public class ModelData extends Entity {
             var5 |= var10.faceAlphas != null;
             var6 |= var10.__b != null;
             var7 |= var10.faceTextures != null;
-            var8 |= var10.__k != null;
+            var8 |= var10.textureCoords != null;
          }
       }
 
@@ -226,15 +226,15 @@ public class ModelData extends Entity {
       }
 
       if(var8) {
-         this.__k = new byte[this.faceCount];
+         this.textureCoords = new byte[this.faceCount];
       }
 
       this.faceColors = new short[this.faceCount];
       if(this.__z > 0) {
-         this.__j = new byte[this.__z];
-         this.__s = new short[this.__z];
-         this.__t = new short[this.__z];
-         this.__y = new short[this.__z];
+         this.textureRenderTypes = new byte[this.__z];
+         this.texTriangleX = new short[this.__z];
+         this.texTriangleY = new short[this.__z];
+         this.texTriangleZ = new short[this.__z];
       }
 
       this.verticesCount = 0;
@@ -275,10 +275,10 @@ public class ModelData extends Entity {
                }
 
                if(var8) {
-                  if(var10.__k != null && var10.__k[var11] != -1) {
-                     this.__k[this.faceCount] = (byte)(this.__z + var10.__k[var11]);
+                  if(var10.textureCoords != null && var10.textureCoords[var11] != -1) {
+                     this.textureCoords[this.faceCount] = (byte)(this.__z + var10.textureCoords[var11]);
                   } else {
-                     this.__k[this.faceCount] = -1;
+                     this.textureCoords[this.faceCount] = -1;
                   }
                }
 
@@ -290,11 +290,11 @@ public class ModelData extends Entity {
             }
 
             for(var11 = 0; var11 < var10.__z; ++var11) {
-               byte var12 = this.__j[this.__z] = var10.__j[var11];
+               byte var12 = this.textureRenderTypes[this.__z] = var10.textureRenderTypes[var11];
                if(var12 == 0) {
-                  this.__s[this.__z] = (short)this.__w_217(var10, var10.__s[var11]);
-                  this.__t[this.__z] = (short)this.__w_217(var10, var10.__t[var11]);
-                  this.__y[this.__z] = (short)this.__w_217(var10, var10.__y[var11]);
+                  this.texTriangleX[this.__z] = (short)this.__w_217(var10, var10.texTriangleX[var11]);
+                  this.texTriangleY[this.__z] = (short)this.__w_217(var10, var10.texTriangleY[var11]);
+                  this.texTriangleZ[this.__z] = (short)this.__w_217(var10, var10.texTriangleZ[var11]);
                }
 
                ++this.__z;
@@ -372,12 +372,12 @@ public class ModelData extends Entity {
       this.indices3 = var1.indices3;
       this.__e = var1.__e;
       this.__x = var1.__x;
-      this.__k = var1.__k;
+      this.textureCoords = var1.textureCoords;
       this.__a = var1.__a;
-      this.__j = var1.__j;
-      this.__s = var1.__s;
-      this.__t = var1.__t;
-      this.__y = var1.__y;
+      this.textureRenderTypes = var1.textureRenderTypes;
+      this.texTriangleX = var1.texTriangleX;
+      this.texTriangleY = var1.texTriangleY;
+      this.texTriangleZ = var1.texTriangleZ;
       this.__h = var1.__h;
       this.__b = var1.__b;
       this.vertexLabels = var1.vertexLabels;
@@ -419,11 +419,11 @@ public class ModelData extends Entity {
       int var25 = 0;
       int var26;
       if(var11 > 0) {
-         this.__j = new byte[var11];
+         this.textureRenderTypes = new byte[var11];
          var2.index = 0;
 
          for(var26 = 0; var26 < var11; ++var26) {
-            byte var27 = this.__j[var26] = var2.readByte();
+            byte var27 = this.textureRenderTypes[var26] = var2.readByte();
             if(var27 == 0) {
                ++var23;
             }
@@ -531,14 +531,14 @@ public class ModelData extends Entity {
       }
 
       if(var16 == 1 && var11 > 0) {
-         this.__k = new byte[var10];
+         this.textureCoords = new byte[var10];
       }
 
       this.faceColors = new short[var10];
       if(var11 > 0) {
-         this.__s = new short[var11];
-         this.__t = new short[var11];
-         this.__y = new short[var11];
+         this.texTriangleX = new short[var11];
+         this.texTriangleY = new short[var11];
+         this.texTriangleZ = new short[var11];
       }
 
       var2.index = var11;
@@ -613,8 +613,8 @@ public class ModelData extends Entity {
             this.faceTextures[var51] = (short)(var7.__ag_302() - 1);
          }
 
-         if(this.__k != null && this.faceTextures[var51] != -1) {
-            this.__k[var51] = (byte)(var8.readUnsignedByte() - 1);
+         if(this.textureCoords != null && this.faceTextures[var51] != -1) {
+            this.textureCoords[var51] = (byte)(var8.readUnsignedByte() - 1);
          }
       }
 
@@ -676,11 +676,11 @@ public class ModelData extends Entity {
       var7.index = var46;
 
       for(var55 = 0; var55 < var11; ++var55) {
-         var56 = this.__j[var55] & 255;
+         var56 = this.textureRenderTypes[var55] & 255;
          if(var56 == 0) {
-            this.__s[var55] = (short)var2.__ag_302();
-            this.__t[var55] = (short)var2.__ag_302();
-            this.__y[var55] = (short)var2.__ag_302();
+            this.texTriangleX[var55] = (short)var2.__ag_302();
+            this.texTriangleY[var55] = (short)var2.__ag_302();
+            this.texTriangleZ[var55] = (short)var2.__ag_302();
          }
       }
 
@@ -769,10 +769,10 @@ public class ModelData extends Entity {
       this.indices2 = new int[var10];
       this.indices3 = new int[var10];
       if(var11 > 0) {
-         this.__j = new byte[var11];
-         this.__s = new short[var11];
-         this.__t = new short[var11];
-         this.__y = new short[var11];
+         this.textureRenderTypes = new byte[var11];
+         this.texTriangleX = new short[var11];
+         this.texTriangleY = new short[var11];
+         this.texTriangleZ = new short[var11];
       }
 
       if(var16 == 1) {
@@ -781,7 +781,7 @@ public class ModelData extends Entity {
 
       if(var12 == 1) {
          this.__e = new byte[var10];
-         this.__k = new byte[var10];
+         this.textureCoords = new byte[var10];
          this.faceTextures = new short[var10];
       }
 
@@ -860,14 +860,14 @@ public class ModelData extends Entity {
             }
 
             if((var39 & 2) == 2) {
-               this.__k[var38] = (byte)(var39 >> 2);
+               this.textureCoords[var38] = (byte)(var39 >> 2);
                this.faceTextures[var38] = this.faceColors[var38];
                this.faceColors[var38] = 127;
                if(this.faceTextures[var38] != -1) {
                   var3 = true;
                }
             } else {
-               this.__k[var38] = -1;
+               this.textureCoords[var38] = -1;
                this.faceTextures[var38] = -1;
             }
          }
@@ -939,20 +939,20 @@ public class ModelData extends Entity {
       var4.index = var31;
 
       for(var42 = 0; var42 < var11; ++var42) {
-         this.__j[var42] = 0;
-         this.__s[var42] = (short)var4.__ag_302();
-         this.__t[var42] = (short)var4.__ag_302();
-         this.__y[var42] = (short)var4.__ag_302();
+         this.textureRenderTypes[var42] = 0;
+         this.texTriangleX[var42] = (short)var4.__ag_302();
+         this.texTriangleY[var42] = (short)var4.__ag_302();
+         this.texTriangleZ[var42] = (short)var4.__ag_302();
       }
 
-      if(this.__k != null) {
+      if(this.textureCoords != null) {
          boolean var46 = false;
 
          for(var43 = 0; var43 < var10; ++var43) {
-            var44 = this.__k[var43] & 255;
+            var44 = this.textureCoords[var43] & 255;
             if(var44 != 255) {
-               if(this.indices1[var43] == (this.__s[var44] & '\uffff') && this.indices2[var43] == (this.__t[var44] & '\uffff') && this.indices3[var43] == (this.__y[var44] & '\uffff')) {
-                  this.__k[var43] = -1;
+               if(this.indices1[var43] == (this.texTriangleX[var44] & '\uffff') && this.indices2[var43] == (this.texTriangleY[var44] & '\uffff') && this.indices3[var43] == (this.texTriangleZ[var44] & '\uffff')) {
+                  this.textureCoords[var43] = -1;
                } else {
                   var46 = true;
                }
@@ -960,7 +960,7 @@ public class ModelData extends Entity {
          }
 
          if(!var46) {
-            this.__k = null;
+            this.textureCoords = null;
          }
       }
 
@@ -1032,14 +1032,14 @@ public class ModelData extends Entity {
       var1.indices3 = this.indices3;
       var1.__x = this.__x;
       var1.faceAlphas = this.faceAlphas;
-      var1.__k = this.__k;
+      var1.textureCoords = this.textureCoords;
       var1.faceColors = this.faceColors;
       var1.faceTextures = this.faceTextures;
       var1.__a = this.__a;
-      var1.__j = this.__j;
-      var1.__s = this.__s;
-      var1.__t = this.__t;
-      var1.__y = this.__y;
+      var1.textureRenderTypes = this.textureRenderTypes;
+      var1.texTriangleX = this.texTriangleX;
+      var1.texTriangleY = this.texTriangleY;
+      var1.texTriangleZ = this.texTriangleZ;
       var1.__h = this.__h;
       var1.__b = this.__b;
       var1.vertexLabels = this.vertexLabels;
@@ -1082,14 +1082,14 @@ public class ModelData extends Entity {
             var11.__e = this.__e;
             var11.__x = this.__x;
             var11.faceAlphas = this.faceAlphas;
-            var11.__k = this.__k;
+            var11.textureCoords = this.textureCoords;
             var11.faceColors = this.faceColors;
             var11.faceTextures = this.faceTextures;
             var11.__a = this.__a;
-            var11.__j = this.__j;
-            var11.__s = this.__s;
-            var11.__t = this.__t;
-            var11.__y = this.__y;
+            var11.textureRenderTypes = this.textureRenderTypes;
+            var11.texTriangleX = this.texTriangleX;
+            var11.texTriangleY = this.texTriangleY;
+            var11.texTriangleZ = this.texTriangleZ;
             var11.__h = this.__h;
             var11.__b = this.__b;
             var11.vertexLabels = this.vertexLabels;
@@ -1464,20 +1464,20 @@ public class ModelData extends Entity {
       var8.faceColors1 = new int[this.faceCount];
       var8.faceColors2 = new int[this.faceCount];
       var8.faceColors3 = new int[this.faceCount];
-      if(this.__z > 0 && this.__k != null) {
+      if(this.__z > 0 && this.textureCoords != null) {
          int[] var9 = new int[this.__z];
 
          int var10;
          for(var10 = 0; var10 < this.faceCount; ++var10) {
-            if(this.__k[var10] != -1) {
-               ++var9[this.__k[var10] & 255];
+            if(this.textureCoords[var10] != -1) {
+               ++var9[this.textureCoords[var10] & 255];
             }
          }
 
          var8.__h = 0;
 
          for(var10 = 0; var10 < this.__z; ++var10) {
-            if(var9[var10] > 0 && this.__j[var10] == 0) {
+            if(var9[var10] > 0 && this.textureRenderTypes[var10] == 0) {
                ++var8.__h;
             }
          }
@@ -1489,10 +1489,10 @@ public class ModelData extends Entity {
 
          int var11;
          for(var11 = 0; var11 < this.__z; ++var11) {
-            if(var9[var11] > 0 && this.__j[var11] == 0) {
-               var8.__b[var10] = this.__s[var11] & '\uffff';
-               var8.__c[var10] = this.__t[var11] & '\uffff';
-               var8.__r[var10] = this.__y[var11] & '\uffff';
+            if(var9[var11] > 0 && this.textureRenderTypes[var11] == 0) {
+               var8.__b[var10] = this.texTriangleX[var11] & '\uffff';
+               var8.__c[var10] = this.texTriangleY[var11] & '\uffff';
+               var8.__r[var10] = this.texTriangleZ[var11] & '\uffff';
                var9[var11] = var10++;
             } else {
                var9[var11] = -1;
@@ -1502,8 +1502,8 @@ public class ModelData extends Entity {
          var8.__s = new byte[this.faceCount];
 
          for(var11 = 0; var11 < this.faceCount; ++var11) {
-            if(this.__k[var11] != -1) {
-               var8.__s[var11] = (byte)var9[this.__k[var11] & 255];
+            if(this.textureCoords[var11] != -1) {
+               var8.__s[var11] = (byte)var9[this.textureCoords[var11] & 255];
             } else {
                var8.__s[var11] = -1;
             }
@@ -1629,7 +1629,7 @@ public class ModelData extends Entity {
       var8.indices1 = this.indices1;
       var8.indices2 = this.indices2;
       var8.indices3 = this.indices3;
-      var8.__z = this.__x;
+      var8.faceRenderPriorities = this.__x;
       var8.faceAlphas = this.faceAlphas;
       var8.__y = this.__a;
       var8.vertexLabels = this.vertexLabels;

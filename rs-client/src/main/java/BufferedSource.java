@@ -262,7 +262,7 @@ public class BufferedSource implements Runnable {
    static final void method3423(boolean var0) {
       for(int var1 = 0; var1 < Client.npcCount; ++var1) {
          Npc var2 = Client.npcs[Client.npcIndices[var1]];
-         if(var2 != null && var2.isVisible() && var2.definition.__v == var0 && var2.definition.__e_435()) {
+         if(var2 != null && var2.isVisible() && var2.definition.isVisible == var0 && var2.definition.__e_435()) {
             int var3 = var2.x >> 7;
             int var4 = var2.y >> 7;
             if(var3 >= 0 && var3 < 104 && var4 >= 0 && var4 < 104) {

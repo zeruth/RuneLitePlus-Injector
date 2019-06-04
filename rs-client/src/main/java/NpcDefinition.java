@@ -136,8 +136,8 @@ public class NpcDefinition extends DualNode {
    @Export("heightScale")
    int heightScale;
    @ObfuscatedName("v")
-   @Export("__v")
-   public boolean __v;
+   @Export("isVisible")
+   public boolean isVisible;
    @ObfuscatedName("ag")
    @ObfuscatedGetter(
       intValue = -1235927151
@@ -181,8 +181,8 @@ public class NpcDefinition extends DualNode {
    @Export("isInteractable")
    public boolean isInteractable;
    @ObfuscatedName("ak")
-   @Export("__ak")
-   public boolean __ak;
+   @Export("isClickable")
+   public boolean isClickable;
    @ObfuscatedName("aw")
    @Export("isFollower")
    public boolean isFollower;
@@ -213,7 +213,7 @@ public class NpcDefinition extends DualNode {
       this.combatLevel = -1;
       this.widthScale = 128;
       this.heightScale = 128;
-      this.__v = false;
+      this.isVisible = false;
       this.__ag = 0;
       this.__aq = 0;
       this.headIconPrayer = -1;
@@ -221,7 +221,7 @@ public class NpcDefinition extends DualNode {
       this.transformVarbit = -1;
       this.transformVarp = -1;
       this.isInteractable = true;
-      this.__ak = true;
+      this.isClickable = true;
       this.isFollower = false;
    }
 
@@ -323,7 +323,7 @@ public class NpcDefinition extends DualNode {
       } else if(var2 == 98) {
          this.heightScale = var1.__ag_302();
       } else if(var2 == 99) {
-         this.__v = true;
+         this.isVisible = true;
       } else if(var2 == 100) {
          this.__ag = var1.readByte();
       } else if(var2 == 101) {
@@ -336,7 +336,7 @@ public class NpcDefinition extends DualNode {
          if(var2 == 107) {
             this.isInteractable = false;
          } else if(var2 == 109) {
-            this.__ak = false;
+            this.isClickable = false;
          } else if(var2 == 111) {
             this.isFollower = true;
          } else if(var2 == 249) {

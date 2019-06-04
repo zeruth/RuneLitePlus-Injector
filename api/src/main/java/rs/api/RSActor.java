@@ -27,7 +27,7 @@ package rs.api;
 import api.Actor;
 import net.runelite.mapping.Import;
 
-public interface RSActor extends RSRenderable, Actor
+public interface RSActor extends RSEntity, Actor
 {
 	@Import("targetIndex")
 	int getRSInteracting();

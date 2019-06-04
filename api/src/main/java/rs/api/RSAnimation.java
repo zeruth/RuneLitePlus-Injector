@@ -26,14 +26,26 @@ package rs.api;
 
 import net.runelite.mapping.Import;
 
-public interface RSFrameMap extends RSNode
+public interface RSAnimation
 {
-	@Import("count")
-	int getCount();
+	@Import("skeleton")
+	RSSkeleton getSkin();
 
-	@Import("types")
-	int[] getTypes();
+	@Import("transformCount")
+	int getTransformCount();
 
-	@Import("list")
-	int[][] getList();
+	@Import("transformSkeletonLabels")
+	int[] getTransformTypes();
+
+	@Import("transformXs")
+	int[] getTranslatorX();
+
+	@Import("transformYs")
+	int[] getTranslatorY();
+
+	@Import("transformZs")
+	int[] getTranslatorZ();
+
+	@Import("hasAlphaTransform")
+	boolean isShowing();
 }

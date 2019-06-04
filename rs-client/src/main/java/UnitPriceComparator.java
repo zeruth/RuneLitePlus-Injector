@@ -11,8 +11,8 @@ final class UnitPriceComparator implements Comparator {
    @ObfuscatedSignature(
       signature = "Lln;"
    )
-   @Export("__d_gz")
-   static Sprite __d_gz;
+   @Export("compass")
+   static Sprite compass;
    @ObfuscatedName("lr")
    @ObfuscatedSignature(
       signature = "Lcs;"
@@ -78,9 +78,9 @@ final class UnitPriceComparator implements Comparator {
          if(WorldMapIcon1.cameraPitch < 310) {
             int var1;
             int var2;
-            if(Client.__client_hj == 1) {
-               var1 = MouseHandler.__bb_hz >> 7;
-               var2 = ScriptEvent.__by_hb >> 7;
+            if(Client.oculusOrbState == 1) {
+               var1 = MouseHandler.oculusOrbFocalPointX >> 7;
+               var2 = ScriptEvent.oculusOrbFocalPointY >> 7;
             } else {
                var1 = Canvas.localPlayer.x >> 7;
                var2 = Canvas.localPlayer.y >> 7;

@@ -27,35 +27,35 @@ public final class TileModel {
    @Export("__dv_b")
    static final int[][] __dv_b;
    @ObfuscatedName("m")
-   @Export("__m")
-   int[] __m;
+   @Export("vertexX")
+   int[] vertexX;
    @ObfuscatedName("f")
-   @Export("__f")
-   int[] __f;
+   @Export("vertexY")
+   int[] vertexY;
    @ObfuscatedName("q")
-   @Export("__q")
-   int[] __q;
+   @Export("vertexZ")
+   int[] vertexZ;
    @ObfuscatedName("w")
-   @Export("__w")
-   int[] __w;
+   @Export("triangleColorA")
+   int[] triangleColorA;
    @ObfuscatedName("o")
-   @Export("__o")
-   int[] __o;
+   @Export("triangleColorB")
+   int[] triangleColorB;
    @ObfuscatedName("u")
-   @Export("__u")
-   int[] __u;
+   @Export("triangleColorC")
+   int[] triangleColorC;
    @ObfuscatedName("g")
-   @Export("__g")
-   int[] __g;
+   @Export("faceX")
+   int[] faceX;
    @ObfuscatedName("l")
-   @Export("__l")
-   int[] __l;
+   @Export("faceY")
+   int[] faceY;
    @ObfuscatedName("e")
-   @Export("__e")
-   int[] __e;
+   @Export("faceZ")
+   int[] faceZ;
    @ObfuscatedName("x")
-   @Export("__x")
-   int[] __x;
+   @Export("triangleTextureId")
+   int[] triangleTextureId;
    @ObfuscatedName("d")
    @Export("isFlat")
    boolean isFlat;
@@ -98,9 +98,9 @@ public final class TileModel {
       int var23 = var20 * 3 / 4;
       int[] var24 = __dv_h[var1];
       int var25 = var24.length;
-      this.__m = new int[var25];
-      this.__f = new int[var25];
-      this.__q = new int[var25];
+      this.vertexX = new int[var25];
+      this.vertexY = new int[var25];
+      this.vertexZ = new int[var25];
       int[] var26 = new int[var25];
       int[] var27 = new int[var25];
       int var28 = var20 * var4;
@@ -224,23 +224,23 @@ public final class TileModel {
             var36 = var17;
          }
 
-         this.__m[var30] = var32;
-         this.__f[var30] = var34;
-         this.__q[var30] = var33;
+         this.vertexX[var30] = var32;
+         this.vertexY[var30] = var34;
+         this.vertexZ[var30] = var33;
          var26[var30] = var35;
          var27[var30] = var36;
       }
 
       int[] var38 = __dv_b[var1];
       var31 = var38.length / 4;
-      this.__g = new int[var31];
-      this.__l = new int[var31];
-      this.__e = new int[var31];
-      this.__w = new int[var31];
-      this.__o = new int[var31];
-      this.__u = new int[var31];
+      this.faceX = new int[var31];
+      this.faceY = new int[var31];
+      this.faceZ = new int[var31];
+      this.triangleColorA = new int[var31];
+      this.triangleColorB = new int[var31];
+      this.triangleColorC = new int[var31];
       if(var3 != -1) {
-         this.__x = new int[var31];
+         this.triangleTextureId = new int[var31];
       }
 
       var32 = 0;
@@ -263,22 +263,22 @@ public final class TileModel {
             var37 = var37 - var2 & 3;
          }
 
-         this.__g[var33] = var35;
-         this.__l[var33] = var36;
-         this.__e[var33] = var37;
+         this.faceX[var33] = var35;
+         this.faceY[var33] = var36;
+         this.faceZ[var33] = var37;
          if(var34 == 0) {
-            this.__w[var33] = var26[var35];
-            this.__o[var33] = var26[var36];
-            this.__u[var33] = var26[var37];
-            if(this.__x != null) {
-               this.__x[var33] = -1;
+            this.triangleColorA[var33] = var26[var35];
+            this.triangleColorB[var33] = var26[var36];
+            this.triangleColorC[var33] = var26[var37];
+            if(this.triangleTextureId != null) {
+               this.triangleTextureId[var33] = -1;
             }
          } else {
-            this.__w[var33] = var27[var35];
-            this.__o[var33] = var27[var36];
-            this.__u[var33] = var27[var37];
-            if(this.__x != null) {
-               this.__x[var33] = var3;
+            this.triangleColorA[var33] = var27[var35];
+            this.triangleColorB[var33] = var27[var36];
+            this.triangleColorC[var33] = var27[var37];
+            if(this.triangleTextureId != null) {
+               this.triangleTextureId[var33] = var3;
             }
          }
       }

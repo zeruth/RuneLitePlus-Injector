@@ -132,7 +132,7 @@ public class SecureRandomCallable implements Callable {
       GameShell.menuY = var13;
       class214.menuWidth = var7;
       AbstractWorldMapIcon.menuHeight = Client.menuOptionsCount * 15 + 22;
-      class39.method736(Widget.widgets[var0 >> 16], var4, false);
+      class39.revalidateWidgetScroll(Widget.widgets[var0 >> 16], var4, false);
       WorldMapSection3.method346(var1);
       if(Client.rootWidgetGroup != -1) {
          GrandExchangeEvents.method74(Client.rootWidgetGroup, 1);

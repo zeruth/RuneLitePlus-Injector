@@ -10,8 +10,8 @@ public class Scene {
    @Export("Scene_isLowDetail")
    public static boolean Scene_isLowDetail;
    @ObfuscatedName("a")
-   @Export("__em_a")
-   static int __em_a;
+   @Export("tileUpdateCount")
+   static int tileUpdateCount;
    @ObfuscatedName("z")
    @Export("Scene_plane")
    static int Scene_plane;
@@ -198,7 +198,7 @@ public class Scene {
 
    static {
       Scene_isLowDetail = true;
-      __em_a = 0;
+      tileUpdateCount = 0;
       Scene_plane = 0;
       gameObjects = new GameObject[100];
       checkClick = false;
@@ -1135,7 +1135,7 @@ public class Scene {
       }
 
       this.occlude();
-      __em_a = 0;
+      tileUpdateCount = 0;
 
       int var7;
       Tile[][] var8;
@@ -1161,7 +1161,7 @@ public class Scene {
                         var11.drawGameObjects = false;
                      }
 
-                     ++__em_a;
+                     ++tileUpdateCount;
                   }
                }
             }
@@ -1215,7 +1215,7 @@ public class Scene {
                      }
                   }
 
-                  if(__em_a == 0) {
+                  if(tileUpdateCount == 0) {
                      checkClick = false;
                      return;
                   }
@@ -1266,7 +1266,7 @@ public class Scene {
                      }
                   }
 
-                  if(__em_a == 0) {
+                  if(tileUpdateCount == 0) {
                      checkClick = false;
                      return;
                   }
@@ -1375,10 +1375,10 @@ public class Scene {
                                     var9 = var3.linkedBelowTile;
                                     if(var9.paint != null) {
                                        if(!this.__ba_253(0, var4, var5)) {
-                                          this.__ao_251(var9.paint, 0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var4, var5);
+                                          this.drawTileUnderlay(var9.paint, 0, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var4, var5);
                                        }
                                     } else if(var9.model != null && !this.__ba_253(0, var4, var5)) {
-                                       this.__aa_252(var9.model, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var4, var5);
+                                       this.drawTileOverlay(var9.model, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var4, var5);
                                     }
 
                                     var10 = var9.boundaryObject;
@@ -1399,12 +1399,12 @@ public class Scene {
                                     if(!this.__ba_253(var7, var4, var5)) {
                                        var20 = true;
                                        if(var3.paint.neColor != 12345678 || checkClick && var6 <= Scene_selectedPlane) {
-                                          this.__ao_251(var3.paint, var7, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var4, var5);
+                                          this.drawTileUnderlay(var3.paint, var7, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var4, var5);
                                        }
                                     }
                                  } else if(var3.model != null && !this.__ba_253(var7, var4, var5)) {
                                     var20 = true;
-                                    this.__aa_252(var3.model, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var4, var5);
+                                    this.drawTileOverlay(var3.model, Scene_cameraPitchSine, Scene_cameraPitchCosine, Scene_cameraYawSine, Scene_cameraYawCosine, var4, var5);
                                  }
 
                                  var21 = 0;
@@ -1712,7 +1712,7 @@ public class Scene {
          } while(var9 != null && var9.drawSecondary);
 
          var3.drawSecondary = false;
-         --__em_a;
+         --tileUpdateCount;
          GroundItemPile var32 = var3.groundItemPile;
          if(var32 != null && var32.height != 0) {
             if(var32.second != null) {
@@ -1812,8 +1812,8 @@ public class Scene {
    @ObfuscatedSignature(
       signature = "(Leb;IIIIIII)V"
    )
-   @Export("__ao_251")
-   void __ao_251(TilePaint var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
+   @Export("drawTileUnderlay")
+   void drawTileUnderlay(TilePaint var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
       int var9;
       int var10 = var9 = (var7 << 7) - Scene_cameraX;
       int var11;
@@ -1923,9 +1923,9 @@ public class Scene {
    @ObfuscatedSignature(
       signature = "(Ldv;IIIIII)V"
    )
-   @Export("__aa_252")
-   void __aa_252(TileModel var1, int var2, int var3, int var4, int var5, int var6, int var7) {
-      int var8 = var1.__m.length;
+   @Export("drawTileOverlay")
+   void drawTileOverlay(TileModel var1, int var2, int var3, int var4, int var5, int var6, int var7) {
+      int var8 = var1.vertexX.length;
 
       int var9;
       int var10;
@@ -1933,9 +1933,9 @@ public class Scene {
       int var12;
       int var13;
       for(var9 = 0; var9 < var8; ++var9) {
-         var10 = var1.__m[var9] - Scene_cameraX;
-         var11 = var1.__f[var9] - Scene_cameraY;
-         var12 = var1.__q[var9] - Scene_cameraZ;
+         var10 = var1.vertexX[var9] - Scene_cameraX;
+         var11 = var1.vertexY[var9] - Scene_cameraY;
+         var12 = var1.vertexZ[var9] - Scene_cameraZ;
          var13 = var12 * var4 + var5 * var10 >> 16;
          var12 = var5 * var12 - var10 * var4 >> 16;
          var10 = var13;
@@ -1945,7 +1945,7 @@ public class Scene {
             return;
          }
 
-         if(var1.__x != null) {
+         if(var1.triangleTextureId != null) {
             TileModel.__dv_s[var9] = var10;
             TileModel.__dv_t[var9] = var13;
             TileModel.__dv_y[var9] = var12;
@@ -1956,12 +1956,12 @@ public class Scene {
       }
 
       Rasterizer3D.Rasterizer3D_alpha = 0;
-      var8 = var1.__g.length;
+      var8 = var1.faceX.length;
 
       for(var9 = 0; var9 < var8; ++var9) {
-         var10 = var1.__g[var9];
-         var11 = var1.__l[var9];
-         var12 = var1.__e[var9];
+         var10 = var1.faceX[var9];
+         var11 = var1.faceY[var9];
+         var12 = var1.faceZ[var9];
          var13 = TileModel.__dv_z[var10];
          int var14 = TileModel.__dv_z[var11];
          int var15 = TileModel.__dv_z[var12];
@@ -1979,19 +1979,19 @@ public class Scene {
                Scene_selectedY = var7;
             }
 
-            if(var1.__x != null && var1.__x[var9] != -1) {
+            if(var1.triangleTextureId != null && var1.triangleTextureId[var9] != -1) {
                if(!Scene_isLowDetail) {
                   if(var1.isFlat) {
-                     Rasterizer3D.method3012(var16, var17, var18, var13, var14, var15, var1.__w[var9], var1.__o[var9], var1.__u[var9], TileModel.__dv_s[0], TileModel.__dv_s[1], TileModel.__dv_s[3], TileModel.__dv_t[0], TileModel.__dv_t[1], TileModel.__dv_t[3], TileModel.__dv_y[0], TileModel.__dv_y[1], TileModel.__dv_y[3], var1.__x[var9]);
+                     Rasterizer3D.method3012(var16, var17, var18, var13, var14, var15, var1.triangleColorA[var9], var1.triangleColorB[var9], var1.triangleColorC[var9], TileModel.__dv_s[0], TileModel.__dv_s[1], TileModel.__dv_s[3], TileModel.__dv_t[0], TileModel.__dv_t[1], TileModel.__dv_t[3], TileModel.__dv_y[0], TileModel.__dv_y[1], TileModel.__dv_y[3], var1.triangleTextureId[var9]);
                   } else {
-                     Rasterizer3D.method3012(var16, var17, var18, var13, var14, var15, var1.__w[var9], var1.__o[var9], var1.__u[var9], TileModel.__dv_s[var10], TileModel.__dv_s[var11], TileModel.__dv_s[var12], TileModel.__dv_t[var10], TileModel.__dv_t[var11], TileModel.__dv_t[var12], TileModel.__dv_y[var10], TileModel.__dv_y[var11], TileModel.__dv_y[var12], var1.__x[var9]);
+                     Rasterizer3D.method3012(var16, var17, var18, var13, var14, var15, var1.triangleColorA[var9], var1.triangleColorB[var9], var1.triangleColorC[var9], TileModel.__dv_s[var10], TileModel.__dv_s[var11], TileModel.__dv_s[var12], TileModel.__dv_t[var10], TileModel.__dv_t[var11], TileModel.__dv_t[var12], TileModel.__dv_y[var10], TileModel.__dv_y[var11], TileModel.__dv_y[var12], var1.triangleTextureId[var9]);
                   }
                } else {
-                  int var19 = Rasterizer3D.Rasterizer3D_textureLoader.__w_213(var1.__x[var9]);
-                  Rasterizer3D.method3037(var16, var17, var18, var13, var14, var15, method3108(var19, var1.__w[var9]), method3108(var19, var1.__o[var9]), method3108(var19, var1.__u[var9]));
+                  int var19 = Rasterizer3D.Rasterizer3D_textureLoader.__w_213(var1.triangleTextureId[var9]);
+                  Rasterizer3D.method3037(var16, var17, var18, var13, var14, var15, method3108(var19, var1.triangleColorA[var9]), method3108(var19, var1.triangleColorB[var9]), method3108(var19, var1.triangleColorC[var9]));
                }
-            } else if(var1.__w[var9] != 12345678) {
-               Rasterizer3D.method3037(var16, var17, var18, var13, var14, var15, var1.__w[var9], var1.__o[var9], var1.__u[var9]);
+            } else if(var1.triangleColorA[var9] != 12345678) {
+               Rasterizer3D.method3037(var16, var17, var18, var13, var14, var15, var1.triangleColorA[var9], var1.triangleColorB[var9], var1.triangleColorC[var9]);
             }
          }
       }

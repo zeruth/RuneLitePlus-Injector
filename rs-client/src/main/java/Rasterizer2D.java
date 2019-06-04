@@ -139,8 +139,9 @@ public class Rasterizer2D extends DualNode {
 
    }
 
+   @Export("drawCircle")
    @ObfuscatedName("dy")
-   static void method5933(int var0, int var1, int var2, int var3) {
+   static void drawCircle(int var0, int var1, int var2, int var3) {
       if(var2 == 0) {
          Rasterizer2D_setPixel(var0, var1, var3);
       } else {
@@ -237,7 +238,7 @@ public class Rasterizer2D extends DualNode {
    public static void method5928(int var0, int var1, int var2, int var3, int var4) {
       if(var4 != 0) {
          if(var4 == 256) {
-            method5933(var0, var1, var2, var3);
+            drawCircle(var0, var1, var2, var3);
          } else {
             if(var2 < 0) {
                var2 = -var2;
@@ -416,8 +417,9 @@ public class Rasterizer2D extends DualNode {
 
    }
 
+   @Export("drawGradient")
    @ObfuscatedName("dw")
-   public static void method5937(int var0, int var1, int var2, int var3, int var4, int var5) {
+   public static void drawGradient(int var0, int var1, int var2, int var3, int var4, int var5) {
       if(var2 > 0 && var3 > 0) {
          int var6 = 0;
          int var7 = 65536 / var3;

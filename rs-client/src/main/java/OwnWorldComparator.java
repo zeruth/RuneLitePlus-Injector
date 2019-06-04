@@ -59,13 +59,13 @@ public class OwnWorldComparator implements Comparator {
          var3 = Interpreter.Interpreter_intStack[class179.Interpreter_intStackSize];
          int var4 = Interpreter.Interpreter_intStack[class179.Interpreter_intStackSize + 1];
          if(!Client.isCameraLocked) {
-            Client.__client_hw = var3;
+            Client.cameraPitchTarget = var3;
             Client.minimapOrientation = var4;
          }
 
          return 1;
       } else if(var0 == 5505) {
-         Interpreter.Interpreter_intStack[++class179.Interpreter_intStackSize - 1] = Client.__client_hw;
+         Interpreter.Interpreter_intStack[++class179.Interpreter_intStackSize - 1] = Client.cameraPitchTarget;
          return 1;
       } else if(var0 == 5506) {
          Interpreter.Interpreter_intStack[++class179.Interpreter_intStackSize - 1] = Client.minimapOrientation;

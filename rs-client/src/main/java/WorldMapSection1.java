@@ -241,7 +241,7 @@ public class WorldMapSection1 implements WorldMapSection {
       Client.isSpellSelected = false;
       Client.soundEffectCount = 0;
       Client.minimapOrientation = 0;
-      Client.__client_hj = 0;
+      Client.oculusOrbState = 0;
       ClientParameter.field3645 = null;
       Client.minimapState = 0;
       Client.__client_ph = -1;

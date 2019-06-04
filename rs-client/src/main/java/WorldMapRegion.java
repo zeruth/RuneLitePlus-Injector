@@ -1120,7 +1120,8 @@ public class WorldMapRegion {
       signature = "([Lho;IIIZS)V",
       garbageValue = "3640"
    )
-   static void method565(Widget[] var0, int var1, int var2, int var3, boolean var4) {
+   @Export("notRevalidateWidgetScroll")
+   static void notRevalidateWidgetScroll(Widget[] var0, int var1, int var2, int var3, boolean var4) {
       for(int var5 = 0; var5 < var0.length; ++var5) {
          Widget var6 = var0[var5];
          if(var6 != null && var6.parentId == var1) {
@@ -1143,7 +1144,7 @@ public class WorldMapRegion {
             }
 
             if(var6.type == 0) {
-               class39.method736(var0, var6, var4);
+               class39.revalidateWidgetScroll(var0, var6, var4);
             }
          }
       }

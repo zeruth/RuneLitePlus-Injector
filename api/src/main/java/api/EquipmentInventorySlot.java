@@ -29,7 +29,7 @@ package api;
  * <p>
  * These values are intended for use with the local players equipment
  * {@link ItemContainer} corresponding. For obtaining information about equipment
- * in the {@link PlayerDefinition}, use {@link api.kit.KitType}.
+ * in the {@link PlayerAppearance}, use {@link api.kit.KitType}.
  *
  * @see Client#getItemContainer(InventoryID)
  * @see InventoryID#EQUIPMENT

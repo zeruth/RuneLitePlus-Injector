@@ -136,8 +136,8 @@ public class Model extends Entity {
    @Export("faceColors3")
    int[] faceColors3;
    @ObfuscatedName("z")
-   @Export("__z")
-   byte[] __z;
+   @Export("faceRenderPriorities")
+   byte[] faceRenderPriorities;
    @ObfuscatedName("j")
    @Export("faceAlphas")
    byte[] faceAlphas;
@@ -275,7 +275,7 @@ public class Model extends Entity {
             this.verticesCount += var8.verticesCount;
             this.indicesCount += var8.indicesCount;
             this.__h += var8.__h;
-            if(var8.__z != null) {
+            if(var8.faceRenderPriorities != null) {
                var3 = true;
             } else {
                if(this.__y == -1) {
@@ -303,7 +303,7 @@ public class Model extends Entity {
       this.faceColors2 = new int[this.indicesCount];
       this.faceColors3 = new int[this.indicesCount];
       if(var3) {
-         this.__z = new byte[this.indicesCount];
+         this.faceRenderPriorities = new byte[this.indicesCount];
       }
 
       if(var4) {
@@ -340,10 +340,10 @@ public class Model extends Entity {
                this.faceColors2[this.indicesCount] = var8.faceColors2[var9];
                this.faceColors3[this.indicesCount] = var8.faceColors3[var9];
                if(var3) {
-                  if(var8.__z != null) {
-                     this.__z[this.indicesCount] = var8.__z[var9];
+                  if(var8.faceRenderPriorities != null) {
+                     this.faceRenderPriorities[this.indicesCount] = var8.faceRenderPriorities[var9];
                   } else {
-                     this.__z[this.indicesCount] = var8.__y;
+                     this.faceRenderPriorities[this.indicesCount] = var8.__y;
                   }
                }
 
@@ -421,7 +421,7 @@ public class Model extends Entity {
                var11.faceColors1 = this.faceColors1;
                var11.faceColors2 = this.faceColors2;
                var11.faceColors3 = this.faceColors3;
-               var11.__z = this.__z;
+               var11.faceRenderPriorities = this.faceRenderPriorities;
                var11.faceAlphas = this.faceAlphas;
                var11.__s = this.__s;
                var11.faceTextures = this.faceTextures;
@@ -555,7 +555,7 @@ public class Model extends Entity {
       var2.faceColors1 = this.faceColors1;
       var2.faceColors2 = this.faceColors2;
       var2.faceColors3 = this.faceColors3;
-      var2.__z = this.__z;
+      var2.faceRenderPriorities = this.faceRenderPriorities;
       var2.__s = this.__s;
       var2.faceTextures = this.faceTextures;
       var2.__y = this.__y;
@@ -1215,7 +1215,7 @@ public class Model extends Entity {
          }
 
          int[] var9;
-         if(this.__z == null) {
+         if(this.faceRenderPriorities == null) {
             for(var7 = this.diameter - 1; var7 >= 0; --var7) {
                var8 = __du_aa[var7];
                if(var8 > 0) {
@@ -1240,7 +1240,7 @@ public class Model extends Entity {
 
                   for(var10 = 0; var10 < var8; ++var10) {
                      var11 = var9[var10];
-                     byte var31 = this.__z[var11];
+                     byte var31 = this.faceRenderPriorities[var11];
                      var13 = __du_af[var31]++;
                      __du_ai[var31][var13] = var11;
                      if(var31 < 10) {

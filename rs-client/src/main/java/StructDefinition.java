@@ -243,7 +243,7 @@ public class StructDefinition extends DualNode {
             var3.scrollHeight = Interpreter.Interpreter_intStack[class179.Interpreter_intStackSize + 1];
             class22.method295(var3);
             if(var4 != -1 && var3.type == 0) {
-               class39.method736(Widget.widgets[var4 >> 16], var3, false);
+               class39.revalidateWidgetScroll(Widget.widgets[var4 >> 16], var3, false);
             }
 
             return 1;

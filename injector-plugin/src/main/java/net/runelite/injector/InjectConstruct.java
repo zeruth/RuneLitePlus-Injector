@@ -109,65 +109,63 @@ public class InjectConstruct
 		ClassFile vanillaClass = inject.findVanillaForInterface(typeToConstruct);
 		if (vanillaClass == null)
 		{
-			System.out.println("Unable to find vanilla class which implements interface " + typeToConstruct);
-			//throw new InjectionException("Unable to find vanilla class which implements interface " + typeToConstruct);
+			throw new InjectionException("Unable to find vanilla class which implements interface " + typeToConstruct);
 		}
-		if (vanillaClass!=null) {
 
-			Signature sig = inject.javaMethodToSignature(apiMethod);
+		Signature sig = inject.javaMethodToSignature(apiMethod);
 
-			Signature constructorSig = new Signature.Builder()
-					.addArguments(Stream.of(apiMethod.getParameterTypes())
-							.map(arg ->
+		Signature constructorSig = new Signature.Builder()
+				.addArguments(Stream.of(apiMethod.getParameterTypes())
+						.map(arg ->
+						{
+							ClassFile vanilla = inject.findVanillaForInterface(arg);
+							if (vanilla != null)
 							{
-								ClassFile vanilla = inject.findVanillaForInterface(arg);
-								if (vanilla != null)
-								{
-									return new Type("L" + vanilla.getName() + ";");
-								}
-								return Inject.classToType(arg);
-							})
-							.collect(Collectors.toList()))
-					.setReturnType(Type.VOID)
-					.build();
-			Method vanillaConstructor = vanillaClass.findMethod("<init>", constructorSig);
-			if (vanillaConstructor == null)
-			{
-				throw new InjectionException("Unable to find constructor for " + vanillaClass.getName() + ".<init>" + constructorSig);
-			}
-
-			Method setterMethod = new Method(targetClass, apiMethod.getName(), sig);
-			setterMethod.setAccessFlags(ACC_PUBLIC);
-			targetClass.addMethod(setterMethod);
-
-			Code code = new Code(setterMethod);
-			setterMethod.setCode(code);
-
-			Instructions instructions = code.getInstructions();
-			List<Instruction> ins = instructions.getInstructions();
-
-			ins.add(new New(instructions, vanillaClass.getPoolClass()));
-			ins.add(new Dup(instructions));
-			int idx = 1;
-			int parameter = 0;
-			for (Type type : vanillaConstructor.getDescriptor().getArguments())
-			{
-				Instruction load = inject.createLoadForTypeIndex(instructions, type, idx);
-				idx += type.getSize();
-				ins.add(load);
-
-				Type paramType = sig.getTypeOfArg(parameter);
-				if (!type.equals(paramType))
-				{
-					CheckCast checkCast = new CheckCast(instructions);
-					checkCast.setType(type);
-					ins.add(checkCast);
-				}
-
-				++parameter;
-			}
-			ins.add(new InvokeSpecial(instructions, vanillaConstructor.getPoolMethod()));
-			ins.add(new Return(instructions));
+								return new Type("L" + vanilla.getName() + ";");
+							}
+							return Inject.classToType(arg);
+						})
+						.collect(Collectors.toList()))
+				.setReturnType(Type.VOID)
+				.build();
+		Method vanillaConstructor = vanillaClass.findMethod("<init>", constructorSig);
+		if (vanillaConstructor == null)
+		{
+			throw new InjectionException("Unable to find constructor for " + vanillaClass.getName() + ".<init>" + constructorSig);
 		}
+
+		Method setterMethod = new Method(targetClass, apiMethod.getName(), sig);
+		setterMethod.setAccessFlags(ACC_PUBLIC);
+		targetClass.addMethod(setterMethod);
+
+		Code code = new Code(setterMethod);
+		setterMethod.setCode(code);
+
+		Instructions instructions = code.getInstructions();
+		List<Instruction> ins = instructions.getInstructions();
+
+		ins.add(new New(instructions, vanillaClass.getPoolClass()));
+		ins.add(new Dup(instructions));
+		int idx = 1;
+		int parameter = 0;
+		for (Type type : vanillaConstructor.getDescriptor().getArguments())
+		{
+			Instruction load = inject.createLoadForTypeIndex(instructions, type, idx);
+			idx += type.getSize();
+			ins.add(load);
+
+			Type paramType = sig.getTypeOfArg(parameter);
+			if (!type.equals(paramType))
+			{
+				CheckCast checkCast = new CheckCast(instructions);
+				checkCast.setType(type);
+				ins.add(checkCast);
+			}
+
+			++parameter;
+		}
+		ins.add(new InvokeSpecial(instructions, vanillaConstructor.getPoolMethod()));
+		ins.add(new Return(instructions));
+
 	}
 }
