@@ -329,9 +329,9 @@ public abstract class class21 {
             var3.overheadText = var0.readStringCp1252NullTerminated();
             if(var3.overheadText.charAt(0) == '~') {
                var3.overheadText = var3.overheadText.substring(1);
-               WorldMapIcon1.method219(2, var3.username.name(), var3.overheadText);
+               WorldMapIcon1.method219(2, var3.username.getName(), var3.overheadText);
             } else if(var3 == Canvas.localPlayer) {
-               WorldMapIcon1.method219(2, var3.username.name(), var3.overheadText);
+               WorldMapIcon1.method219(2, var3.username.getName(), var3.overheadText);
             }
 
             var3.isAutoChatting = false;
@@ -398,9 +398,9 @@ public abstract class class21 {
                   }
 
                   if(var20.modIcon != -1) {
-                     WorldMapIcon1.method219(var13, ItemContainer.method1170(var20.modIcon) + var3.username.name(), var16);
+                     WorldMapIcon1.method219(var13, ItemContainer.method1170(var20.modIcon) + var3.username.getName(), var16);
                   } else {
-                     WorldMapIcon1.method219(var13, var3.username.name(), var16);
+                     WorldMapIcon1.method219(var13, var3.username.getName(), var16);
                   }
                }
             }

@@ -193,7 +193,7 @@ public class FontName {
             } else if(var0 == 3613) {
                var3 = Interpreter.Interpreter_intStack[--class179.Interpreter_intStackSize];
                if(PacketWriter.clanChat != null && var3 < PacketWriter.clanChat.size()) {
-                  Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = PacketWriter.clanChat.get(var3).username().name();
+                  Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = PacketWriter.clanChat.get(var3).username().getName();
                } else {
                   Interpreter.Interpreter_stringStack[++Interpreter.Interpreter_stringStackSize - 1] = "";
                }

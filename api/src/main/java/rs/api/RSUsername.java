@@ -28,6 +28,6 @@ import net.runelite.mapping.Import;
 
 public interface RSUsername extends Comparable
 {
-	@Import("name")
+	@Import("getName")
 	String getName();
 }

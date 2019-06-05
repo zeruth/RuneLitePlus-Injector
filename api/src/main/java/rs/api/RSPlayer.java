@@ -37,7 +37,7 @@ public interface RSPlayer extends RSActor, Player
 
 	@Import("appearance")
 	@Override
-	RSPlayerAppearance getPlayerDefinition();
+	RSPlayerAppearance getPlayerAppearance();
 
 	@Import("combatLevel")
 	@Override

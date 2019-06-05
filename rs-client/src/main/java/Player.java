@@ -280,7 +280,7 @@ public final class Player extends Actor {
       this.__q_125();
       this.__u_128();
       if(this == Canvas.localPlayer) {
-         RunException.localPlayerName = this.username.name();
+         RunException.localPlayerName = this.username.getName();
       }
 
       this.combatLevel = var1.readUnsignedByte();

@@ -68,12 +68,12 @@ public abstract class RSModelMixin implements RSModel
 
 	@MethodHook(value = "<init>", end = true)
 	@Inject
-	public void rl$init(RSModel[] models, int length)
+	public void rl$init(Model[] models, int length)
 	{
 		int count = 0;
 		for (int i = 0; i < length; ++i)
 		{
-			RSModel model = models[i];
+			RSModel model = (RSModel) models[i];
 			if (model != null)
 			{
 				count += model.getTrianglesCount();
@@ -86,7 +86,7 @@ public abstract class RSModelMixin implements RSModel
 
 		for (int i = 0; i < length; ++i)
 		{
-			RSModel model = models[i];
+			RSModel model = (RSModel) models[i];
 			if (model != null)
 			{
 				float[][] modelU = model.getFaceTextureUCoordinates();

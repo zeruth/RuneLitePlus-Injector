@@ -193,7 +193,7 @@ public class class39 extends class21 {
                   DevicePcmPlayerProvider.method840(var0, var0.defaultHeight + 15);
                   AbstractFont var12 = (AbstractFont)Client.fontsMap.get(FontName.FontName_plain12);
                   byte var92 = 9;
-                  var12.drawCentered(var11.username.name(), var2 + Client.viewportTempX, var3 + Client.viewportTempY - var92, 16777215, 0);
+                  var12.drawCentered(var11.username.getName(), var2 + Client.viewportTempX, var3 + Client.viewportTempY - var92, 16777215, 0);
                   var8 = 18;
                }
             }
