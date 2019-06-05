@@ -293,6 +293,7 @@ public enum Varbits
 	 * Theatre of Blood 1=In Party, 2=Inside/Spectator, 3=Dead Spectating
 	 */
 	THEATRE_OF_BLOOD(6440),
+	BLOAT_DOOR(6447),
 
 	/**
 	 * Nightmare Zone
@@ -329,7 +330,7 @@ public enum Varbits
 	 * Pyramid plunder
 	 */
 	PYRAMID_PLUNDER_TIMER(2375),
-	PYRAMID_PLUNDER_ROOM(2377),
+	PYRAMID_PLUNDER_ROOM(2374),
 
 	/**
 	 * Barrows
@@ -646,5 +647,5 @@ public enum Varbits
 	/**
 	 * The raw varbit ID.
 	 */
-	public final int id;
+	private final int id;
 }

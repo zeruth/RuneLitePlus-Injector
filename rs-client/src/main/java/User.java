@@ -36,7 +36,7 @@ public class User implements Comparable {
    )
    @Export("name")
    public String name() {
-      return this.username0 == null?"":this.username0.name();
+      return this.username0 == null?"":this.username0.getName();
    }
 
    @ObfuscatedName("ag")
@@ -46,7 +46,7 @@ public class User implements Comparable {
    )
    @Export("previousName")
    public String previousName() {
-      return this.previousUsername == null?"":this.previousUsername.name();
+      return this.previousUsername == null?"":this.previousUsername.getName();
    }
 
    @ObfuscatedName("aq")

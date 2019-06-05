@@ -194,8 +194,8 @@ public class Texture extends Node {
    }
 
    @ObfuscatedName("q")
-   @Export("animate")
-   void animate(int var1) {
+   @Export("Texture_animate")
+   void Texture_animate(int var1) {
       if(this.pixels != null) {
          short var2;
          int var3;

@@ -281,7 +281,7 @@ public class DevicePcmPlayerProvider implements PcmPlayerProvider {
                      if(var10.contentType == 1337) {
                         Client.__client_lq = var12;
                         Client.__client_ln = var13;
-                        class40.method778(var12, var13, var10.width, var10.height);
+                        class40.drawEntities(var12, var13, var10.width, var10.height);
                         Client.__client_od[var10.rootIndex] = true;
                         Rasterizer2D.Rasterizer2D_setClip(var2, var3, var4, var5);
                         continue;

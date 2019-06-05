@@ -29,8 +29,8 @@ public class Username implements Comparable {
       signature = "(I)Ljava/lang/String;",
       garbageValue = "1065850055"
    )
-   @Export("name")
-   public String name() {
+   @Export("getName")
+   public String getName() {
       return this.name0;
    }
 
@@ -81,7 +81,7 @@ public class Username implements Comparable {
    @Export("__toString_468")
    @ObfuscatedName("toString")
    public String __toString_468() {
-      return this.name();
+      return this.getName();
    }
 
    @Export("compareTo")

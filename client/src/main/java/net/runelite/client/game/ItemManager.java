@@ -262,7 +262,7 @@ public class ItemManager
 	 *
 	 * @see Client#getItemDefinitionCache()
 	 */
-	public void invalidateItemCompositionCache()
+	public void invalidateItemDefinitionCache()
 	{
 		itemDefinitions.invalidateAll();
 	}
@@ -328,7 +328,7 @@ public class ItemManager
 			return 1000;
 		}
 
-		return (int) Math.max(1, getItemComposition(itemID).getPrice() * HIGH_ALCHEMY_CONSTANT);
+		return (int) Math.max(1, getItemDefinition(itemID).getPrice() * HIGH_ALCHEMY_CONSTANT);
 	}
 
 	/**
@@ -340,7 +340,7 @@ public class ItemManager
 	@Nullable
 	public ItemStats getItemStats(int itemId, boolean allowNote)
 	{
-		ItemDefinition itemComposition = getItemComposition(itemId);
+		ItemDefinition itemComposition = getItemDefinition(itemId);
 
 		if (itemComposition == null || itemComposition.getName() == null || (!allowNote && itemComposition.getNote() != -1))
 		{
@@ -378,9 +378,9 @@ public class ItemManager
 	 * @param itemId item id
 	 * @return item composition
 	 */
-	public ItemDefinition getItemComposition(int itemId)
+	public ItemDefinition getItemDefinition(int itemId)
 	{
-		assert client.isClientThread() : "getItemComposition must be called on client thread";
+		assert client.isClientThread() : "getItemDefinition must be called on client thread";
 		return itemDefinitions.getUnchecked(itemId);
 	}
 
@@ -389,7 +389,7 @@ public class ItemManager
 	 */
 	public int canonicalize(int itemID)
 	{
-		ItemDefinition itemComposition = getItemComposition(itemID);
+		ItemDefinition itemComposition = getItemDefinition(itemID);
 
 		if (itemComposition.getNote() != -1)
 		{

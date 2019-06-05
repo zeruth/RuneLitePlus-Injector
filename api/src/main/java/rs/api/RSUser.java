@@ -5,7 +5,7 @@ import net.runelite.mapping.Import;
 
 public interface RSUser extends Nameable, Comparable
 {
-	@Import("name")
+	@Import("username")
 	RSUsername getRsName();
 
 	@Import("previousUsername")

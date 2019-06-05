@@ -466,7 +466,7 @@ public class DynamicObject extends Entity {
                }
             } else {
                if(Canvas.localPlayer != null && Canvas.localPlayer.username != null) {
-                  var3 = Canvas.localPlayer.username.name();
+                  var3 = Canvas.localPlayer.username.getName();
                } else {
                   var3 = "";
                }

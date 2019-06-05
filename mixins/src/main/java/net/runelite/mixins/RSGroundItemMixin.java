@@ -60,11 +60,10 @@ public abstract class RSGroundItemMixin implements RSGroundItem
 
 	@Inject
 	@FieldHook(value = "quantity", before = true)
-	public void quantityChanged(int idx) // quantity)
+	public void quantityChanged(int quantity)
 	{
 		if (rl$sceneX != -1)
 		{
-			int quantity = getQuantity();
 			client.getLogger().debug("Item quantity changed: {} ({} -> {})", getId(), getQuantity(), quantity);
 
 			ItemQuantityChanged itemQuantityChanged = new ItemQuantityChanged(this, getTile(), getQuantity(), quantity);

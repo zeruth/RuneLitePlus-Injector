@@ -31,6 +31,7 @@ import javax.annotation.Nullable;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import lombok.extern.slf4j.Slf4j;
+import net.runelite.client.plugins.runeliteplus.RuneLitePlusPlugin;
 
 @Singleton
 @Slf4j
@@ -85,7 +86,14 @@ public class RuneLiteProperties
 
 	public String getDiscordAppId()
 	{
+		if (RuneLitePlusPlugin.customPresenceEnabled)
+		{
+			return properties.getProperty(RuneLitePlusPlugin.rlPlusDiscordApp);
+		}
+		else
+		{
 		return properties.getProperty(DISCORD_APP_ID);
+	}
 	}
 
 	public String getDiscordInvite()

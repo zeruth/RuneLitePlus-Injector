@@ -28,6 +28,7 @@ import api.BufferProvider;
 import api.Client;
 import api.MainBufferProvider;
 import api.NullItemID;
+import api.Point;
 import api.RenderOverview;
 import api.Renderable;
 import api.WorldMapManager;
@@ -399,8 +400,8 @@ public class Hooks implements Callbacks
 		// Update selected scene tile
 		if (!client.isMenuOpen())
 		{
-			api.Point p = client.getMouseCanvasPosition();
-			p = new api.Point(
+			Point p = client.getMouseCanvasPosition();
+			p = new Point(
 					p.getX() - client.getViewportXOffset(),
 					p.getY() - client.getViewportYOffset());
 
