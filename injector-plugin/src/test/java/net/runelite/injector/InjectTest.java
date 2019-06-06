@@ -22,24 +22,53 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package api;
+package net.runelite.injector;
 
-/**
- * Represents an object that can be rendered.
- */
-public interface Renderable extends Node
+import java.io.File;
+import java.io.IOException;
+import net.runelite.asm.ClassGroup;
+import net.runelite.deob.DeobTestProperties;
+import net.runelite.deob.TemporyFolderLocation;
+import net.runelite.deob.util.JarUtil;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
+
+public class InjectTest
 {
-	/**
-	 * Gets the model of the object.
-	 */
-	Model getModel();
+	@Rule
+	public DeobTestProperties properties = new DeobTestProperties();
 
-	/**
-	 * Gets the height of the model.
-	 */
-	int getModelHeight();
+	@Rule
+	public TemporaryFolder folder = TemporyFolderLocation.getTemporaryFolder();
 
-	void setModelHeight(int modelHeight);
+	private ClassGroup deob, vanilla;
 
-	void draw(int orientation, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y, int z, long hash);
+	@Before
+	public void before() throws IOException
+	{
+		deob = JarUtil.loadJar(new File(properties.getRsClient()));
+		vanilla = JarUtil.loadJar(new File(properties.getVanillaClient()));
+	}
+
+	@After
+	public void after() throws IOException
+	{
+		JarUtil.saveJar(vanilla, folder.newFile());
+	}
+
+	@Test
+	@Ignore
+	public void testRun() throws InjectionException
+	{
+		Inject instance = new Inject(deob, vanilla);
+		instance.run();
+
+		InjectorValidator iv = new InjectorValidator(vanilla);
+		iv.validate();
+	}
+
 }

@@ -631,6 +631,7 @@ public class class40 {
       signature = "(IIIII)V",
       garbageValue = "-1557475479"
    )
+   @Export("drawEntities")
    static final void drawEntities(int var0, int var1, int var2, int var3) {
       ++Client.viewportDrawCount;
       class229.method4514();

@@ -910,7 +910,7 @@ public abstract class RSClientMixin implements RSClient
 		}
 	}
 
-	@FieldHook("widgetDragDuration")
+	@FieldHook("itemDragDuration")
 	@Inject
 	public static void itemPressedDurationChanged(int idx)
 	{

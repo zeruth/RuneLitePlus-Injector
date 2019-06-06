@@ -777,10 +777,10 @@ public interface RSClient extends RSGameShell, Client
 	@Override
 	boolean isInInstancedRegion();
 
-	@Import("widgetDragDuration")
+	@Import("itemDragDuration")
 	int getItemPressedDuration();
 
-	@Import("widgetDragDuration")
+	@Import("itemDragDuration")
 	void setItemPressedDuration(int duration);
 
 	@Import("worldProperties")

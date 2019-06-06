@@ -22,24 +22,42 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package api;
+package net.runelite.injector;
 
-/**
- * Represents an object that can be rendered.
- */
-public interface Renderable extends Node
+import net.runelite.asm.ClassFile;
+import net.runelite.asm.Method;
+import net.runelite.asm.signature.Signature;
+import static org.junit.Assert.assertNotNull;
+import org.junit.Test;
+import org.mockito.Matchers;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+public class InjectConstructTest
 {
-	/**
-	 * Gets the model of the object.
-	 */
-	Model getModel();
+	interface APIClass
+	{
+		APIClass create();
+	}
 
-	/**
-	 * Gets the height of the model.
-	 */
-	int getModelHeight();
+	@Test
+	public void testInjectConstruct() throws Exception
+	{
+		ClassFile targetClass = new ClassFile();
+		targetClass.setName("test");
 
-	void setModelHeight(int modelHeight);
+		ClassFile vanillaClass = new ClassFile();
+		vanillaClass.setName("ab");
+		Method constructor = new Method(vanillaClass, "<init>", new Signature("()V"));
+		vanillaClass.addMethod(constructor);
 
-	void draw(int orientation, int pitchSin, int pitchCos, int yawSin, int yawCos, int x, int y, int z, long hash);
+		Inject inject = mock(Inject.class);
+		when(inject.findVanillaForInterface(Matchers.any(Class.class)))
+			.thenReturn(vanillaClass);
+		InjectConstruct injectConstruct = new InjectConstruct(inject);
+		injectConstruct.injectConstruct(targetClass, APIClass.class.getDeclaredMethod("create"));
+
+		assertNotNull(targetClass.findMethod("create"));
+	}
+
 }
