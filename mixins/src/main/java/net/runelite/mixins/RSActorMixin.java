@@ -119,6 +119,8 @@ public abstract class RSActorMixin implements RSActor
 		if (healthBars != null)
 		{
 			RSNode current = healthBars.getCurrent();
+			if (current == null)
+				return 0;
 			RSNode next = current.getNext();
 			if (next instanceof RSHealthBar)
 			{

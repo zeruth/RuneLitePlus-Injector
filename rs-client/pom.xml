@@ -8,8 +8,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.runeswag.rs</groupId>
-    <artifactId>client</artifactId>
+    <artifactId>rs-client</artifactId>
     <name>RuneScape Client</name>
 
     <dependencies>
