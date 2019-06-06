@@ -41,6 +41,7 @@
         <module>api</module>
         <module>rs-client</module>
         <module>mixins</module>
+		<module>deobfuscator</module>
         <module>injector-plugin</module>
         <module>injected-client</module>
     </modules>

@@ -266,7 +266,7 @@ public final class Sprite extends Rasterizer2D {
       }
 
       if(var6 > 0 && var5 > 0) {
-         method6120(Rasterizer2D.Rasterizer2D_pixels, this.pixels, var4, var3, var6, var5, var7, var8);
+         Sprite_something(Rasterizer2D.Rasterizer2D_pixels, this.pixels, var4, var3, var6, var5, var7, var8);
       }
    }
 
@@ -312,7 +312,7 @@ public final class Sprite extends Rasterizer2D {
       }
 
       if(var6 > 0 && var5 > 0) {
-         method6066(Rasterizer2D.Rasterizer2D_pixels, this.pixels, 0, var4, var3, var6, var5, var7, var8);
+         Sprite_andAnotherOne(Rasterizer2D.Rasterizer2D_pixels, this.pixels, 0, var4, var3, var6, var5, var7, var8);
       }
    }
 
@@ -377,7 +377,7 @@ public final class Sprite extends Rasterizer2D {
             var14 += var15;
          }
 
-         method6076(Rasterizer2D.Rasterizer2D_pixels, this.pixels, 0, var7, var8, var13, var14, var3, var4, var11, var12, var5);
+         Sprite_somethingElse(Rasterizer2D.Rasterizer2D_pixels, this.pixels, 0, var7, var8, var13, var14, var3, var4, var11, var12, var5);
       }
    }
 
@@ -426,7 +426,7 @@ public final class Sprite extends Rasterizer2D {
          }
 
          if(var8 > 0 && var7 > 0) {
-            method6092(Rasterizer2D.Rasterizer2D_pixels, this.pixels, 0, var6, var5, var8, var7, var9, var10, var3, var4);
+            Sprite_anotherOne(Rasterizer2D.Rasterizer2D_pixels, this.pixels, 0, var6, var5, var8, var7, var9, var10, var3, var4);
          }
       }
    }
@@ -1389,7 +1389,8 @@ public final class Sprite extends Rasterizer2D {
    }
 
    @ObfuscatedName("d")
-   static void method6120(int[] var0, int[] var1, int var2, int var3, int var4, int var5, int var6, int var7) {
+   @Export("Sprite_something")
+   static void Sprite_something(int[] var0, int[] var1, int var2, int var3, int var4, int var5, int var6, int var7) {
       for(int var8 = -var5; var8 < 0; ++var8) {
          int var9;
          for(var9 = var3 + var4 - 3; var3 < var9; var0[var3++] = var1[var2++]) {
@@ -1409,7 +1410,8 @@ public final class Sprite extends Rasterizer2D {
    }
 
    @ObfuscatedName("z")
-   static void method6066(int[] var0, int[] var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
+   @Export("Sprite_andAnotherOne")
+   static void Sprite_andAnotherOne(int[] var0, int[] var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8) {
       int var9 = -(var5 >> 2);
       var5 = -(var5 & 3);
 
@@ -1461,7 +1463,8 @@ public final class Sprite extends Rasterizer2D {
    }
 
    @ObfuscatedName("s")
-   static void method6076(int[] var0, int[] var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11) {
+   @Export("Sprite_somethingElse")
+   static void Sprite_somethingElse(int[] var0, int[] var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11) {
       int var12 = var3;
 
       for(int var13 = -var8; var13 < 0; ++var13) {
@@ -1486,7 +1489,8 @@ public final class Sprite extends Rasterizer2D {
    }
 
    @ObfuscatedName("y")
-   static void method6092(int[] var0, int[] var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10) {
+   @Export("Sprite_anotherOne")
+   static void Sprite_anotherOne(int[] var0, int[] var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10) {
       int var11 = 256 - var9;
       int var12 = (var10 & 16711935) * var11 & -16711936;
       int var13 = (var10 & 65280) * var11 & 16711680;

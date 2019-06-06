@@ -4688,7 +4688,7 @@ public final class Client extends GameShell implements Usernamed {
       UserComparator6.__fg_jh = null;
       if(rootWidgetGroup != -1) {
          rootWidgetCount = 0;
-         Interpreter.method1977(rootWidgetGroup, 0, 0, SoundCache.canvasWidth, Huffman.canvasHeight, 0, 0, -1);
+         Interpreter.drawWidgets(rootWidgetGroup, 0, 0, SoundCache.canvasWidth, Huffman.canvasHeight, 0, 0, -1);
       }
 
       Rasterizer2D.Rasterizer2D_resetClip();
@@ -4762,9 +4762,9 @@ public final class Client extends GameShell implements Usernamed {
       if(gameDrawingMode == 3) {
          for(var1 = 0; var1 < rootWidgetCount; ++var1) {
             if(__client_oq[var1]) {
-               Rasterizer2D.method5939(rootWidgetXs[var1], rootWidgetYs[var1], rootWidgetWidths[var1], rootWidgetHeights[var1], 16711935, 128);
+               Rasterizer2D.Rasterizer2D_moreAlpha(rootWidgetXs[var1], rootWidgetYs[var1], rootWidgetWidths[var1], rootWidgetHeights[var1], 16711935, 128);
             } else if(__client_ot[var1]) {
-               Rasterizer2D.method5939(rootWidgetXs[var1], rootWidgetYs[var1], rootWidgetWidths[var1], rootWidgetHeights[var1], 16711680, 128);
+               Rasterizer2D.Rasterizer2D_moreAlpha(rootWidgetXs[var1], rootWidgetYs[var1], rootWidgetWidths[var1], rootWidgetHeights[var1], 16711680, 128);
             }
          }
       }

@@ -126,7 +126,7 @@ public final class IndexedSprite extends Rasterizer2D {
       }
 
       if(var6 > 0 && var5 > 0) {
-         method6029(Rasterizer2D.Rasterizer2D_pixels, this.pixels, this.palette, var4, var3, var6, var5, var7, var8);
+         IndexedSprite_two(Rasterizer2D.Rasterizer2D_pixels, this.pixels, this.palette, var4, var3, var6, var5, var7, var8);
       }
    }
 
@@ -190,11 +190,12 @@ public final class IndexedSprite extends Rasterizer2D {
          var14 += var15;
       }
 
-      method6035(Rasterizer2D.Rasterizer2D_pixels, this.pixels, this.palette, var7, var8, var13, var14, var3, var4, var11, var12, var5);
+      IndexedSprite_something(Rasterizer2D.Rasterizer2D_pixels, this.pixels, this.palette, var7, var8, var13, var14, var3, var4, var11, var12, var5);
    }
 
    @ObfuscatedName("w")
-   static void method6029(int[] var0, byte[] var1, int[] var2, int var3, int var4, int var5, int var6, int var7, int var8) {
+   @Export("IndexedSprite_two")
+   static void IndexedSprite_two(int[] var0, byte[] var1, int[] var2, int var3, int var4, int var5, int var6, int var7, int var8) {
       int var9 = -(var5 >> 2);
       var5 = -(var5 & 3);
 
@@ -247,7 +248,8 @@ public final class IndexedSprite extends Rasterizer2D {
    }
 
    @ObfuscatedName("u")
-   static void method6035(int[] var0, byte[] var1, int[] var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11) {
+   @Export("IndexedSprite_something")
+   static void IndexedSprite_something(int[] var0, byte[] var1, int[] var2, int var3, int var4, int var5, int var6, int var7, int var8, int var9, int var10, int var11) {
       int var12 = var3;
 
       for(int var13 = -var8; var13 < 0; ++var13) {
