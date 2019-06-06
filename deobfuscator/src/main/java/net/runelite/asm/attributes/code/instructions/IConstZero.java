@@ -23,13 +23,41 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package net.runelite.asm.annotations;
+package net.runelite.asm.attributes.code.instructions;
 
-public class TestClass
+import net.runelite.asm.Type;
+import net.runelite.asm.attributes.code.Instruction;
+import net.runelite.asm.attributes.code.InstructionType;
+import net.runelite.asm.attributes.code.Instructions;
+import net.runelite.asm.execution.Frame;
+import net.runelite.asm.execution.InstructionContext;
+import net.runelite.asm.execution.Stack;
+import net.runelite.asm.execution.StackContext;
+import net.runelite.asm.execution.Value;
+
+public class IConstZero extends Instruction
 {
-	@MyAnnotation("field1")
-	public int field1;
-	
-	@MyAnnotation("method1")
-	public void method1() { }
+	public IConstZero(Instructions instructions, InstructionType type)
+	{
+		super(instructions, type);
+	}
+
+	public IConstZero(Instructions instructions)
+	{
+		super(instructions, InstructionType.ICONST_0);
+	}
+
+	@Override
+	public InstructionContext execute(Frame frame)
+	{
+		InstructionContext ins = new InstructionContext(this, frame);
+		Stack stack = frame.getStack();
+		
+		StackContext ctx = new StackContext(ins, Type.INT, new Value(0));
+		stack.push(ctx);
+		
+		ins.push(ctx);
+		
+		return ins;
+	}
 }
