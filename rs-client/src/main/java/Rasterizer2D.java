@@ -235,7 +235,8 @@ public class Rasterizer2D extends DualNode {
    }
 
    @ObfuscatedName("dk")
-   public static void method5928(int var0, int var1, int var2, int var3, int var4) {
+   @Export("Rasterizer2D_drawCircleAlpha")
+   public static void Rasterizer2D_drawCircleAlpha(int var0, int var1, int var2, int var3, int var4) {
       if(var4 != 0) {
          if(var4 == 256) {
             drawCircle(var0, var1, var2, var3);
@@ -347,7 +348,8 @@ public class Rasterizer2D extends DualNode {
    }
 
    @ObfuscatedName("dl")
-   public static void method5939(int var0, int var1, int var2, int var3, int var4, int var5) {
+   @Export("Rasterizer2D_moreAlpha")
+   public static void Rasterizer2D_moreAlpha(int var0, int var1, int var2, int var3, int var4, int var5) {
       if(var0 < Rasterizer2D_xClipStart) {
          var2 -= Rasterizer2D_xClipStart - var0;
          var0 = Rasterizer2D_xClipStart;
@@ -637,7 +639,7 @@ public class Rasterizer2D extends DualNode {
          int var4 = var0 + Rasterizer2D_width * var1;
 
          for(int var5 = 0; var5 < var2; ++var5) {
-            Rasterizer2D_pixels[var4 + var5] = var3;
+            Rasterizer2D_pixels[var4 + var5] = var3; // XXX
          }
 
       }

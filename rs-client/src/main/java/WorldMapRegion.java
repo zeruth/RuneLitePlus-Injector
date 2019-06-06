@@ -813,8 +813,8 @@ public class WorldMapRegion {
       if(var6 != null) {
          var6.__a_505(var2 - var6.subWidth / 2, var3 - var6.subHeight / 2);
          if(var4 % var5 < var5 / 2) {
-            Rasterizer2D.method5928(var2, var3, 15, 16776960, 128);
-            Rasterizer2D.method5928(var2, var3, 7, 16777215, 256);
+            Rasterizer2D.Rasterizer2D_drawCircleAlpha(var2, var3, 15, 16776960, 128);
+            Rasterizer2D.Rasterizer2D_drawCircleAlpha(var2, var3, 7, 16777215, 256);
          }
 
       }

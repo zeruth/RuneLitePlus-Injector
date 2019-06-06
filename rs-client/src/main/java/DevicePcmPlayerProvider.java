@@ -334,7 +334,7 @@ public class DevicePcmPlayerProvider implements PcmPlayerProvider {
 
                      WidgetGroupParent var19 = (WidgetGroupParent)Client.widgetGroupParents.get((long)var10.id);
                      if(var19 != null) {
-                        Interpreter.method1977(var19.group, var15, var16, var17, var18, var12, var13, var11);
+                        Interpreter.drawWidgets(var19.group, var15, var16, var17, var18, var12, var13, var11);
                      }
 
                      Rasterizer2D.Rasterizer2D_setClip(var2, var3, var4, var5);
@@ -474,7 +474,7 @@ public class DevicePcmPlayerProvider implements PcmPlayerProvider {
                                  if(var14 == 0) {
                                     Rasterizer2D.Rasterizer2D_fillRectangle(var12, var13, var10.width, var10.height, var30);
                                  } else {
-                                    Rasterizer2D.method5939(var12, var13, var10.width, var10.height, var30, 256 - (var14 & 255));
+                                    Rasterizer2D.Rasterizer2D_moreAlpha(var12, var13, var10.width, var10.height, var30, 256 - (var14 & 255));
                                  }
                               }
                            } else if(var14 == 0) {

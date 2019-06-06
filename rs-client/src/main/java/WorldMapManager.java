@@ -306,7 +306,7 @@ public final class WorldMapManager {
                   AbstractWorldMapIcon var12 = (AbstractWorldMapIcon)var11.next();
                   int var13 = var3 * (var12.coord2.x - this.surfaceOffsetX) / this.__i;
                   int var14 = var4 - (var12.coord2.y - this.surfaceOffsetY) * var4 / this.__a;
-                  Rasterizer2D.method5928(var13 + var1, var14 + var2, 2, 16776960, 256);
+                  Rasterizer2D.Rasterizer2D_drawCircleAlpha(var13 + var1, var14 + var2, 2, 16776960, 256);
                }
             }
          }

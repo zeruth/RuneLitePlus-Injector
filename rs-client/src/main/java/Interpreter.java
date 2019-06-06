@@ -205,7 +205,8 @@ public class Interpreter {
       signature = "(IIIIIIIIB)V",
       garbageValue = "-10"
    )
-   static final void method1977(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
+   @Export("drawWidgets")
+   static final void drawWidgets(int var0, int var1, int var2, int var3, int var4, int var5, int var6, int var7) {
       if(GroundItemPile.loadWidgetGroup(var0)) {
          class279.__jx_ne = null;
          DevicePcmPlayerProvider.drawWidgetGroup(Widget.widgets[var0], -1, var1, var2, var3, var4, var5, var6, var7);
