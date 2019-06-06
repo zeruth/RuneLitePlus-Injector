@@ -66,14 +66,20 @@ public abstract class RSModelMixin implements RSModel
 	@Inject
 	private float[][] rl$faceTextureVCoordinates;
 
-	@MethodHook(value = "<init>", end = true)
 	@Inject
 	public void rl$init(Model[] models, int length)
+	{
+		rl$init((RSModel[]) models, length);
+	}
+
+	@MethodHook(value = "<init>", end = true)
+	@Inject
+	public void rl$init(RSModel[] models, int length)
 	{
 		int count = 0;
 		for (int i = 0; i < length; ++i)
 		{
-			RSModel model = (RSModel) models[i];
+			RSModel model = models[i];
 			if (model != null)
 			{
 				count += model.getTrianglesCount();
@@ -86,7 +92,7 @@ public abstract class RSModelMixin implements RSModel
 
 		for (int i = 0; i < length; ++i)
 		{
-			RSModel model = (RSModel) models[i];
+			RSModel model = models[i];
 			if (model != null)
 			{
 				float[][] modelU = model.getFaceTextureUCoordinates();
@@ -176,7 +182,7 @@ public abstract class RSModelMixin implements RSModel
 		return model;
 	}
 
-	@MethodHook("copy0")
+	@MethodHook("buildSharedModel")
 	@Inject
 	public void rl$buildSharedModel(boolean refTransparencies, Model sharedModel, byte[] transparencyBuffer)
 	{

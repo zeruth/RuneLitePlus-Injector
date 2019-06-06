@@ -496,7 +496,7 @@ public class Model extends Entity {
          Model_sharedSequenceModelFaceAlphas = new byte[this.indicesCount + 100];
       }
 
-      return this.copy0(var1, Model_sharedSequenceModel, Model_sharedSequenceModelFaceAlphas);
+      return this.buildSharedModel(var1, Model_sharedSequenceModel, Model_sharedSequenceModelFaceAlphas);
    }
 
    @ObfuscatedName("q")
@@ -509,15 +509,15 @@ public class Model extends Entity {
          Model_sharedSpotAnimationModelFaceAlphas = new byte[this.indicesCount + 100];
       }
 
-      return this.copy0(var1, Model_sharedSpotAnimationModel, Model_sharedSpotAnimationModelFaceAlphas);
+      return this.buildSharedModel(var1, Model_sharedSpotAnimationModel, Model_sharedSpotAnimationModelFaceAlphas);
    }
 
    @ObfuscatedName("w")
    @ObfuscatedSignature(
       signature = "(ZLdu;[B)Ldu;"
    )
-   @Export("copy0")
-   Model copy0(boolean var1, Model var2, byte[] var3) {
+   @Export("buildSharedModel")
+   Model buildSharedModel(boolean var1, Model var2, byte[] var3) {
       var2.verticesCount = this.verticesCount;
       var2.indicesCount = this.indicesCount;
       var2.__h = this.__h;
@@ -1577,7 +1577,7 @@ public class Model extends Entity {
    }
 
    @ObfuscatedName("cy")
-   void draw(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, long var9) {
+   void renderDraw(int var1, int var2, int var3, int var4, int var5, int var6, int var7, int var8, long var9) {
       __du_aa[0] = -1;
       if(this.boundsType != 1) {
          this.calculateBoundsCylinder();
